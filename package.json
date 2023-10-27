@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Omar4589/EscapeMe#readme",
   "dependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "react-router-dom": "^6.17.0"
   }
 }

@@ -1,7 +1,9 @@
+import "./index.css";
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">SOMETHING</header>
+    <div className="">
+      <header className="">SOMETHING</header>
     </div>
   );
 }
