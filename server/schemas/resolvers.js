@@ -13,7 +13,7 @@ const resolvers = {
     },
     // login a user, sign a token, and send it back
     login: async (parent, { email, password }) => {
-      const user = await User.findOne({ where: { email: req.body.email } });
+      const user = await User.findOne({ where: { email } });
 
       if (!user) {
         throw new AuthenticationError("Incorrect email or password!");
