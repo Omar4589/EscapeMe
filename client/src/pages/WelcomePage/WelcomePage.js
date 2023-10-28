@@ -4,8 +4,8 @@ import img2 from "../../assets/welcomePageImages/booking.jpg";
 
 const WelcomePage = () => {
   return (
-    <div id="main" className="min-h-screen bg-slate-100">
-      <div id="heading" className="text-center text-slate-950 py-10 mx-5 ">
+    <div id="main" className="min-h-screen bg-slate-100 dark:bg-slate-950  ">
+      <div id="heading" className="text-center text-slate-950 dark:text-slate-200 py-10 mx-5 ">
         <h1 className="text-4xl font-bold py-2">
           Experience Thrilling Virtual Escape Rooms with Friends!
         </h1>
@@ -18,7 +18,7 @@ const WelcomePage = () => {
         <Link
           id="signup-button"
           to="/signup"
-          className="bg-blue-700 text-slate-50 font-bold py-3 px-6 mt-6 inline-block rounded hover:bg-blue-800"
+          className="bg-blue-700 dark:bg-violet-950 text-slate-50 font-bold py-3 px-6 mt-6 inline-block rounded hover:bg-blue-800"
         >
           Sign Up Now and Unlock Your Adventure
         </Link>
@@ -30,7 +30,7 @@ const WelcomePage = () => {
       >
         <div
           id="view-escaperooms-card"
-          className="mx-5 rounded-lg bg-white p-6 shadow-lg text-center"
+          className="mx-5 rounded-lg bg-white dark:bg-slate-300 p-6 shadow-lg text-center"
         >
           <img
             src={img1}
@@ -45,7 +45,7 @@ const WelcomePage = () => {
           <Link
             id="escaperooms-button"
             to="/escaperooms"
-            className="bg-blue-700 text-slate-50 font-bold py-3 px-6 mt-6 inline-block rounded hover:bg-blue-800"
+            className="bg-blue-700 dark:bg-violet-950 text-slate-50 font-bold py-3 px-6 mt-6 inline-block rounded hover:bg-blue-800"
           >
             View Escape Rooms
           </Link>
@@ -53,7 +53,7 @@ const WelcomePage = () => {
 
         <div
           id="easybookingsystem-card"
-          className="mx-5 rounded-lg bg-white p-6 shadow-lg text-center"
+          className="mx-5 rounded-lg bg-white dark:bg-slate-300  p-6 shadow-lg text-center"
         >
           <img
             src={img2}

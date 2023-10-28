@@ -6,10 +6,12 @@ import ContactPageIcon from "@mui/icons-material/ContactPage";
 import HelpIcon from "@mui/icons-material/Help";
 import LoginIcon from "@mui/icons-material/Login";
 import DownloadIcon from "@mui/icons-material/Download";
+import { useDarkMode } from "../../utils/DarkModeContext";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navRef = useRef(null);
+  const { isDarkMode, setIsDarkMode } = useDarkMode();
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -33,8 +35,11 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="bg-blue-700 text-slate-950 flex justify-between items-center p-4">
-      <Link to="/" className="text-slate-100 text-3xl font-bold">
+    <header className="bg-blue-700 dark:bg-violet-950 text-slate-950 flex justify-between items-center p-4">
+      <Link
+        to="/"
+        className="text-slate-100  dark:text-slate-200 text-3xl font-bold"
+      >
         Escape Me
       </Link>
       <button
@@ -49,12 +54,22 @@ const Header = () => {
       <nav
         ref={navRef}
         id="nav bar"
-        className={`fixed top-0 bottom-0 right-0 w-64 bg-slate-100 shadow-2xl overflow-y-auto transform ease-in-out duration-300 ${
+        className={`fixed top-0 bottom-0 right-0 w-64 bg-slate-100 dark:bg-indigo-950 dark:text-slate-200 shadow-2xl overflow-y-auto transform ease-in-out duration-300 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="px-3 py-5">
           <ul>
+            <li className=" p-2 text-lg py-3">
+              <button
+                onClick={() => {
+                  setIsDarkMode(!isDarkMode);
+                  setIsOpen(false);
+                }}
+              >
+                Toggle Dark Mode
+              </button>
+            </li>
             <li className=" p-2 text-lg py-3">
               <InfoIcon className="mr-6" />
               <Link to="/aboutus" onClick={toggleSidebar}>
