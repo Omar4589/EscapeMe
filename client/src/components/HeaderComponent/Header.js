@@ -6,7 +6,10 @@ import ContactPageIcon from "@mui/icons-material/ContactPage";
 import HelpIcon from "@mui/icons-material/Help";
 import LoginIcon from "@mui/icons-material/Login";
 import DownloadIcon from "@mui/icons-material/Download";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
 import { useDarkMode } from "../../utils/DarkModeContext";
+import { Light } from "@mui/icons-material";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -67,7 +70,8 @@ const Header = () => {
                   setIsOpen(false);
                 }}
               >
-                Toggle Dark Mode
+                {isDarkMode ? <DarkModeIcon className="mr-6"/> : <LightModeIcon className="mr-6"/>}
+                {isDarkMode ? "Toggle Light Mode" : "Toggle Dark Mode"}
               </button>
             </li>
             <li className=" p-2 text-lg py-3">
