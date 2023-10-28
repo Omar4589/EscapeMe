@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import "./index.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import WelcomePage from "./pages/WelcomePage/WelcomePage";
+import Header from "./components/HeaderComponent/Header";
+import { DarkModeProvider } from "./utils/DarkModeContext"; // adjust the path as needed
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DarkModeProvider>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<WelcomePage />} />
+        </Routes>
+      </Router>
+    </DarkModeProvider>
   );
 }
 
