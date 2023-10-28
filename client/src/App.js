@@ -1,10 +1,14 @@
 import "./index.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import WelcomePage from "./pages/WelcomePage/WelcomePage";
 
 function App() {
   return (
-    <div className="">
-      <header className="">SOMETHING</header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<WelcomePage />} />
+      </Routes>
+    </Router>
   );
 }
 
