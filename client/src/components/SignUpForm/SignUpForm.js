@@ -21,7 +21,7 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
   const [passwordMatch, setPasswordMatch] = useState(false);
   //used to confirm email is valid
   const [validEmail, setValidEmail] = useState(true);
-  //used to check the length of the username
+  //used to check the length of the name
   const [nameLengthCheck, setNameLengthCheck] = useState(true);
 
   //used to check the length of the new password
@@ -64,23 +64,30 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
   // This function handles the sign up form submission
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    console.log("handleFormSubmit called");
+    console.log(formData.lastName.length);
 
     try {
       //check if the username is greater than 23 characters
-      if (formData.firstName.length || formData.lastName.length > 23) {
+      if (formData.firstName.length > 23 || formData.lastName.length > 23) {
+        console.log("names too long")
         setNameLengthCheck(false);
         return;
       }
       //check if new passwords match
       if (formData.confirmpassword !== formData.password) {
+        console.log("password dont match")
         setPasswordMatch(true);
         return;
       }
       //check if email is in a valid format
       if (!isValidEmail(formData.email)) {
+        console.log("email  not valid")
         setValidEmail(false);
         return;
       }
+
+      console.log("right before the create user mutation")
 
       // Use the createUser mutation to create the user
       const { data } = await createUser({
@@ -116,7 +123,7 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
 
         <h1 className="font-semibold text-2xl mb-6">Sign Up</h1>
 
-        <div id="signup-form" onSubmit={handleFormSubmit}>
+        <form id="signup-form" onSubmit={handleFormSubmit}>
           <div className="mb-4">
             <label
               className="block text-sm font-semibold mb-2"
@@ -203,7 +210,7 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
           >
             Sign Up
           </button>
-        </div>
+        </form>
         <div className="mt-4 text-center">
           <h2 className="text-sm">
             Already have an account?{" "}

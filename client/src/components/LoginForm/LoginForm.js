@@ -15,7 +15,7 @@ const LoginForm = () => {
   });
 
   //tracks the snackbar
-  //   const [showSnackBar, setShowSnackBar] = useState(false);
+  //const [showSnackBar, setShowSnackBar] = useState(false);
 
   //-----------------MUTATIONS------------//
   //A mutation to login the user
@@ -42,8 +42,6 @@ const LoginForm = () => {
   // Function to handle login form submission
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    // const data = new FormData(event.currentTarget);
-    // console.log({ email: data.get("email"), password: data.get("password") });
 
     try {
       //make email lowercase
