@@ -34,7 +34,19 @@ class AuthService {
   // Method to log in the user
   login(idToken) {
     localStorage.setItem("id_token", idToken); // Store the token in local storage
-    window.location.assign("/"); // Redirect the user to the home page
+    const profile = this.getProfile();
+
+    if (profile.data && profile.data.isAdmin) {
+      window.location.assign("/admin"); // Redirect to admin dashboard
+    } else {
+      window.location.assign("/home"); // Redirect to user dashboard
+    }
+  }
+
+  // Method to check if the user is an admin
+  isAdmin() {
+    const profile = this.getProfile(); // Decode the token to get user profile
+    return profile.data && profile.data.isAdmin; // Check if user is an admin
   }
 
   // Method to log out the user
