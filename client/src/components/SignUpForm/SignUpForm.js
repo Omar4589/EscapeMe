@@ -1,8 +1,8 @@
 //-----------------IMPORTS-----------------------//
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// import { CREATE_USER } from "../../utils/mutations";
-// import { useMutation } from "@apollo/client";
+import { CREATE_USER } from "../../utils/mutations";
+import { useMutation } from "@apollo/client";
 
 //-----------------------START OF COMPONENT-----------------------//
 const SignUpForm = ({ handleComponentChange, LoginForm }) => {
@@ -28,7 +28,7 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
 
   //-----------------MUTATIONS------------//
   // Use the CREATE_USER mutation for user registration
-  // const [createUser, { error, data }] = useMutation(CREATE_USER);
+  const [createUser, { error, data }] = useMutation(CREATE_USER);
 
   //----------SIGNUP FORM HANDLERS ---------\\
   //Closes snackbar
@@ -82,13 +82,14 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
       }
 
       // Use the createUser mutation to create the user
-      // const { data } = await createUser({
-      //   variables: {
-      //     username: formData.username,
-      //     email: formData.email,
-      //     password: formData.password,
-      //   },
-      // });
+      const { data } = await createUser({
+        variables: {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          password: formData.password,
+        },
+      });
 
       // Log the user in with the generated token
       // Auth.login(data.createUser.token);
