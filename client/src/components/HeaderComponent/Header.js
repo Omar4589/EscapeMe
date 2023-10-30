@@ -94,8 +94,8 @@ const Header = () => {
             </li>
             <li className=" p-2 text-lg  py-3">
               <LoginIcon className="mr-6" />
-              <Link to="/signin" onClick={toggleSidebar}>
-                Sign In
+              <Link to="/login" onClick={toggleSidebar}>
+                Login
               </Link>
             </li>
             <li className=" p-2 text-lg py-3">
