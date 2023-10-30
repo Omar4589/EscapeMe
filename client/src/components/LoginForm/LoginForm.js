@@ -78,24 +78,35 @@ const LoginForm = () => {
 
         <h1 className="font-semibold text-2xl mb-6">Login</h1>
 
-        <div id="signup-form" onSubmit={handleFormSubmit}>
+        <form id="signup-form" onSubmit={handleFormSubmit}>
           <div className="mb-4">
-            <label className="block text-sm font-semibold mb-2">Email</label>
+            <label
+              className="block text-sm font-semibold mb-2"
+              htmlFor="email-login"
+            >
+              Email
+            </label>
             <input
               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-600"
+              autoComplete="email"
               type="email"
-              id="email-signup"
+              id="email-login"
               name="email"
               required
               onChange={handleInputChange}
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-semibold mb-2">Password</label>
+            <label
+              className="block text-sm font-semibold mb-2"
+              htmlFor="password-login"
+            >
+              Password
+            </label>
             <input
               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-600"
               type="password"
-              id="password-signup"
+              id="password-login"
               name="password"
               required
               onChange={handleInputChange}
@@ -107,7 +118,7 @@ const LoginForm = () => {
           >
             Login
           </button>
-        </div>
+        </form>
         <div className="mt-4 text-center">
           <h2 className="text-sm">
             Don't have an account yet?{" "}
