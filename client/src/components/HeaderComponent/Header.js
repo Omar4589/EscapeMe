@@ -10,6 +10,7 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { useDarkMode } from "../../utils/DarkModeContext";
 import { Light } from "@mui/icons-material";
+import Auth from "../../utils/auth";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,6 +19,12 @@ const Header = () => {
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
+  };
+
+  //this handles logging out the user
+  const handleLogout = () => {
+    Auth.logout();
+    window.location.replace("/");
   };
 
   // Event to close the nav when clicking outside
@@ -70,7 +77,11 @@ const Header = () => {
                   setIsOpen(false);
                 }}
               >
-                {isDarkMode ? <DarkModeIcon className="mr-6"/> : <LightModeIcon className="mr-6"/>}
+                {isDarkMode ? (
+                  <DarkModeIcon className="mr-6" />
+                ) : (
+                  <LightModeIcon className="mr-6" />
+                )}
                 {isDarkMode ? "Toggle Light Mode" : "Toggle Dark Mode"}
               </button>
             </li>
@@ -93,10 +104,19 @@ const Header = () => {
               </Link>
             </li>
             <li className=" p-2 text-lg  py-3">
-              <LoginIcon className="mr-6" />
-              <Link to="/login" onClick={toggleSidebar}>
-                Login
-              </Link>
+              {Auth.loggedIn() ? (
+                <>
+                  <LoginIcon className="mr-6" />
+                  <Link onClick={handleLogout}>Logout</Link>
+                </>
+              ) : (
+                <>
+                  <LoginIcon className="mr-6" />
+                  <Link to="/login" onClick={toggleSidebar}>
+                    Login
+                  </Link>
+                </>
+              )}
             </li>
             <li className=" p-2 text-lg py-3">
               <DownloadIcon className="mr-4" />
