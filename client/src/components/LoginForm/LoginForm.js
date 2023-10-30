@@ -73,13 +73,13 @@ const LoginForm = () => {
     <div className="bg-gray-100 h-screen flex items-center justify-center font-roboto text-slate-950">
       <div className="mx-5 bg-white w-full max-w-md p-8 rounded-md shadow-lg">
         <div>
-          <h1 className="font-bold text-4xl mb-2 text-center">Escape Me</h1>
+          <h1 className="font-bold text-4xl mb-6 text-center">Escape Me</h1>
         </div>
 
         <h1 className="font-semibold text-2xl mb-6">Login</h1>
 
         <form id="signup-form" onSubmit={handleFormSubmit}>
-          <div className="mb-4">
+          <div className="mb-8">
             <label
               className="block text-sm font-semibold mb-2"
               htmlFor="email-login"
@@ -96,7 +96,7 @@ const LoginForm = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-6">
             <label
               className="block text-sm font-semibold mb-2"
               htmlFor="password-login"
