@@ -1,9 +1,13 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User } = require("../models");
+const { User, EscapeRoom } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
-  Query: {},
+  Query: {
+    getAllEscapeRooms: async () => {
+      return await EscapeRoom.findAll();
+    },
+  },
   Mutation: {
     // create a user, sign a token, and send it back
     createUser: async (parent, { firstName, lastName, email, password }) => {
