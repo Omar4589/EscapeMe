@@ -111,68 +111,87 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
     <div className="bg-gray-100 h-screen flex items-center justify-center font-roboto text-slate-950">
       <div className="mx-5 bg-white w-full max-w-md p-8 rounded-md shadow-lg">
         <div>
-          <h1 className="font-bold text-4xl mb-2 text-center">Escape Me</h1>
+          <h1 className="font-bold text-4xl mb-4 text-center">Escape Me</h1>
         </div>
 
         <h1 className="font-semibold text-2xl mb-6">Sign Up</h1>
 
         <div id="signup-form" onSubmit={handleFormSubmit}>
           <div className="mb-4">
-            <label className="block text-sm font-semibold mb-2">
+            <label
+              className="block text-sm font-semibold mb-2"
+              htmlFor="firstname"
+            >
               First Name
             </label>
             <input
+              autoComplete="given-name"
               className="w-full px-3 py-1 border border-gray-300 rounded focus:outline-none focus:border-indigo-600"
               type="text"
-              id="firstname-signup"
+              id="firstname"
               name="firstName"
               required
               onChange={handleInputChange}
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-semibold mb-2">
+            <label
+              className="block text-sm font-semibold mb-2"
+              htmlFor="lastname"
+            >
               Last Name
             </label>
             <input
+              autoComplete="family-name"
               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-600"
               type="text"
-              id="lastname-signup"
+              id="lastname"
               name="lastName"
               required
               onChange={handleInputChange}
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-semibold mb-2">Email</label>
+            <label className="block text-sm font-semibold mb-2" htmlFor="email">
+              Email
+            </label>
             <input
+              autoComplete="email"
               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-600"
               type="email"
-              id="email-signup"
+              id="email"
               name="email"
               required
               onChange={handleInputChange}
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-semibold mb-2">Password</label>
+            <label
+              className="block text-sm font-semibold mb-2"
+              htmlFor="password"
+            >
+              Password
+            </label>
             <input
               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-600"
               type="password"
-              id="password-signup"
+              id="password"
               name="password"
               required
               onChange={handleInputChange}
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-semibold mb-2">
+            <label
+              className="block text-sm font-semibold mb-2"
+              htmlFor="confirmpassword"
+            >
               Confirm Password
             </label>
             <input
               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-600"
               type="password"
-              id="confirmpassword-signup"
+              id="confirmpassword"
               name="confirmpassword"
               required
               onChange={handleInputChange}
