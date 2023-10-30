@@ -8,6 +8,15 @@ const typeDefs = gql`
     email: String!
   }
 
+  type EscapeRoom {
+    id: ID!
+    theme: String!
+    difficulty: String!
+    description: String!
+    duration: Int!
+    image_url: String!
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -20,7 +29,12 @@ const typeDefs = gql`
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    createUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    createUser(
+      firstName: String!
+      lastName: String!
+      email: String!
+      password: String!
+    ): Auth
   }
 `;
 
