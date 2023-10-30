@@ -11,7 +11,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
 import Header from "./components/HeaderComponent/Header";
 import { DarkModeProvider } from "./utils/DarkModeContext"; // adjust the path as needed
-import SignUpPage from "./pages/SignUpPage/SignUp";
+import SignUpPage from "./pages/SignUpPage/SignUpPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -43,6 +44,7 @@ function App() {
           <Routes>
             <Route path="/" element={<WelcomePage />} />
             <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </Router>
       </DarkModeProvider>
