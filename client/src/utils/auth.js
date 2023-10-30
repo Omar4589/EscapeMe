@@ -1,5 +1,5 @@
 // Import the decode function from the "jwt-decode" library
-import decode from "jwt-decode";
+import { jwtDecode as decode } from "jwt-decode";
 
 // Define a class named AuthService to manage authentication-related functionality
 class AuthService {

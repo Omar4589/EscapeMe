@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { CREATE_USER } from "../../utils/mutations";
 import { useMutation } from "@apollo/client";
+import Auth from "../../utils/auth";
 
 //-----------------------START OF COMPONENT-----------------------//
 const SignUpForm = ({ handleComponentChange, LoginForm }) => {
@@ -92,7 +93,7 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
       });
 
       // Log the user in with the generated token
-      // Auth.login(data.createUser.token);
+      Auth.login(data.createUser.token);
     } catch (err) {
       console.error(err);
     }
@@ -110,7 +111,7 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
     <div className="bg-gray-100 h-screen flex items-center justify-center font-roboto text-slate-950">
       <div className="mx-5 bg-white w-full max-w-md p-8 rounded-md shadow-lg">
         <div>
-          <h1 class="font-bold text-4xl mb-2 text-center">Escape Me</h1>
+          <h1 className="font-bold text-4xl mb-2 text-center">Escape Me</h1>
         </div>
 
         <h1 className="font-semibold text-2xl mb-6">Sign Up</h1>
