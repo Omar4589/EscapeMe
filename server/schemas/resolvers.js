@@ -69,9 +69,14 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    createBooking: async (parent, { date, time }, context) => {
+    createBooking: async (parent, { escape_room_id, date, time }, context) => {
       if (context.user) {
-        const booking = await Booking.create({ date, time });
+        const booking = await Booking.create({
+          user_id: context.user.id,
+          escape_room_id,
+          date,
+          time,
+        });
         return booking;
       }
       throw new AuthenticationError("You need to be logged in!");

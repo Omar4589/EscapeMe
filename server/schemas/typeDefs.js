@@ -52,7 +52,12 @@ const typeDefs = gql`
       email: String!
       password: String!
     ): Auth
-    createBooking(date: String!, time: String!): Booking
+    createBooking(
+      user_id: ID!
+      escape_room_id: ID!
+      date: String!
+      time: String!
+    ): Booking
   }
 `;
 
