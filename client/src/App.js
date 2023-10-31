@@ -14,6 +14,7 @@ import { DarkModeProvider } from "./utils/DarkModeContext"; // adjust the path a
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import UserHomePage from "./pages/UserHomePage/UserHomePage";
+import BookingPage from "./pages/BookingPage/BookingPage";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -47,6 +48,7 @@ function App() {
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/home" element={<UserHomePage />} />
+            <Route path="/booking" element={<BookingPage />} />
           </Routes>
         </Router>
       </DarkModeProvider>
