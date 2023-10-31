@@ -103,7 +103,7 @@ const UserHomeComponent = () => {
           </section>
 
           {/* MODAL SECTION */}
-          <modal
+          <div
             id="escape-room-modal"
             className="fixed hidden h-screen inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
           >
@@ -157,7 +157,7 @@ const UserHomeComponent = () => {
                 Book This Room
               </a>
             </div>
-          </modal>
+          </div>
         </div>
       ) : (
         <div> Please log in </div>
