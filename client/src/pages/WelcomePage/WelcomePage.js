@@ -10,19 +10,20 @@ const WelcomePage = () => {
 
   useEffect(() => {
     if (Auth.loggedIn()) {
-      window.location.assign("/home");
+      if (Auth.isAdmin()) {
+        window.location.assign("/admin");
+      } else window.location.assign("/home");
     }
+
     setLoading(false);
   }, []);
-
-  console.log(loggedIn);
 
   if (loading) {
     return null;
   }
 
   return (
-    <div id="main" className="min-h-screen bg-slate-100 dark:bg-slate-950  ">
+    <div id="main" className="min-h-screen bg-slate-100 dark:bg-slate-950">
       <div
         id="heading"
         className="text-center text-slate-950 dark:text-slate-200 py-10 mx-5 "

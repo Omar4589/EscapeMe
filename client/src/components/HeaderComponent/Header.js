@@ -9,7 +9,6 @@ import DownloadIcon from "@mui/icons-material/Download";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { useDarkMode } from "../../utils/DarkModeContext";
-import { Light } from "@mui/icons-material";
 import Auth from "../../utils/auth";
 
 const Header = () => {
