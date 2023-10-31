@@ -4,62 +4,62 @@
     "difficulty": "Beginner",
     "description": "You and your crew of pirates have discovered a map leading to the lost treasure of the infamous Captain Blackbeard. Can you solve the puzzles and escape with the treasure before the other rival pirates catch up with you?",
     "duration": 60,
-    "image_url": "/img/treasure.jpg"
+    "image_url": "https://res.cloudinary.com/yardgems/image/upload/v1698712050/EscapeMeRooms/wdkuwhxn1fwimimtlx92.jpg"
   },
   {
     "theme": "Mystery at the Museum",
     "difficulty": "Beginner",
     "description": "A priceless artifact has been stolen from the local museum and it's up to you to solve the mystery and recover the artifact before the thief gets away with it.",
     "duration": 60,
-    "image_url": "/img/museum.jpeg"
+    "image_url": "https://res.cloudinary.com/yardgems/image/upload/v1698712042/EscapeMeRooms/imptjd2fykf3bmh7vxve.jpg"
   },
   {
     "theme": "Escape from Candyland",
     "difficulty": "Beginner",
     "description": "You've been magically transported to a world made entirely of candy! Can you escape before you're trapped forever in a sugary sweet prison?",
     "duration": 60,
-    "image_url": "/img/candyland.jpg"
+    "image_url": "https://res.cloudinary.com/yardgems/image/upload/v1698712049/EscapeMeRooms/qwrgtrtwykyqpz8es78q.jpg"
   },
   {
     "theme": "Secrets of the Pharaoh's Tomb",
     "difficulty": "Intermediate",
     "description": "You are a group of archaeologists who have just uncovered the entrance to an ancient Egyptian tomb. But beware, the tomb is cursed and the spirits of the pharaohs are guarding their treasures. Can you decipher the hieroglyphs and escape the wrath of the ancient gods?",
-    "duration": 90,
-    "image_url": "/img/pharoah.jpeg"
+    "duration": 60,
+    "image_url": "https://res.cloudinary.com/yardgems/image/upload/v1698712042/EscapeMeRooms/zihd6gdhntpox0slkoka.jpg"
   },
   {
     "theme": "Time Travel Heist",
     "difficulty": "Intermediate",
     "description": "You've been recruited by a group of time travelers to help pull off a heist of historic proportions. Can you navigate the twists and turns of time and steal the valuable artifact before time runs out?",
-    "duration": 90,
-    "image_url": "/img/timetravel.jpeg"
+    "duration": 60,
+    "image_url": "https://res.cloudinary.com/yardgems/image/upload/v1698712041/EscapeMeRooms/hqn9mlirdxxkbze9u1oa.jpg"
   },
   {
     "theme": "The Haunted Mansion",
     "difficulty": "Intermediate",
     "description": "You've stumbled upon a spooky mansion that's rumored to be haunted. Can you solve the puzzles and escape before the ghosts catch up with you?",
-    "duration": 90,
-    "image_url": "/img/mansionhaunted.png"
+    "duration": 60,
+    "image_url": "https://res.cloudinary.com/yardgems/image/upload/v1698712044/EscapeMeRooms/o3hvij4oudkjwrildqee.png"
   },
   {
     "theme": "The Alien Conspiracy",
     "difficulty": "Expert",
     "description": "You are a team of top-secret government agents investigating a conspiracy involving an alien invasion. The clock is ticking and the fate of humanity is in your hands. Can you uncover the truth and save the world before it's too late?",
-    "duration": 120,
-    "image_url": "/img/area51.jpeg"
+    "duration": 60,
+    "image_url": "https://res.cloudinary.com/yardgems/image/upload/v1698712045/EscapeMeRooms/yidg13eiidpwfvhr0tp3.jpg"
   },
   {
     "theme": "The Impossible Heist",
     "difficulty": "Expert",
     "description": "You've been hired to pull off the impossible heist of a priceless diamond. Can you outwit the security measures and make off with the loot?",
-    "duration": 120,
-    "image_url": "/img/hacked.jpeg"
+    "duration": 60,
+    "image_url": "https://res.cloudinary.com/yardgems/image/upload/v1698712043/EscapeMeRooms/cugakwtsdch1c8uc9aag.jpg"
   },
   {
     "theme": "Mind Maze",
     "difficulty": "Expert",
     "description": "You've been abducted by a mad scientist who's testing your cognitive abilities in a mind-bending maze. Can you solve the puzzles and escape before your brain is fried?",
-    "duration": 120,
-    "image_url": "/img/brainmaze.jpeg"
+    "duration": 60,
+    "image_url": "https://res.cloudinary.com/yardgems/image/upload/v1698712041/EscapeMeRooms/zoy1him29bmy1imugwka.jpg"
   }
 ]
