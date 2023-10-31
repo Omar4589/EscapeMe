@@ -48,9 +48,9 @@ const Header = () => {
     <header className="bg-blue-700 dark:bg-violet-950 text-slate-950 flex justify-between items-center p-4">
       <Link
         to={
-          Auth.loggedIn
+          Auth.loggedIn()
             ? "/home"
-            : Auth.loggedIn && Auth.isAdmin
+            : Auth.loggedIn() && Auth.isAdmin()
             ? "/admin"
             : "/"
         }
