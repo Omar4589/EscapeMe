@@ -35,12 +35,7 @@ const typeDefs = gql`
     # Because we have the context functionality in place to check a JWT and decode its data, we can use a query that will always find and return the logged in user's data
     me: User
     getAllEscapeRooms: [EscapeRoom]
-    availableSlots(
-      escapeRoomId: Int!
-      date: String!
-      time: String!
-      duration: Int!
-    ): [String!]!
+    availableSlots(escape_room_id: Int!, date: String!): [String!]
     getSingleBooking: Booking
   }
 

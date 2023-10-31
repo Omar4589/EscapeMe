@@ -11,17 +11,21 @@ const generateTimeSlots = () => {
   return slots;
 };
 
-const getAvailableSlots = async (escapeRoomId, date) => {
+const getAvailableSlots = async (escape_room_id, date) => {
   // Generate all possible slots between 12 pm to 9 pm
   let allSlots = generateTimeSlots();
 
   // Fetch existing bookings for the escape room on the specific date
   const existingBookings = await Booking.findAll({
     where: {
-      escape_room_id: escapeRoomId,
-      date: date,
+      escape_room_id,
+      date,
     },
   });
+
+  if (existingBookings.length === 0) {
+    return allSlots;
+  }
 
   const bookedSlots = existingBookings.map((booking) => booking.time);
 
@@ -36,8 +40,8 @@ const resolvers = {
     getAllEscapeRooms: async () => {
       return await EscapeRoom.findAll();
     },
-    availableSlots: async (parent, { escapeRoomId, date }) => {
-      return await getAvailableSlots(escapeRoomId, date);
+    availableSlots: async (parent, { escape_room_id, date }) => {
+      return await getAvailableSlots(escape_room_id, date);
     },
     me: async (parent, args, context) => {
       if (context.user) {
