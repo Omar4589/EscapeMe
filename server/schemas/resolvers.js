@@ -1,11 +1,43 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, EscapeRoom } = require("../models");
+const { User, EscapeRoom, Booking } = require("../models");
 const { signToken } = require("../utils/auth");
+
+const generateTimeSlots = () => {
+  const slots = [];
+  for (let i = 12; i <= 20; i++) {
+    // 12 pm to 8 pm
+    slots.push(`${i < 10 ? "0" : ""}${i}:00:00`); // Ensure it's a double-digit hour
+  }
+  return slots;
+};
+
+const getAvailableSlots = async (escapeRoomId, date) => {
+  // Generate all possible slots between 12 pm to 9 pm
+  let allSlots = generateTimeSlots();
+
+  // Fetch existing bookings for the escape room on the specific date
+  const existingBookings = await Booking.findAll({
+    where: {
+      escape_room_id: escapeRoomId,
+      date: date,
+    },
+  });
+
+  const bookedSlots = existingBookings.map((booking) => booking.time);
+
+  // Remove the booked slots from all possible slots
+  const availableSlots = allSlots.filter((slot) => !bookedSlots.includes(slot));
+
+  return availableSlots;
+};
 
 const resolvers = {
   Query: {
     getAllEscapeRooms: async () => {
       return await EscapeRoom.findAll();
+    },
+    availableSlots: async (parent, { escapeRoomId, date }) => {
+      return await getAvailableSlots(escapeRoomId, date);
     },
     me: async (parent, args, context) => {
       if (context.user) {
@@ -36,6 +68,18 @@ const resolvers = {
       }
       const token = signToken(user);
       return { token, user };
+    },
+    createBooking: async (parent, { escape_room_id, date, time }, context) => {
+      if (context.user) {
+        const booking = await Booking.create({
+          user_id: context.user.id,
+          escape_room_id,
+          date,
+          time,
+        });
+        return booking;
+      }
+      throw new AuthenticationError("You need to be logged in!");
     },
   },
 };

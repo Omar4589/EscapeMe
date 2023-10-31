@@ -17,6 +17,15 @@ const typeDefs = gql`
     image_url: String!
   }
 
+  type Booking {
+    id: ID!
+    user_id: Int!
+    escape_room_id: Int!
+    date: String!
+    time: String!
+    created_at: String!
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -26,6 +35,13 @@ const typeDefs = gql`
     # Because we have the context functionality in place to check a JWT and decode its data, we can use a query that will always find and return the logged in user's data
     me: User
     getAllEscapeRooms: [EscapeRoom]
+    availableSlots(
+      escapeRoomId: Int!
+      date: String!
+      time: String!
+      duration: Int!
+    ): [String!]!
+    getSingleBooking: Booking
   }
 
   type Mutation {
@@ -36,6 +52,12 @@ const typeDefs = gql`
       email: String!
       password: String!
     ): Auth
+    createBooking(
+      user_id: ID!
+      escape_room_id: ID!
+      date: String!
+      time: String!
+    ): Booking
   }
 `;
 
