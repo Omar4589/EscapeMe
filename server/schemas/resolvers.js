@@ -7,6 +7,14 @@ const resolvers = {
     getAllEscapeRooms: async () => {
       return await EscapeRoom.findAll();
     },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        //findByPk does not use a 'where' clause, pass in the PK directly
+        const loggedinUser = await User.findByPk(context.user.id);
+        return loggedinUser;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
   },
   Mutation: {
     // create a user, sign a token, and send it back
