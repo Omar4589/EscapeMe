@@ -23,3 +23,15 @@ export const QUERY_AllESCAPEROOMS = gql`
     }
   }
 `;
+
+export const QUERY_SINGLEBOOKING = gql`
+  query getSingleBooking {
+    getSingleBooking {
+      user_id
+      escape_room_id
+      date
+      time
+      created_at
+    }
+  }
+`;

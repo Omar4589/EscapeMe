@@ -1,8 +1,18 @@
 import { gql } from "@apollo/client";
 
 export const CREATE_USER = gql`
-  mutation createUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
-    createUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
+  mutation createUser(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $password: String!
+  ) {
+    createUser(
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      password: $password
+    ) {
       token
       user {
         id
@@ -38,6 +48,30 @@ export const UPDATE_PASSWORD = gql`
     ) {
       _id
       username
+    }
+  }
+`;
+export const CREATE_BOOKING = gql`
+  mutation createBooking(
+    $user_id: String!
+    $escape_room_id: String!
+    $date: String!
+    $time: String!
+  ) {
+    createBooking(
+      user_id: $user_id
+      escape_room_id: $escape_room_id
+      date: $date
+      time: $time
+    ) {
+      booking {
+        id
+        user_id
+        escape_room_id
+        date
+        time
+        created_at
+      }
     }
   }
 `;
