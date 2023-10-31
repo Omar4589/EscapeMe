@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, EscapeRoom } = require("../models");
+const { User, EscapeRoom, Booking } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const generateTimeSlots = () => {
@@ -68,6 +68,12 @@ const resolvers = {
       }
       const token = signToken(user);
       return { token, user };
+    },
+    createBooking: async (parent, { date, time }, context) => {
+      if (context.user) {
+        const booking = await Booking.create({ date, time });
+        return booking;
+      }
     },
   },
 };
