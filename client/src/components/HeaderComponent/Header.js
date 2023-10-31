@@ -9,7 +9,6 @@ import DownloadIcon from "@mui/icons-material/Download";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { useDarkMode } from "../../utils/DarkModeContext";
-import { Light } from "@mui/icons-material";
 import Auth from "../../utils/auth";
 
 const Header = () => {
@@ -47,7 +46,13 @@ const Header = () => {
   return (
     <header className="bg-blue-700 dark:bg-violet-950 text-slate-950 flex justify-between items-center p-4">
       <Link
-        to="/"
+        to={
+          Auth.loggedIn()
+            ? "/home"
+            : Auth.loggedIn() && Auth.isAdmin()
+            ? "/admin"
+            : "/"
+        }
         className="text-slate-100  dark:text-slate-200 text-3xl font-bold"
       >
         Escape Me

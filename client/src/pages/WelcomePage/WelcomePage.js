@@ -1,11 +1,33 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import img1 from "../../assets/welcomePageImages/themes.jpg";
 import img2 from "../../assets/welcomePageImages/booking.jpg";
+import Auth from "../../utils/auth";
 
 const WelcomePage = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (Auth.loggedIn()) {
+      if (Auth.isAdmin()) {
+        window.location.assign("/admin");
+      } else window.location.assign("/home");
+    }
+
+    setLoading(false);
+  }, []);
+
+  if (loading) {
+    return null;
+  }
+
   return (
-    <div id="main" className="min-h-screen bg-slate-100 dark:bg-slate-950  ">
-      <div id="heading" className="text-center text-slate-950 dark:text-slate-200 py-10 mx-5 ">
+    <div id="main" className="min-h-screen bg-slate-100 dark:bg-slate-950">
+      <div
+        id="heading"
+        className="text-center text-slate-950 dark:text-slate-200 py-10 mx-5 "
+      >
         <h1 className="text-4xl font-bold py-2">
           Experience Thrilling Virtual Escape Rooms with Friends!
         </h1>

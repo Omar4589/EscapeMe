@@ -2,10 +2,12 @@ import Auth from "../../utils/auth";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { QUERY_AllESCAPEROOMS, ME_QUERY } from "../../utils/queries";
+import CloseIcon from "@mui/icons-material/Close";
 
 const UserHomeComponent = () => {
   const [escapeRooms, setEscapeRooms] = useState([]);
   const [user, setUser] = useState({});
+  const [activeRoom, setActiveRoom] = useState(null);
 
   const { loading, data: allEscapeRoomsData } = useQuery(QUERY_AllESCAPEROOMS);
   const { data: userData } = useQuery(ME_QUERY);
@@ -20,6 +22,19 @@ const UserHomeComponent = () => {
     const u = userData?.me || {};
     setUser(u);
   }, [userData]);
+
+  const displayModal = (room) => {
+    setActiveRoom(room);
+    const modal = document.getElementById("escape-room-modal");
+    modal.classList.remove("hidden");
+
+    console.log(activeRoom);
+  };
+
+  const closeModal = () => {
+    const modal = document.getElementById("escape-room-modal");
+    modal.classList.add("hidden");
+  };
 
   if (loading) return <p>Loading...</p>;
 
@@ -62,6 +77,9 @@ const UserHomeComponent = () => {
                       id={room.theme}
                       key={room.id}
                       className="cursor-pointer escape-room bg-white shadow-lg rounded-lg p-6"
+                      onClick={() => {
+                        displayModal(room);
+                      }}
                     >
                       <img
                         src={room.image_url}
@@ -83,6 +101,63 @@ const UserHomeComponent = () => {
               </div>
             </div>
           </section>
+
+          {/* MODAL SECTION */}
+          <div
+            id="escape-room-modal"
+            className="fixed hidden h-screen inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+          >
+            <div className="overscroll-contain max-h-screen overflow-y-auto relative bg-white px-5 py-8 mx-2 rounded-lg shadow-lg w-full max-w-lg">
+              <span
+                id="closeModal"
+                className="absolute top-5 right-5 text-xl font-bold cursor-pointer"
+                onClick={closeModal}
+              >
+                <CloseIcon />
+              </span>
+              <h2 className="font-bold text-4xl my-4" id="theme">
+                {activeRoom ? activeRoom.theme : ""}
+              </h2>
+              <div className="flex flex-wrap justify-between">
+                <div className="w-full md:w-1/3">
+                  <img
+                    id="escape-room-image"
+                    className="w-full h-auto rounded-lg mb-4"
+                    alt="Escape Room"
+                    src={activeRoom ? activeRoom.image_url : ""}
+                  />
+                  <div className="flex items-center justify-between"></div>
+                </div>
+                <div className="w-full md:w-2/3">
+                  <div className="flex text-center items-start justify-between mb-2">
+                    <p className="font-semibold text-lg">Diffculty Level:</p>
+                    <p id="difficulty-level" className="text-right ml-2">
+                      {activeRoom ? activeRoom.difficulty : ""}
+                    </p>
+                  </div>
+                  <div className="flex text-center items-start justify-between mb-2">
+                    <p className="font-semibold text-lg">Duration:</p>
+                    <p id="duration" className="text-right ml-2">
+                      {activeRoom ? activeRoom.duration : ""}
+                    </p>
+                  </div>
+                  <div className="flex text-center items-start justify-between mb-6">
+                    <p className="font-semibold text-lg">Description:</p>
+                    <p id="description" className="text-right ml-2">
+                      {" "}
+                      {activeRoom ? activeRoom.description : ""}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <a
+                href="/booking"
+                className="bg-blue-500 text-white px-6 py-2 rounded-lg font-semibold"
+              >
+                Book This Room
+              </a>
+            </div>
+          </div>
         </div>
       ) : (
         <div> Please log in </div>
