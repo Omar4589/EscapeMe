@@ -44,14 +44,6 @@ Booking.init(
       type: DataTypes.TIME,
       allowNull: false,
     },
-    duration: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "escaperooms",
-        key: "duration",
-      },
-    },
   },
   {
     sequelize,
