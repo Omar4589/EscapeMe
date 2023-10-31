@@ -74,6 +74,7 @@ const resolvers = {
         const booking = await Booking.create({ date, time });
         return booking;
       }
+      throw new AuthenticationError("You need to be logged in!");
     },
   },
 };
