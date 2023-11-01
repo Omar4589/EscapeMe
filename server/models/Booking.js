@@ -25,6 +25,23 @@ Booking.init(
         key: "id",
       },
     },
+      // The foreign key representing the user who made the booking
+      user_firstName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        references: {
+          model: "users",
+          key: "firstName",
+        },
+      },
+      user_lastName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        references: {
+          model: "users",
+          key: "lastName",
+        },
+      },
     // The foreign key representing the escape room that is booked
     escape_room_id: {
       type: DataTypes.INTEGER,
