@@ -25,23 +25,6 @@ Booking.init(
         key: "id",
       },
     },
-    // The foreign key representing the user who made the booking
-    user_firstName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      references: {
-        model: "users",
-        key: "firstName",
-      },
-    },
-    user_lastName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      references: {
-        model: "users",
-        key: "lastName",
-      },
-    },
     // The foreign key representing the escape room that is booked
     escape_room_id: {
       type: DataTypes.INTEGER,
@@ -49,22 +32,6 @@ Booking.init(
       references: {
         model: "escaperooms",
         key: "id",
-      },
-    },
-    escape_room_theme: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      references: {
-        model: "escaperooms",
-        key: "theme",
-      },
-    },
-    escape_room_duration: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "escaperooms",
-        key: "duration",
       },
     },
     // The date of the booking

@@ -12,6 +12,7 @@ EscapeRoom.hasMany(Booking, {
   foreignKey: "escape_room_id",
   onDelete: "CASCADE", // Deleting all bookings when an escape room is deleted
 });
+
 Booking.belongsTo(User, {
   foreignKey: "user_id",
 });

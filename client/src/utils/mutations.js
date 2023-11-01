@@ -55,19 +55,24 @@ export const CREATE_BOOKING = gql`
   mutation createBooking(
     $escape_room_id: Int!
     $escape_room_theme: String!
+    $escape_room_duration: Int!
     $date: String!
     $time: String!
   ) {
     createBooking(
       escape_room_id: $escape_room_id
       escape_room_theme: $escape_room_theme
+      escape_room_duration: $escape_room_duration
       date: $date
       time: $time
     ) {
       id
       user_id
+      user_firstName
+      user_lastName
       escape_room_id
       escape_room_theme
+      escape_room_duration
       date
       time
       created_at

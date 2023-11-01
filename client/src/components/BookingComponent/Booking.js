@@ -14,6 +14,7 @@ const Booking = () => {
   const [formData, setFormData] = useState({
     escape_room_id: "",
     escape_room_theme: "",
+    escape_room_duration: "",
     date: "",
     time: "",
   });
@@ -43,6 +44,7 @@ const Booking = () => {
         ...formData,
         escape_room_id: parseInt(rooms[0].id, 10),
         escape_room_theme: rooms[0].theme,
+        escape_room_duration: rooms[0].duration,
       });
     }
   }, [allEscapeRoomsData]);
@@ -82,11 +84,13 @@ const Booking = () => {
         (room) => room.id === parseInt(value, 10)
       );
       const theme = selectedRoom ? selectedRoom.theme : ""; // Get the theme of the selected room
+      const duration = selectedRoom ? selectedRoom.duration : "";
 
       setFormData({
         ...formData,
         [name]: parseInt(value, 10),
         escape_room_theme: theme,
+        escape_room_duration: duration,
       });
     } else {
       setFormData({ ...formData, [name]: value });
@@ -105,6 +109,7 @@ const Booking = () => {
         variables: {
           escape_room_id: formData.escape_room_id,
           escape_room_theme: formData.escape_room_theme,
+          escape_room_duration: formData.escape_room_duration,
           date: formData.date,
           time: formData.time,
         },
