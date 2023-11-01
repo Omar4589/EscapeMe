@@ -20,11 +20,7 @@ const typeDefs = gql`
   type Booking {
     id: Int!
     user_id: Int!
-    user_firstName: String!
-    user_lastName: String!
     escape_room_id: Int!
-    escape_room_theme: String!
-    escape_room_duration: Int!
     date: String!
     time: String!
     created_at: String!
@@ -51,7 +47,11 @@ const typeDefs = gql`
       email: String!
       password: String!
     ): Auth
-    createBooking(escape_room_id: Int!, escape_room_theme: String!, escape_room_duration: Int!, date: String!, time: String!): Booking
+    createBooking(
+      escape_room_id: Int!
+      date: String!
+      time: String!
+    ): Booking
   }
 `;
 
