@@ -21,7 +21,7 @@ Booking.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "user",
+        model: "users",
         key: "id",
       },
     },
@@ -32,6 +32,14 @@ Booking.init(
       references: {
         model: "escaperooms",
         key: "id",
+      },
+    },
+    escape_room_theme: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      references: {
+        model: "escaperooms",
+        key: "theme",
       },
     },
     // The date of the booking

@@ -23,3 +23,22 @@ export const QUERY_AllESCAPEROOMS = gql`
     }
   }
 `;
+
+export const QUERY_AVAILABLESLOTS = gql`
+  query availableSlots($escape_room_id: Int!, $date: String!) {
+    availableSlots(escape_room_id: $escape_room_id, date: $date)
+  }
+`;
+
+export const QUERY_SINGLEBOOKING = gql`
+  query getSingleBooking {
+    getSingleBooking {
+      user_id
+      escape_room_id
+      escape_room_theme
+      date
+      time
+      created_at
+    }
+  }
+`;
