@@ -35,6 +35,7 @@ export const QUERY_SINGLEBOOKING = gql`
     getSingleBooking {
       user_id
       escape_room_id
+      escape_room_theme
       date
       time
       created_at

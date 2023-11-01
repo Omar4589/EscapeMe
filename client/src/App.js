@@ -5,6 +5,7 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import Auth from "../src/utils/auth";
 
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -47,8 +48,14 @@ function App() {
             <Route path="/" element={<WelcomePage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/home" element={<UserHomePage />} />
-            <Route path="/booking" element={<BookingPage />} />
+            <Route
+              path="/home"
+              element={Auth.loggedIn() ? <UserHomePage /> : <LoginPage />}
+            />
+            <Route
+              path="/booking"
+              element={Auth.loggedIn() ? <BookingPage /> : <LoginPage />}
+            />
           </Routes>
         </Router>
       </DarkModeProvider>

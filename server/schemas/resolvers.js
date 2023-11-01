@@ -73,11 +73,12 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    createBooking: async (parent, { escape_room_id, date, time }, context) => {
+    createBooking: async (parent, { escape_room_id, escape_room_theme, date, time }, context) => {
       if (context.user) {
         const booking = await Booking.create({
           user_id: context.user.id,
           escape_room_id,
+          escape_room_theme,
           date,
           time,
         });

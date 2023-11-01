@@ -34,6 +34,14 @@ Booking.init(
         key: "id",
       },
     },
+    escape_room_theme: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      references: {
+        model: "escaperooms",
+        key: "theme",
+      },
+    },
     // The date of the booking
     date: {
       type: DataTypes.DATEONLY,

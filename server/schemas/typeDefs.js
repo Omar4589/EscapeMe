@@ -2,14 +2,14 @@ const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   type User {
-    id: ID!
+    id: Int!
     firstName: String!
     lastName: String!
     email: String!
   }
 
   type EscapeRoom {
-    id: ID!
+    id: Int!
     theme: String!
     difficulty: String!
     description: String!
@@ -18,9 +18,10 @@ const typeDefs = gql`
   }
 
   type Booking {
-    id: ID!
+    id: Int!
     user_id: Int!
     escape_room_id: Int!
+    escape_room_theme: String!
     date: String!
     time: String!
     created_at: String!
@@ -47,12 +48,7 @@ const typeDefs = gql`
       email: String!
       password: String!
     ): Auth
-    createBooking(
-      user_id: ID!
-      escape_room_id: ID!
-      date: String!
-      time: String!
-    ): Booking
+    createBooking(escape_room_id: Int!, escape_room_theme: String!, date: String!, time: String!): Booking
   }
 `;
 

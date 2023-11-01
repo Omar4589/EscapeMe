@@ -3,55 +3,35 @@ import {
   QUERY_AVAILABLESLOTS,
 } from "../../utils/queries";
 import { CREATE_BOOKING } from "../../utils/mutations";
-import { useQuery, useMutation } from "@apollo/client";
+import { useLazyQuery, useQuery, useMutation } from "@apollo/client";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import dayjs from "dayjs";
 
 const Booking = () => {
+  const navigate = useNavigate();
   const [escapeRooms, setEscapeRooms] = useState([]);
   const [formData, setFormData] = useState({
-    user_id: "",
     escape_room_id: "",
+    escape_room_theme: "",
     date: "",
     time: "",
   });
-
-  //The function below handles updating the 'formState'
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    if (name === "escape_room_id") {
-      setFormData({ ...formData, [name]: parseInt(value, 10) }); // convert to integer
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
-  };
+  const [timeSlots, setTimeSlots] = useState([]);
 
   const { data: allEscapeRoomsData } = useQuery(QUERY_AllESCAPEROOMS);
 
-  const {
-    data: slotsData,
-    loading,
-    error,
-  } = useQuery(QUERY_AVAILABLESLOTS, {
-    skip: !formData.date,
-    variables: { escape_room_id: formData.escape_room_id, date: formData.date },
-  });
-
-  console.log(slotsData);
-
-  const [createABooking] = useMutation(CREATE_BOOKING);
-
-  const bookRoom = async (e) => {
-    e.preventDefault();
-
-    try {
-      const booking = await createABooking({
-        user_id: formData.user_id,
+  const [getAvailableSlots, { data: slotsData, loading, error }] = useLazyQuery(
+    QUERY_AVAILABLESLOTS,
+    {
+      variables: {
         escape_room_id: formData.escape_room_id,
         date: formData.date,
-        time: formData.time,
-      });
-    } catch (err) {}
-  };
+      },
+    }
+  );
+
+  const [createABooking] = useMutation(CREATE_BOOKING);
 
   useEffect(() => {
     const rooms = allEscapeRoomsData?.getAllEscapeRooms || [];
@@ -59,11 +39,88 @@ const Booking = () => {
     setEscapeRooms(rooms);
 
     if (rooms.length > 0) {
-      setFormData({ ...formData, escape_room_id: parseInt(rooms[0].id, 10) });
+      setFormData({
+        ...formData,
+        escape_room_id: parseInt(rooms[0].id, 10),
+        escape_room_theme: rooms[0].theme,
+      });
     }
   }, [allEscapeRoomsData]);
 
+  useEffect(() => {
+    // Check if the slotsData has changed
+    if (slotsData && slotsData.availableSlots) {
+      // Assume getAvailableSlots returns an array of time slots in string format
+      setTimeSlots(slotsData.availableSlots);
+    }
+  }, [slotsData]);
+
+  useEffect(() => {
+    if (formData.escape_room_id && formData.date) {
+      getAvailableSlots({
+        variables: {
+          escape_room_id: formData.escape_room_id,
+          date: formData.date,
+        },
+      });
+    }
+  }, [formData]);
+
+  useEffect(() => {
+    if (timeSlots.length > 0) {
+      // Set the first available time slot as default
+      setFormData({ ...formData, time: timeSlots[0] });
+    }
+  }, [timeSlots]);
+
+  //The function below handles updating the 'formState'
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+
+    if (name === "escape_room_id") {
+      const selectedRoom = escapeRooms.find(
+        (room) => room.id === parseInt(value, 10)
+      );
+      const theme = selectedRoom ? selectedRoom.theme : ""; // Get the theme of the selected room
+
+      setFormData({
+        ...formData,
+        [name]: parseInt(value, 10),
+        escape_room_theme: theme,
+      });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
+  };
+
+  const convertTo12HourFormat = (time) => {
+    return dayjs(`2023-01-01T${time}`).format("h:mm A");
+  };
+
+  const bookRoom = async (e) => {
+    e.preventDefault();
+
+    try {
+      await createABooking({
+        variables: {
+          escape_room_id: formData.escape_room_id,
+          escape_room_theme: formData.escape_room_theme,
+          date: formData.date,
+          time: formData.time,
+        },
+      });
+
+      navigate("/mybookings");
+    } catch (err) {
+      //add some logic to show a toast message here
+      console.error("Booking failed:", err);
+    }
+  };
+
   console.log(formData);
+
+  console.log("ROOMS BELOW");
+  console.log(escapeRooms);
 
   return (
     <div className="container min-h-screen mx-auto px-4 py-12">
@@ -75,12 +132,7 @@ const Booking = () => {
         Book Your Escape Room
       </h1>
       <div className="bg-white shadow-lg rounded-lg p-8">
-        <form
-          id="booking-form"
-          onSubmit={() => {
-            bookRoom();
-          }}
-        >
+        <form id="booking-form" onSubmit={bookRoom}>
           <div className="mb-6">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
@@ -132,7 +184,16 @@ const Booking = () => {
               name="time"
               required
               onChange={handleInputChange}
-            ></select>
+            >
+              {timeSlots.map((slot, index) => {
+                const s = convertTo12HourFormat(slot);
+                return (
+                  <option key={index} value={slot}>
+                    {s}
+                  </option>
+                );
+              })}
+            </select>
           </div>
 
           <button
