@@ -50,6 +50,10 @@ export const QUERY_USERBOOKINGS = gql`
       escape_room_id
       date
       time
+      escaperoom {
+        theme
+        duration
+      }
     }
   }
 `;
