@@ -16,6 +16,7 @@ import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import UserHomePage from "./pages/UserHomePage/UserHomePage";
 import BookingPage from "./pages/BookingPage/BookingPage";
+import MyBookingsPage from "./pages/MyBookingsPage/MyBookingsPage";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -55,6 +56,10 @@ function App() {
             <Route
               path="/booking"
               element={Auth.loggedIn() ? <BookingPage /> : <LoginPage />}
+            />
+             <Route
+              path="/mybookings"
+              element={Auth.loggedIn() ? <MyBookingsPage /> : <LoginPage />}
             />
           </Routes>
         </Router>

@@ -45,10 +45,10 @@ const MyBookings = () => {
             <tr key={booking.id}>
               {" "}
               {/* Assuming each booking has a unique 'id', if not replace with a unique key */}
+              <td className="px-6 py-4 whitespace-nowrap">{booking.date}</td>
               <td className="px-6 py-4 whitespace-nowrap">
                 {booking.escaperoom.theme}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">{booking.date}</td>
               <td className="px-6 py-4 whitespace-nowrap">{booking.time}</td>
             </tr>
           ))}
