@@ -1,4 +1,7 @@
-const { AuthenticationError } = require("apollo-server-express");
+const {
+  AuthenticationError,
+  ForbiddenError,
+} = require("apollo-server-express");
 const { User, EscapeRoom, Booking } = require("../models");
 const { signToken } = require("../utils/auth");
 
@@ -101,6 +104,33 @@ const resolvers = {
         return booking;
       }
       throw new AuthenticationError("You need to be logged in!");
+    },
+    deleteBooking: async (parent, { booking_id }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError("You need to be logged in!");
+      }
+
+      // Fetch the booking to check ownership
+      const booking = await Booking.findByPk({ where: { id: booking_id } });
+      if (!booking) {
+        throw new UserInputError("Booking not found");
+      }
+
+      // Check if the logged-in user is the owner of the booking
+      if (booking.userId !== context.user.id) {
+        throw new ForbiddenError(
+          "You don't have permission to delete this booking!"
+        );
+      }
+
+      const deletedRowCount = await Booking.destroy({
+        where: { id: booking_id },
+      });
+      if (deletedRowCount === 0) {
+        throw new ApolloError("Failed to delete the booking");
+      }
+
+      return true;
     },
   },
 };

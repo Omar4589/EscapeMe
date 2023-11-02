@@ -49,11 +49,8 @@ const typeDefs = gql`
       email: String!
       password: String!
     ): Auth
-    createBooking(
-      escape_room_id: Int!
-      date: String!
-      time: String!
-    ): Booking
+    createBooking(escape_room_id: Int!, date: String!, time: String!): Booking
+    deleteBooking(booking_id: Int!): Boolean!
   }
 `;
 
