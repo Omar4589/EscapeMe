@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_USERBOOKINGS } from "../../utils/queries";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+dayjs.extend(customParseFormat);
 
 const MyBookings = () => {
   const [userBookings, setUserBookings] = useState([]);
@@ -9,61 +12,61 @@ const MyBookings = () => {
 
   useEffect(() => {
     if (bookingsData) {
-      const bookings = bookingsData.getAllUserBookings;
-      setUserBookings(bookings);
+      const formattedBookings = bookingsData.getAllUserBookings.map(
+        (booking) => ({
+          ...booking,
+          date: dayjs(booking.date).format("MMMM D, YYYY"),
+          time: dayjs(booking.time, "HH:mm:ss").format("h:mm A"),
+        })
+      );
+
+      setUserBookings(formattedBookings);
     }
   }, [bookingsData]);
 
-  console.log(userBookings);
+  // Guard clause for safe access
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {"something went wrong"}</p>;
 
   return (
-    <div className="container min-h-screen mx-auto px-4 py-12">
-      <h1 className="text-3xl font-bold mb-6">My Bookings</h1>
-      <table className="divide-y divide-gray-200 table-auto w-full">
-        <thead className="bg-gray-50">
-          <tr>
-            <th
-              scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >
-              Escape Room
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >
-              Date
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >
-              Time
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >
-              Duration
-            </th>
-          </tr>
-        </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
-          {userBookings.map((booking) => (
-            <tr key={booking.id}>
-              <td className="px-6 py-4 whitespace-nowrap">{booking.date}</td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                {booking.escaperoom.theme}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">{booking.time}</td>
-              <td className="px-6 py-4 whitespace-nowrap">
+    <div className="container min-h-screen mx-auto px-4 py-10 bg-slate-100">
+      <h1 className="text-3xl font-bold mb-5">My Bookings</h1>
+
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {userBookings.map((booking) => (
+          <div key={booking.id} className="bg-white p-6 rounded-lg shadow-lg">
+            <h2 className="text-xl font-semibold mb-2">
+              {booking.escaperoom.theme}
+            </h2>
+            <img
+              src={booking.escaperoom.image_url}
+              alt="escape room"
+              className="rounded-md mb-3"
+            />
+            <div className="flex text-center items-start justify-between mb-2 mx-2">
+              <p className="font-semibold text-lg">Date:</p>
+              <p id="date" className="text-right ml-2">
+                {booking.date}
+              </p>
+            </div>
+
+            <div className="flex text-center items-start justify-between mb-2 mx-2">
+              <p className="font-semibold text-lg">Time:</p>
+              <p id="date" className="text-right ml-2">
+                {booking.time}
+              </p>
+            </div>
+            <div className="flex text-center items-start justify-between mb-2 mx-2">
+              <p className="font-semibold text-lg">Duration:</p>
+              <p id="date" className="text-right ml-2">
                 {booking.escaperoom.duration} min
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      {!userBookings && (
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {!userBookings.length && (
         <div className="text-center mt-6">
           <p className="text-gray-600">You have no bookings yet.</p>
         </div>
