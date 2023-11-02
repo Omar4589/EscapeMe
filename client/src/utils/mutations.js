@@ -69,7 +69,6 @@ export const CREATE_BOOKING = gql`
 `;
 export const DELETE_BOOKING = gql`
   mutation deleteBooking($booking_id: Int!) {
-    deleteBooking(booking_id: $booking_id) {
-    }
-  }
+    deleteBooking(booking_id: $booking_id)
+}
 `;

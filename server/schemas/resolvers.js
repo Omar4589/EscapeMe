@@ -111,13 +111,13 @@ const resolvers = {
       }
 
       // Fetch the booking to check ownership
-      const booking = await Booking.findByPk({ where: { id: booking_id } });
+      const booking = await Booking.findByPk(booking_id);
       if (!booking) {
         throw new UserInputError("Booking not found");
       }
 
       // Check if the logged-in user is the owner of the booking
-      if (booking.userId !== context.user.id) {
+      if (booking.user_id !== context.user.id) {
         throw new ForbiddenError(
           "You don't have permission to delete this booking!"
         );
