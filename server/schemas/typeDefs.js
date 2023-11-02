@@ -37,6 +37,7 @@ const typeDefs = gql`
     getAllEscapeRooms: [EscapeRoom]
     availableSlots(escape_room_id: Int!, date: String!): [String!]
     getSingleBooking: Booking
+    getAllUserBookings: [Booking]
   }
 
   type Mutation {

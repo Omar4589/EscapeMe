@@ -51,6 +51,21 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+    getAllUserBookings: async (parent, args, context) => {
+      if (context.user) {
+        return await Booking.findAll({
+          where: {
+            user_id: context.user.id,
+          },
+          include: [
+            {
+              model: EscapeRoom, // The associated model
+              attributes: ["theme", "duration"], // If you want to limit the fields from the included model
+            },
+          ],
+        });
+      }
+    },
   },
   Mutation: {
     // create a user, sign a token, and send it back
