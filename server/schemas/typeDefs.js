@@ -24,6 +24,7 @@ const typeDefs = gql`
     date: String!
     time: String!
     created_at: String!
+    escaperoom: EscapeRoom
   }
 
   type Auth {

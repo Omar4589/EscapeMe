@@ -60,7 +60,7 @@ const resolvers = {
           include: [
             {
               model: EscapeRoom, // The associated model
-              attributes: ["theme", "duration"], // If you want to limit the fields from the included model
+              attributes: ["theme", "duration", "image_url", "description"], // If you want to limit the fields from the included model
             },
           ],
         });
