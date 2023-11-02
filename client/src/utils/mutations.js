@@ -67,3 +67,15 @@ export const CREATE_BOOKING = gql`
     }
   }
 `;
+export const DELETE_BOOKING = gql`
+  mutation deleteBooking($booking_id: Int!) {
+    deleteBooking(booking_id: $booking_id) {
+      id
+      user_id
+      escape_room_id
+      date
+      time
+      created_at
+    }
+  }
+`;
