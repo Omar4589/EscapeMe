@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_USERBOOKINGS } from "../../utils/queries";
+import { DELETE_BOOKING } from "../../utils/mutations";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 dayjs.extend(customParseFormat);
@@ -9,6 +10,8 @@ const MyBookings = () => {
   const [userBookings, setUserBookings] = useState([]);
 
   const { loading, error, data: bookingsData } = useQuery(QUERY_USERBOOKINGS);
+
+  const [deleteABooking] = useMutation(DELETE_BOOKING);
 
   useEffect(() => {
     if (bookingsData) {
@@ -23,6 +26,22 @@ const MyBookings = () => {
       setUserBookings(formattedBookings);
     }
   }, [bookingsData]);
+
+  const deleteBooking = async (bookingId) => {
+    try {
+      const response = await deleteABooking({
+        variables: {
+          booking_id: bookingId,
+        },
+      });
+      if (response) {
+        const updatedBookings = userBookings.filter(
+          (booking) => booking.id !== bookingId
+        );
+        setUserBookings(updatedBookings);
+      }
+    } catch (err) {}
+  };
 
   // Guard clause for safe access
   if (loading) return <p>Loading...</p>;
@@ -71,7 +90,8 @@ const MyBookings = () => {
               <button
                 className="py-2 px-4 bg-blue-700 text-slate-100 rounded-lg"
                 onClick={() => {
-                  console.log("You're trying to cancel your booking");
+                console.log("deleting booking...")
+                  deleteBooking(booking.id);
                 }}
               >
                 Cancel Booking
