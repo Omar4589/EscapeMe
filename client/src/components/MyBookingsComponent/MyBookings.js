@@ -56,11 +56,26 @@ const MyBookings = () => {
                 {booking.time}
               </p>
             </div>
-            <div className="flex text-center items-start justify-between mb-2 mx-2">
+            <div className="flex text-center items-start justify-between mb-3 mx-2">
               <p className="font-semibold text-lg">Duration:</p>
               <p id="date" className="text-right ml-2">
                 {booking.escaperoom.duration} min
               </p>
+            </div>
+            <div className="text-center  mb-2 mx-2">
+              <p id="date" className="">
+                {booking.escaperoom.description}
+              </p>
+            </div>
+            <div className="text-center mt-5">
+              <button
+                className="py-2 px-4 bg-blue-700 text-slate-100 rounded-lg"
+                onClick={() => {
+                  console.log("You're trying to cancel your booking");
+                }}
+              >
+                Cancel Booking
+              </button>
             </div>
           </div>
         ))}

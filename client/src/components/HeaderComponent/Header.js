@@ -8,6 +8,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import DownloadIcon from "@mui/icons-material/Download";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { useDarkMode } from "../../utils/DarkModeContext";
 import Auth from "../../utils/auth";
 
@@ -75,21 +76,12 @@ const Header = () => {
       >
         <div className="px-3 py-5">
           <ul>
-            <li className=" p-2 text-lg py-3">
-              <button
-                onClick={() => {
-                  setIsDarkMode(!isDarkMode);
-                  setIsOpen(false);
-                }}
-              >
-                {isDarkMode ? (
-                  <DarkModeIcon className="mr-6" />
-                ) : (
-                  <LightModeIcon className="mr-6" />
-                )}
-                {isDarkMode ? "Toggle Light Mode" : "Toggle Dark Mode"}
-              </button>
-            </li>
+            {Auth.loggedIn() ? (<li className=" p-2 text-lg py-3">
+              <CalendarMonthIcon className="mr-6" />
+              <Link to="/mybookings" onClick={toggleSidebar}>
+                My Bookings
+              </Link>
+            </li>): null }
             <li className=" p-2 text-lg py-3">
               <InfoIcon className="mr-6" />
               <Link to="/aboutus" onClick={toggleSidebar}>
@@ -128,6 +120,21 @@ const Header = () => {
               <Link to="/signin" onClick={toggleSidebar}>
                 Install Escape Me App
               </Link>
+            </li>
+            <li className=" p-2 text-lg py-3">
+              <button
+                onClick={() => {
+                  setIsDarkMode(!isDarkMode);
+                  setIsOpen(false);
+                }}
+              >
+                {isDarkMode ? (
+                  <DarkModeIcon className="mr-6" />
+                ) : (
+                  <LightModeIcon className="mr-6" />
+                )}
+                {isDarkMode ? "Toggle Light Mode" : "Toggle Dark Mode"}
+              </button>
             </li>
           </ul>
         </div>

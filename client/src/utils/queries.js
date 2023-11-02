@@ -53,6 +53,7 @@ export const QUERY_USERBOOKINGS = gql`
       escaperoom {
         theme
         duration
+        description
         image_url
       }
     }
