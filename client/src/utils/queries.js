@@ -35,10 +35,21 @@ export const QUERY_SINGLEBOOKING = gql`
     getSingleBooking {
       user_id
       escape_room_id
-      escape_room_theme
       date
       time
       created_at
+    }
+  }
+`;
+
+export const QUERY_USERBOOKINGS = gql`
+  query getAllUserBookings {
+    getAllUserBookings {
+      id
+      user_id
+      escape_room_id
+      date
+      time
     }
   }
 `;
