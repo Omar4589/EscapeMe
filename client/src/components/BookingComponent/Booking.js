@@ -116,8 +116,12 @@ const Booking = () => {
     <div className="container min-h-screen mx-auto px-4 py-12">
       <div
         id="notification"
-        className=" hidden fixed mx-auto top-0 left-96 right-96 text-center bg-blue-500 text-slate-50 px-5 py-3 m-4 rounded shadow-lg"
-      ></div>
+        className="fixed hidden top-0 right-0 left-0 bg-blue-500 text-slate-50 mt-4 flex justify-center w-11/12 mx-auto rounded shadow-lg"
+      >
+        <div className="px-5 py-3  text-center">
+          Something went wrong. Please try again.
+        </div>
+      </div>
       <h1 className="text-4xl font-bold mb-8 text-center">
         Book Your Escape Room
       </h1>
