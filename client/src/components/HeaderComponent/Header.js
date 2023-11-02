@@ -8,7 +8,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import DownloadIcon from "@mui/icons-material/Download";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { useDarkMode } from "../../utils/DarkModeContext";
 import Auth from "../../utils/auth";
 
@@ -76,30 +76,14 @@ const Header = () => {
       >
         <div className="px-3 py-5">
           <ul>
-            {Auth.loggedIn() ? (<li className=" p-2 text-lg py-3">
-              <CalendarMonthIcon className="mr-6" />
-              <Link to="/mybookings" onClick={toggleSidebar}>
-                My Bookings
-              </Link>
-            </li>): null }
-            <li className=" p-2 text-lg py-3">
-              <InfoIcon className="mr-6" />
-              <Link to="/aboutus" onClick={toggleSidebar}>
-                About Us
-              </Link>
-            </li>
-            <li className=" p-2 text-lg  py-3">
-              <ContactPageIcon className="mr-6" />
-              <Link to="/contactus" onClick={toggleSidebar}>
-                Contact Us
-              </Link>
-            </li>
-            <li className=" p-2 text-lg  py-3">
-              <HelpIcon className="mr-6" />
-              <Link to="/faq" onClick={toggleSidebar}>
-                FAQ
-              </Link>
-            </li>
+            {Auth.loggedIn() ? (
+              <li className=" p-2 text-lg py-3">
+                <CalendarMonthIcon className="mr-6" />
+                <Link to="/mybookings" onClick={toggleSidebar}>
+                  My Bookings
+                </Link>
+              </li>
+            ) : null}
             <li className=" p-2 text-lg  py-3">
               {Auth.loggedIn() ? (
                 <>
