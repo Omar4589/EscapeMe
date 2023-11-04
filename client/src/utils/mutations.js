@@ -54,13 +54,20 @@ export const UPDATE_PASSWORD = gql`
 export const CREATE_BOOKING = gql`
   mutation createBooking(
     $escape_room_id: Int!
+    $numberOfPlayers: Int!
     $date: String!
     $time: String!
   ) {
-    createBooking(escape_room_id: $escape_room_id, date: $date, time: $time) {
+    createBooking(
+      escape_room_id: $escape_room_id
+      numberOfPlayers: $numberOfPlayers
+      date: $date
+      time: $time
+    ) {
       id
       user_id
       escape_room_id
+      numberOfPlayers
       date
       time
       created_at
@@ -70,5 +77,5 @@ export const CREATE_BOOKING = gql`
 export const DELETE_BOOKING = gql`
   mutation deleteBooking($booking_id: Int!) {
     deleteBooking(booking_id: $booking_id)
-}
+  }
 `;

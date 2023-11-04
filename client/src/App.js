@@ -18,6 +18,10 @@ import UserHomePage from "./pages/UserHomePage/UserHomePage";
 import BookingPage from "./pages/BookingPage/BookingPage";
 import MyBookingsPage from "./pages/MyBookingsPage/MyBookingsPage";
 import Footer from "./components/FooterComponent/Footer";
+import EscapeRoomsPage from "./pages/EscapeRoomsPage/EscapeRoomsPage";
+import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
+import ContactUsPage from "./pages/ContactUsPage/ContactUsPage";
+import FaqPage from "./pages/FaqPage/FaqPage";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
