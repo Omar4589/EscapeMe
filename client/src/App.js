@@ -17,6 +17,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import UserHomePage from "./pages/UserHomePage/UserHomePage";
 import BookingPage from "./pages/BookingPage/BookingPage";
 import MyBookingsPage from "./pages/MyBookingsPage/MyBookingsPage";
+import Footer from "./components/FooterComponent/Footer";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -57,11 +58,12 @@ function App() {
               path="/booking"
               element={Auth.loggedIn() ? <BookingPage /> : <LoginPage />}
             />
-             <Route
+            <Route
               path="/mybookings"
               element={Auth.loggedIn() ? <MyBookingsPage /> : <LoginPage />}
             />
           </Routes>
+          <Footer />
         </Router>
       </DarkModeProvider>
     </ApolloProvider>
