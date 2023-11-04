@@ -42,7 +42,7 @@ const MyBookings = () => {
     return () => {
       document.body.classList.remove("overflow-hidden");
     };
-  }, [dialogOpen]); // Only re-run the effect if dialogOpen changes
+  }, [dialogOpen]);
 
   const deleteBooking = async (bookingId) => {
     try {
