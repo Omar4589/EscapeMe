@@ -96,6 +96,7 @@ const Booking = () => {
       await createABooking({
         variables: {
           escape_room_id: formData.escape_room_id,
+          numberOfPlayers: formData.numberOfPlayers,
           date: formData.date,
           time: formData.time,
         },
