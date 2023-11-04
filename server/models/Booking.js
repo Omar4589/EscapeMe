@@ -34,6 +34,10 @@ Booking.init(
         key: "id",
       },
     },
+    numberOfPlayers: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     // The date of the booking
     date: {
       type: DataTypes.DATEONLY,
