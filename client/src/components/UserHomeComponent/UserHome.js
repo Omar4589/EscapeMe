@@ -39,7 +39,7 @@ const UserHomeComponent = () => {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div className="">
+    <div className="min-h-screen bg-slate-100 ">
       <section className="bg-indigo-600 text-white p-5 rounded-lg my-5 mx-3">
         <div className="container mx-auto text-center mb-2">
           <h1 className="text-4xl font-bold mb-3">
