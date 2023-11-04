@@ -13,6 +13,7 @@ const Booking = () => {
   const [escapeRooms, setEscapeRooms] = useState([]);
   const [formData, setFormData] = useState({
     escape_room_id: "",
+    numberOfPlayers: 1,
     date: "",
     time: "",
   });
@@ -74,7 +75,7 @@ const Booking = () => {
   //The function below handles updating the 'formState'
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    if (name === "escape_room_id") {
+    if (name === "escape_room_id" || name === "numberOfPlayers") {
       setFormData({
         ...formData,
         [name]: parseInt(value, 10),
@@ -113,7 +114,7 @@ const Booking = () => {
   console.log(escapeRooms);
 
   return (
-    <div className="container min-h-screen mx-auto px-4 py-12">
+    <div className="container min-h-screen bg-slate-100 mx-auto px-4 py-12">
       <div
         id="notification"
         className="fixed hidden top-0 right-0 left-0 bg-blue-500 text-slate-50 mt-4 flex justify-center w-11/12 mx-auto rounded shadow-lg"
@@ -152,13 +153,34 @@ const Booking = () => {
           <div className="mb-6">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="numberOfPlayers"
+            >
+              Number of Players:
+            </label>
+            <select
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="numberOfPlayers"
+              name="numberOfPlayers"
+              required
+              onChange={handleInputChange}
+            >
+              <option value={1}>1 Player</option>
+              <option value={2}>2 Players</option>
+              <option value={3}>3 Players</option>
+              <option value={4}>4 Players</option>
+            </select>
+          </div>
+
+          <div className="mb-6">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="date"
             >
               Select Date:
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="booking-date"
+              id="date"
               type="date"
               name="date"
               required
