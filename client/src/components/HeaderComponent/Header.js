@@ -1,14 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
-import InfoIcon from "@mui/icons-material/Info";
-import ContactPageIcon from "@mui/icons-material/ContactPage";
-import HelpIcon from "@mui/icons-material/Help";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LoginIcon from "@mui/icons-material/Login";
 import DownloadIcon from "@mui/icons-material/Download";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import DoorSlidingIcon from '@mui/icons-material/DoorSliding';
 import { useDarkMode } from "../../utils/DarkModeContext";
 import Auth from "../../utils/auth";
 
@@ -76,14 +75,42 @@ const Header = () => {
       >
         <div className="px-3 py-5">
           <ul>
-            {Auth.loggedIn() ? (
-              <li className=" p-2 text-lg py-3">
-                <CalendarMonthIcon className="mr-6" />
-                <Link to="/mybookings" onClick={toggleSidebar}>
-                  My Bookings
-                </Link>
-              </li>
+          {Auth.loggedIn() ? (
+              <>
+                <li className=" p-2 text-lg py-3">
+                  <CalendarMonthIcon className="mr-6" />
+                  <Link to="/mybookings" onClick={toggleSidebar}>
+                    My Bookings
+                  </Link>
+                </li>
+
+                <li className=" p-2 text-lg py-3">
+                  <AccountCircleIcon className="mr-6" />
+                  <Link to="/myaccount" onClick={toggleSidebar}>
+                    My Account
+                  </Link>
+                </li>
+              </>
             ) : null}
+          <li className=" p-2 text-lg py-3">
+                  <DoorSlidingIcon className="mr-6" />
+                  <Link to="/escaperooms" onClick={toggleSidebar}>
+                   Escape Rooms
+                  </Link>
+                </li>
+                <li className=" p-2 text-lg py-3">
+                  <DoorSlidingIcon className="mr-6" />
+                  <Link to="/escaperooms" onClick={toggleSidebar}>
+                   Rules
+                  </Link>
+                </li>
+                <li className=" p-2 text-lg py-3">
+                  <DoorSlidingIcon className="mr-6" />
+                  <Link to="/escaperooms" onClick={toggleSidebar}>
+                   How to book
+                  </Link>
+                </li>
+         
             <li className=" p-2 text-lg  py-3">
               {Auth.loggedIn() ? (
                 <>
