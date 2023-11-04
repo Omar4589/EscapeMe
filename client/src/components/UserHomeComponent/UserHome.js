@@ -48,7 +48,7 @@ const UserHomeComponent = () => {
       <section className="bg-indigo-600 text-white p-5 rounded-lg my-5 mx-3">
         <div className="container mx-auto text-center mb-2">
           <h1 className="text-4xl font-bold mb-3">
-            Welcome to EscapeMe, {user.firstName}
+            Welcome to Escape Me, {user.firstName}!
           </h1>
           <p className="text-lg mb-5">
             Experience the thrill of our escape rooms and book your next
