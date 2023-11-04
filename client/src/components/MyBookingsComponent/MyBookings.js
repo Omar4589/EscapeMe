@@ -61,7 +61,7 @@ const MyBookings = () => {
     } catch (err) {}
   };
 
-  console.log(currentBookingId);
+  console.log(userBookings);
 
   // Guard clause for safe access
   if (loading) return <p>Loading...</p>;
@@ -83,6 +83,12 @@ const MyBookings = () => {
               className="rounded-md mb-3"
             />
             <div className="flex text-center items-start justify-between mb-2 mx-2">
+              <p className="font-semibold text-lg">Number of Players:</p>
+              <p id="numberOfPlayers" className="text-right ml-2">
+                {booking.numberOfPlayers}
+              </p>
+            </div>
+            <div className="flex text-center items-start justify-between mb-2 mx-2">
               <p className="font-semibold text-lg">Date:</p>
               <p id="date" className="text-right ml-2">
                 {booking.date}
@@ -91,18 +97,18 @@ const MyBookings = () => {
 
             <div className="flex text-center items-start justify-between mb-2 mx-2">
               <p className="font-semibold text-lg">Time:</p>
-              <p id="date" className="text-right ml-2">
+              <p id="time" className="text-right ml-2">
                 {booking.time}
               </p>
             </div>
             <div className="flex text-center items-start justify-between mb-3 mx-2">
               <p className="font-semibold text-lg">Duration:</p>
-              <p id="date" className="text-right ml-2">
+              <p id="duration" className="text-right ml-2">
                 {booking.escaperoom.duration} min
               </p>
             </div>
             <div className="text-center  mb-2 mx-2">
-              <p id="date" className="">
+              <p id="description" className="">
                 {booking.escaperoom.description}
               </p>
             </div>
