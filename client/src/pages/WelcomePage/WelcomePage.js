@@ -5,7 +5,6 @@ import img2 from "../../assets/welcomePageImages/booking.jpg";
 import Auth from "../../utils/auth";
 
 const WelcomePage = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

@@ -6,7 +6,7 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import Auth from "../src/utils/auth";
-
+import { Navigate } from "react-router-dom";
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
@@ -51,20 +51,25 @@ function App() {
         <Router>
           <Header />
           <Routes>
-            <Route path="/" element={<WelcomePage />} />
-            <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/login" element={<LoginPage />} />
+            <Route path="/" element={  Auth.loggedIn() ? <Navigate to="/home" /> : <WelcomePage />} />
+            <Route
+              path="/signup"
+              element={
+                Auth.loggedIn() ? <Navigate to="/home" /> : <SignUpPage />
+              }
+            />
+            <Route path="/login" element={  Auth.loggedIn() ? <Navigate to="/home" /> : <LoginPage />} />
             <Route
               path="/home"
-              element={Auth.loggedIn() ? <UserHomePage /> : <LoginPage />}
+              element={Auth.loggedIn() ? <UserHomePage /> : <Navigate to="/login" />}
             />
             <Route
               path="/booking"
-              element={Auth.loggedIn() ? <BookingPage /> : <LoginPage />}
+              element={Auth.loggedIn() ? <BookingPage /> : <Navigate to="/login" />}
             />
             <Route
               path="/mybookings"
-              element={Auth.loggedIn() ? <MyBookingsPage /> : <LoginPage />}
+              element={Auth.loggedIn() ? <MyBookingsPage /> : <Navigate to="/login" />}
             />
           </Routes>
           <Footer />
