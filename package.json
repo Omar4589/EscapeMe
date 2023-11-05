@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Omar4589/EscapeMe#readme",
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
     "concurrently": "^8.2.2"
   }
 }

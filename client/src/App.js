@@ -71,6 +71,14 @@ function App() {
               path="/mybookings"
               element={Auth.loggedIn() ? <MyBookingsPage /> : <Navigate to="/login" />}
             />
+             <Route
+              path="/aboutus"
+              element={ <AboutUsPage />}
+            />
+              <Route
+              path="/contactus"
+              element={ <ContactUsPage />}
+            />
           </Routes>
           <Footer />
         </Router>

@@ -75,15 +75,13 @@ const Booking = () => {
   //The function below handles updating the 'formState'
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    if (name === "escape_room_id" || name === "numberOfPlayers") {
-      setFormData({
-        ...formData,
-        [name]: parseInt(value, 10),
-      });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
+  
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: name === "escape_room_id" || name === "numberOfPlayers" ? parseInt(value, 10) : value,
+    }));
   };
+  
 
   const convertTo12HourFormat = (time) => {
     return dayjs(`2023-01-01T${time}`).format("h:mm A");

@@ -8,8 +8,8 @@ const Footer = () => {
           &copy; 2023 Escape Me Virtual Escape Rooms. All Rights Reserved.
         </p>
         <div className="mt-4">
-          <Link to="/about" className="mr-4">
-            About
+          <Link to="/aboutus" className="mr-4">
+            About Us
           </Link>
           <Link to="/contactus" className="mr-4">
             Contact Us
