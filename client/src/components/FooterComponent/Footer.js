@@ -27,7 +27,6 @@ const Footer = () => {
             <Link to="/contactus" className="mr-4">
               Contact Us
             </Link>
-            <Link to="/faq">FAQ</Link>
           </div>
         </div>
       </div>
