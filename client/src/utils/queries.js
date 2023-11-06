@@ -48,6 +48,7 @@ export const QUERY_USERBOOKINGS = gql`
       id
       user_id
       escape_room_id
+      numberOfPlayers
       date
       time
       escaperoom {
