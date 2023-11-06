@@ -54,23 +54,29 @@ const LoginForm = () => {
         variables: updatedUserFormData,
       });
 
+      if (data.login === null) {
+        return;
+      }
       // Log the user in with the generated token
       Auth.login(data.login.token);
     } catch (err) {
       console.error(err);
     }
-
-    // Clear the form data after submission
+    
     setFormData({
       email: "",
       password: "",
     });
   };
 
+  console.log(formData);
+
   return (
     <div className="bg-zinc-950 min-h-screen flex justify-center font-roboto text-slate-100">
       <div className="mx-3 w-full max-w-md p-8 mt-16">
-        <h1 className="font-semibold text-5xl mb-10 underline decoration-orange-600">Login</h1>
+        <h1 className="font-semibold text-5xl mb-10 underline decoration-orange-600">
+          Login
+        </h1>
 
         <form id="signup-form" onSubmit={handleFormSubmit}>
           <div className="mb-8">
@@ -116,7 +122,10 @@ const LoginForm = () => {
         <div className="mt-4 text-center">
           <h2 className="text-lg">
             Don't have an account yet?{" "}
-            <Link to="/signup" className="text-orange-600 hover:text-orange-700">
+            <Link
+              to="/signup"
+              className="text-orange-600 hover:text-orange-700"
+            >
               Sign Up
             </Link>
           </h2>

@@ -79,17 +79,21 @@ const resolvers = {
     },
     // login a user, sign a token, and send it back
     login: async (parent, { email, password }) => {
-      const user = await User.findOne({ where: { email } });
+      try {
+        const user = await User.findOne({ where: { email } });
 
-      if (!user) {
-        throw new AuthenticationError("Incorrect email or password!");
-      }
-      const correctPw = await user.checkPassword(password);
-      if (!correctPw) {
-        throw new AuthenticationError("Incorrect email or password!");
-      }
-      const token = signToken(user);
-      return { token, user };
+        if (!user) {
+          throw new AuthenticationError("Incorrect email or password!");
+          
+        }
+
+        const correctPw = await user.checkPassword(password);
+        if (!correctPw) {
+          throw new AuthenticationError("Incorrect email or password!");
+        }
+        const token = signToken(user);
+        return { token, user };
+      } catch (err) {}
     },
     updateEmail: async (parent, { email }, context) => {
       if (!context.user) {
