@@ -1,15 +1,18 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation, useLazyQuery } from "@apollo/client";
 import { ME_QUERY } from "../../utils/queries";
+import { UPDATE_EMAIL } from "../../utils/mutations";
 import { Link } from "react-router-dom";
 
 const MyAccountPage = () => {
   const [user, setUser] = useState({});
   const [emailChanged, setEmailChanged] = useState(false);
+  const [updateSuccess, setUpdateSuccess] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
   });
   const { data: userInfo } = useQuery(ME_QUERY);
+  const [updateEmail] = useMutation(UPDATE_EMAIL);
 
   useEffect(() => {
     const u = userInfo?.me || {};
@@ -24,8 +27,22 @@ const MyAccountPage = () => {
     setEmailChanged(formData.email !== user.email);
   }, [formData.email, user.email]);
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      const { data } = await updateEmail({
+        variables: { email: formData.email },
+      });
+      console.log(data);
+      //   if (data.user) {
+      //   setUser(data.updateEmail);
+      setEmailChanged(false);
+      setUpdateSuccess(true);
+      //   }
+    } catch (err) {
+      console.error(err);
+    }
   };
   const handleInputChange = (event) => {
     const { name, value } = event.target;
