@@ -22,6 +22,7 @@ import EscapeRoomsPage from "./pages/EscapeRoomsPage/EscapeRoomsPage";
 import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
 import ContactUsPage from "./pages/ContactUsPage/ContactUsPage";
 import FaqPage from "./pages/FaqPage/FaqPage";
+import RulesPage from "./pages/RulesPage/RulesPage";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -88,6 +89,7 @@ function App() {
                 Auth.loggedIn() ? <MyBookingsPage /> : <Navigate to="/login" />
               }
             />
+            <Route path="/rules" element={<RulesPage />} />
             <Route path="/aboutus" element={<AboutUsPage />} />
             <Route path="/contactus" element={<ContactUsPage />} />
           </Routes>

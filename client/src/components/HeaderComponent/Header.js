@@ -8,6 +8,8 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import DoorSlidingIcon from "@mui/icons-material/DoorSliding";
+import GavelIcon from "@mui/icons-material/Gavel";
+import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { useDarkMode } from "../../utils/DarkModeContext";
 import logo from "../../assets/logo.png";
 import Auth from "../../utils/auth";
@@ -70,7 +72,7 @@ const Header = () => {
       <nav
         ref={navRef}
         id="nav bar"
-        className={`fixed top-0 bottom-0 right-0 w-64 bg-slate-950 text-slate-100 shadow-2xl overflow-y-auto transform ease-in-out duration-300 ${
+        className={`fixed top-0 bottom-0 right-0 w-64 bg-zinc-950 border-l-2 border-orange-600 text-slate-100 shadow-2xl overflow-y-auto transform ease-in-out duration-300 z-40 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -100,14 +102,14 @@ const Header = () => {
               </Link>
             </li>
             <li className=" p-2 text-lg py-3">
-              <DoorSlidingIcon className="mr-6" />
-              <Link to="/escaperooms" onClick={toggleSidebar}>
+              <GavelIcon className="mr-6" />
+              <Link to="/rules" onClick={toggleSidebar}>
                 Rules
               </Link>
             </li>
             <li className=" p-2 text-lg py-3">
-              <DoorSlidingIcon className="mr-6" />
-              <Link to="/escaperooms" onClick={toggleSidebar}>
+              <QuestionMarkIcon className="mr-6" />
+              <Link to="/howtobook" onClick={toggleSidebar}>
                 How to book
               </Link>
             </li>
@@ -127,13 +129,13 @@ const Header = () => {
                 </>
               )}
             </li>
-            <li className=" p-2 text-lg py-3">
+            {/* <li className=" p-2 text-lg py-3">
               <DownloadIcon className="mr-4" />
               <Link to="/signin" onClick={toggleSidebar}>
                 Install Escape Me App
               </Link>
-            </li>
-            <li className=" p-2 text-lg py-3">
+            </li> */}
+            {/* <li className=" p-2 text-lg py-3">
               <button
                 onClick={() => {
                   setIsDarkMode(!isDarkMode);
@@ -147,7 +149,7 @@ const Header = () => {
                 )}
                 {isDarkMode ? "Toggle Light Mode" : "Toggle Dark Mode"}
               </button>
-            </li>
+            </li> */}
           </ul>
         </div>
       </nav>
