@@ -23,6 +23,7 @@ import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
 import ContactUsPage from "./pages/ContactUsPage/ContactUsPage";
 import FaqPage from "./pages/FaqPage/FaqPage";
 import RulesPage from "./pages/RulesPage/RulesPage";
+import HowToBookPage from "./pages/HowToBookPage/HowToBookPage";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -90,6 +91,7 @@ function App() {
               }
             />
             <Route path="/rules" element={<RulesPage />} />
+            <Route path="/howtobook" element={<HowToBookPage />} />
             <Route path="/aboutus" element={<AboutUsPage />} />
             <Route path="/contactus" element={<ContactUsPage />} />
           </Routes>
