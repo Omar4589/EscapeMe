@@ -33,23 +33,23 @@ const HowToBookPage = () => {
           stepInstruction="Look out for an email confirmation in your inbox."
         />
       </div>
-      <div className="flex flex-col mx-auto w-3/4 text-center text-xl my-10">
+      <div className="text-center my-10">
         {" "}
         <Link
-          to={"/rules"}
-          className="w-full px-6 py-2 my-4 bg-orange-600 rounded-lg"
+          to="/rules"
+          className="w-3/4 mx-auto bg-orange-600 hover:bg-orange-700 text-slate-100 font-bold py-4 px-4 rounded-lg block my-6 text-xl"
         >
           Rules
         </Link>
         <Link
           to={"/signup"}
-          className="w-full px-6 py-2 my-4  bg-orange-600 rounded-lg"
+          className="w-3/4 mx-auto  bg-orange-600 hover:bg-orange-700 text-slate-100 font-bold py-4 px-4 rounded-lg block my-6 text-xl"
         >
           Sign Up/ Log In
         </Link>
         <Link
           to={"/booking/1"}
-          className="w-full px-6 py-2 my-4  bg-orange-600 rounded-lg"
+          className="w-3/4 mx-auto  bg-orange-600 hover:bg-orange-700 text-slate-100 font-bold py-4 px-4 rounded-lg block my-6 text-xl"
         >
           Book Now
         </Link>
