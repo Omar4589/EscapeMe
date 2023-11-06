@@ -45,7 +45,7 @@ const EscapeRoomsPage = () => {
             </p>
             <div className="flex justify-center">
               <Link
-                to={"/booking"}
+                to={`/booking/${room.id}`}
                 className="bg-orange-600 py-2 px-10 rounded-lg mt-5 text-xl"
               >
                 Book Now
