@@ -5,23 +5,27 @@ import {
 import { CREATE_BOOKING } from "../../utils/mutations";
 import { useLazyQuery, useQuery, useMutation } from "@apollo/client";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import dayjs from "dayjs";
 
 const Booking = () => {
   const navigate = useNavigate();
+  const { roomId } = useParams();
+  const roomID = parseInt(roomId, 10);
+
   const [escapeRooms, setEscapeRooms] = useState([]);
   const [formData, setFormData] = useState({
-    escape_room_id: "",
+    escape_room_id: roomID,
     escape_room_image: "",
     numberOfPlayers: 1,
     date: "",
     time: "",
   });
+
   const [timeSlots, setTimeSlots] = useState([]);
 
   const { data: allEscapeRoomsData } = useQuery(QUERY_AllESCAPEROOMS);
-
+  console.log(allEscapeRoomsData);
   const [getAvailableSlots, { data: slotsData, loading, error }] = useLazyQuery(
     QUERY_AVAILABLESLOTS,
     {
@@ -38,14 +42,6 @@ const Booking = () => {
     const rooms = allEscapeRoomsData?.getAllEscapeRooms || [];
 
     setEscapeRooms(rooms);
-
-    if (rooms.length > 0) {
-      setFormData({
-        ...formData,
-        escape_room_id: parseInt(rooms[0].id, 10),
-        escape_room_image: rooms[0].image_url || "",
-      });
-    }
   }, [allEscapeRoomsData]);
 
   useEffect(() => {
@@ -75,14 +71,20 @@ const Booking = () => {
   }, [timeSlots]);
 
   useEffect(() => {
-    const selRoom = escapeRooms.find(
-      (room) => room.id === formData.escape_room_id
-    );
-
-    const image = selRoom ? selRoom.image_url : "";
-    // Set the first available time slot as default
-    setFormData({ ...formData, escape_room_image: image });
-  }, [formData.escape_room_id]);
+    if (escapeRooms.length > 0) {
+      // Check if escapeRooms is not empty
+      const selRoom = escapeRooms.find(
+        (room) => room.id === formData.escape_room_id
+      );
+      if (selRoom) {
+        const image = selRoom.image_url;
+        setFormData((prevState) => ({
+          ...prevState,
+          escape_room_image: image,
+        }));
+      }
+    }
+  }, [escapeRooms, formData.escape_room_id]);
 
   //The function below handles updating the 'formState'
   const handleInputChange = (event) => {
@@ -148,6 +150,7 @@ const Booking = () => {
               className="block w-full  text-slate-950 border border-orange-500 rounded py-3 px-4 mb-3"
               id="escape-room"
               name="escape_room_id"
+              value={formData.escape_room_id}
               onChange={handleInputChange}
             >
               {escapeRooms.map((room) => {
@@ -214,7 +217,7 @@ const Booking = () => {
               </label>
               <select
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-950 leading-tight focus:outline-none focus:shadow-outline"
-                id="booking-time"
+                id="time"
                 name="time"
                 required
                 onChange={handleInputChange}

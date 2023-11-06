@@ -49,7 +49,7 @@ const UserHomeComponent = () => {
           adventure!
         </p>
         <a
-          href="/booking"
+          href="/booking/1"
           className="bg-orange-600 text-slate-100 text-lg font-bold px-8 py-3 rounded"
         >
           Book Now
@@ -57,7 +57,6 @@ const UserHomeComponent = () => {
       </div>
 
       {/* Escape Rooms Section  */}
-
       <div className=" mx-auto text-slate-100 mt-16">
         <h2 className="text-4xl font-bold mb-6 text-center underline decoration-orange-600">
           Escape Rooms
@@ -84,7 +83,7 @@ const UserHomeComponent = () => {
                   </p>
                   <div className="flex justify-center">
                     <Link
-                      to={"/booking"}
+                      to={`/booking/${room.id}`}
                       className="bg-orange-600 py-2 px-10 rounded-lg mt-5 text-xl"
                     >
                       Book This Room

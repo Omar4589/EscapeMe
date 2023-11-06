@@ -69,7 +69,7 @@ const LoginForm = () => {
 
   return (
     <div className="bg-zinc-950 min-h-screen flex justify-center font-roboto text-slate-100">
-      <div className="mx-3 w-full max-w-md p-8 mt-16 rounded-md shadow-lg">
+      <div className="mx-3 w-full max-w-md p-8 mt-16">
         <h1 className="font-semibold text-5xl mb-10 underline decoration-orange-600">Login</h1>
 
         <form id="signup-form" onSubmit={handleFormSubmit}>
@@ -81,7 +81,7 @@ const LoginForm = () => {
               Email
             </label>
             <input
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-orange-600"
+              className="w-full bg-zinc-950  border-b-2 text-slate-100 px-3 py-2  rounded focus:outline-none focus:border-orange-600"
               autoComplete="email"
               type="email"
               id="email-login"
@@ -98,7 +98,7 @@ const LoginForm = () => {
               Password
             </label>
             <input
-              className="w-full text-slate-950 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-orange-600"
+              className="w-full bg-zinc-950  border-b-2 text-slate-100 px-3 py-2  rounded focus:outline-none focus:border-orange-600"
               type="password"
               id="password-login"
               name="password"

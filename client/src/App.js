@@ -77,7 +77,7 @@ function App() {
               }
             />
             <Route
-              path="/booking"
+              path="/booking/:roomId"
               element={
                 Auth.loggedIn() ? <BookingPage /> : <Navigate to="/login" />
               }
