@@ -14,7 +14,7 @@ const GoogleMapComponent = () => {
     libraries,
   });
 
-  const center = { lat: 27.54, lng: -99.485 };
+  const center = { lat: 29.5831, lng: -98.6199 };
 
   if (loadError) {
     return <div>Error loading maps: {loadError.message}</div>;
