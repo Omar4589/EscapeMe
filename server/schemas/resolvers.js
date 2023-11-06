@@ -79,19 +79,56 @@ const resolvers = {
     },
     // login a user, sign a token, and send it back
     login: async (parent, { email, password }) => {
-      const user = await User.findOne({ where: { email } });
+      try {
+        const user = await User.findOne({ where: { email } });
 
-      if (!user) {
-        throw new AuthenticationError("Incorrect email or password!");
-      }
-      const correctPw = await user.checkPassword(password);
-      if (!correctPw) {
-        throw new AuthenticationError("Incorrect email or password!");
-      }
-      const token = signToken(user);
-      return { token, user };
+        if (!user) {
+          throw new AuthenticationError("Incorrect email or password!");
+          
+        }
+
+        const correctPw = await user.checkPassword(password);
+        if (!correctPw) {
+          throw new AuthenticationError("Incorrect email or password!");
+        }
+        const token = signToken(user);
+        return { token, user };
+      } catch (err) {}
     },
-    createBooking: async (parent, { escape_room_id, numberOfPlayers, date, time }, context) => {
+    updateEmail: async (parent, { email }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError("You need to be logged in!");
+      }
+
+      try {
+        const existingUser = await User.findOne({
+          where: { email: email.toLowerCase() },
+        });
+
+        if (existingUser && existingUser.id !== context.user.id) {
+          throw new Error("Email is already in use.");
+        }
+
+        const user = await User.findByPk(context.user.id);
+
+        if (!user) {
+          throw new AuthenticationError("User not found");
+        }
+
+        user.email = email;
+        await user.save();
+
+        return user;
+      } catch (error) {
+        console.error("Error updating email:", error);
+        throw new Error("Failed to update email. Please try again.");
+      }
+    },
+    createBooking: async (
+      parent,
+      { escape_room_id, numberOfPlayers, date, time },
+      context
+    ) => {
       if (context.user) {
         const escapeRoom = await EscapeRoom.findByPk(escape_room_id);
 
