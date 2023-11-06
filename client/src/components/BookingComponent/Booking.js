@@ -124,7 +124,7 @@ const Booking = () => {
   };
 
   return (
-    <div className="container min-h-screen bg-zinc-950 text-slate-100 mx-auto px-5 py-12">
+    <div className=" min-h-screen bg-zinc-950 text-slate-100 mx-auto px-5 py-12">
       <div
         id="notification"
         className="fixed hidden top-0 right-0 left-0 bg-blue-500 text-slate-50 mt-4 flex justify-center w-11/12 mx-auto rounded shadow-lg"
@@ -147,7 +147,7 @@ const Booking = () => {
               Select Escape Room:
             </label>
             <select
-              className="block w-full  text-slate-950 border border-orange-500 rounded py-3 px-4 mb-3"
+              className="block w-full bg-zinc-950 text-slate-100 border border-orange-500 rounded py-3 px-4 mb-3 focus:outline-none focus:shadow-outline"
               id="escape-room"
               name="escape_room_id"
               value={formData.escape_room_id}
@@ -177,7 +177,7 @@ const Booking = () => {
               Number of Players:
             </label>
             <select
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-950 leading-tight focus:outline-none focus:shadow-outline"
+              className="rounded w-full py-2 px-3 text-slate-100 bg-zinc-950 border border-orange-500 focus:outline-none focus:shadow-outline"
               id="numberOfPlayers"
               name="numberOfPlayers"
               required
@@ -200,7 +200,7 @@ const Booking = () => {
                 Select Date:
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-950 leading-tight focus:outline-none focus:shadow-outline"
+                className="bg-zinc-950 rounded w-full py-2 px-3 text-slate-100 border border-orange-600 focus:outline-none focus:shadow-outline"
                 id="date"
                 type="date"
                 name="date"
@@ -216,7 +216,7 @@ const Booking = () => {
                 Select Time:
               </label>
               <select
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-950 leading-tight focus:outline-none focus:shadow-outline"
+                className="bg-zinc-950 rounded w-full py-2.5 px-3 text-slate-100 border border-orange-600 focus:outline-none focus:shadow-outline"
                 id="time"
                 name="time"
                 required
@@ -233,7 +233,11 @@ const Booking = () => {
               </select>
             </div>
           </div>
-
+          <p className="text-sm text-slate-200 mb-5">
+            *To cancel your booking, please, do so online or by calling us 24
+            hours prior to your scheduled time. Failure to do so will result in
+            a cancellation fee.
+          </p>
           <button
             id="submit-button"
             type="submit"
