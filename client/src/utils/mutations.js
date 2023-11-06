@@ -35,6 +35,15 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+export const UPDATE_EMAIL = gql`
+  mutation updateEmail($email: String!) {
+    updateEmail(email: $email) {
+      _id
+      username
+      email
+    }
+  }
+`;
 export const UPDATE_PASSWORD = gql`
   mutation updatePassword(
     $email: String!

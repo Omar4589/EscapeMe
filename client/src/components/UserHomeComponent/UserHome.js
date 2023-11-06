@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import GoogleMapComponent from "../GoogleMapComponent/GoogleMap";
 
 const UserHomeComponent = () => {
   // settings for react-slick's Slider component
@@ -96,7 +97,7 @@ const UserHomeComponent = () => {
         </div>
 
         <div id="rules" className="mx-5 mt-16">
-          <h1 className="font-semibold text-5xl text-left mb-4 underline decoration-orange-600 text-center">
+          <h1 className="font-semibold text-5xl text-left mb-10 underline decoration-orange-600 text-center">
             Rules
           </h1>
           <ul>
@@ -146,11 +147,12 @@ const UserHomeComponent = () => {
         </div>
 
         <div id="location-card" className="p-6">
-          <h1 className="text-5xl font-bold underline decoration-orange-600">
+          <h1 className="text-5xl mb-10 font-bold underline decoration-orange-600">
             Location
           </h1>
+          <GoogleMapComponent />
           <ul>
-            <li className="pb-3 text-lg">555-555-1234</li>
+            <li className="pb-3 pt-6  text-lg">555-555-1234</li>
             <li className="pb-3 text-lg">escapemesupport@escapeme.com</li>
             <li className="pb-3 font-bold text-xl">
               Located: Far Far Away Plaza

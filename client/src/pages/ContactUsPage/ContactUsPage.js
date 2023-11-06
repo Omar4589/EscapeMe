@@ -76,9 +76,9 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-12 bg-slate-100 min-h-screen">
+    <div className="container mx-auto px-4 py-12 bg-zinc-950 text-slate-100 min-h-screen">
       <h2 className="font-semibold text-4xl mb-4">Contact Us</h2>
-      <p className="text-slate-950 mb-4 text-lg">
+      <p className=" mb-4 text-xl">
         We'd love to hear from you! If you have any questions, suggestions, or
         concerns, feel free to reach out to our team using the contact form
         below:
@@ -97,7 +97,7 @@ const ContactUs = () => {
             type="text"
             id="name"
             name="name"
-            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-600"
+            className="text-slate-950 w-full px-3 py-2 border border-orange-300 rounded focus:outline-none focus:border-orange-600"
             required
             onChange={handleInputChange}
           />
@@ -110,7 +110,7 @@ const ContactUs = () => {
             type="email"
             id="email"
             name="email"
-            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-600"
+            className="text-slate-950 w-full px-3 py-2 border border-orange-300 rounded focus:outline-none focus:border-orange-600"
             required
             onChange={handleInputChange}
           />
@@ -122,7 +122,7 @@ const ContactUs = () => {
           <textarea
             id="message"
             name="message"
-            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-600"
+            className="text-slate-950 w-full px-3 py-2 border border-orange-300 rounded focus:outline-none focus:border-orange-600"
             rows="5"
             required
             onChange={handleInputChange}
@@ -130,7 +130,7 @@ const ContactUs = () => {
         </div>
         <button
           type="submit"
-          className="w-full bg-blue-700 text-white font-semibold py-3 rounded hover:bg-blue-600 text-xl"
+          className="w-full bg-orange-600 text-white font-semibold py-3 rounded hover:bg-orange-700 text-xl"
         >
           Send
         </button>
@@ -138,7 +138,7 @@ const ContactUs = () => {
       {emailWasSent ? (
         <div
           id="notification"
-          className="fixed top-0 right-0 left-0 bg-slate-100 text-slate-950 mt-4 flex justify-center w-11/12 mx-auto rounded shadow-lg"
+          className="fixed top-0 right-0 left-0 bg-orange-600 text-slate-100 mt-4 flex justify-center w-11/12 mx-auto rounded shadow-lg"
         >
           <div className="px-5 py-3  text-center">
             Email sent successfully! We will respond shortly.
