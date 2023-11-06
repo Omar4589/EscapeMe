@@ -77,8 +77,8 @@ const ContactUs = () => {
 
   return (
     <div className="container mx-auto px-4 py-12 bg-slate-100 min-h-screen">
-      <h2 className="font-semibold text-2xl mb-4">Contact Us</h2>
-      <p className="text-slate-950 mb-4">
+      <h2 className="font-semibold text-4xl mb-4">Contact Us</h2>
+      <p className="text-slate-950 mb-4 text-lg">
         We'd love to hear from you! If you have any questions, suggestions, or
         concerns, feel free to reach out to our team using the contact form
         below:
@@ -90,7 +90,7 @@ const ContactUs = () => {
         onSubmit={handleFormSubmit}
       >
         <div className="mb-4">
-          <label htmlFor="name" className="block text-sm font-semibold mb-2">
+          <label htmlFor="name" className="block text-lg font-semibold mb-2">
             Full Name
           </label>
           <input
@@ -103,7 +103,7 @@ const ContactUs = () => {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="email" className="block text-sm font-semibold mb-2">
+          <label htmlFor="email" className="block text-lg font-semibold mb-2">
             Email
           </label>
           <input
@@ -116,7 +116,7 @@ const ContactUs = () => {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="message" className="block text-sm font-semibold mb-2">
+          <label htmlFor="message" className="block text-lg font-semibold mb-2">
             Message
           </label>
           <textarea
@@ -130,7 +130,7 @@ const ContactUs = () => {
         </div>
         <button
           type="submit"
-          className="w-full bg-indigo-600 text-white font-semibold py-2 rounded hover:bg-indigo-700"
+          className="w-full bg-blue-700 text-white font-semibold py-3 rounded hover:bg-blue-600 text-xl"
         >
           Send
         </button>

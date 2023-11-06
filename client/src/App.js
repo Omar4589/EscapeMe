@@ -51,34 +51,45 @@ function App() {
         <Router>
           <Header />
           <Routes>
-            <Route path="/" element={  Auth.loggedIn() ? <Navigate to="/home" /> : <WelcomePage />} />
+            <Route
+              path="/"
+              element={
+                Auth.loggedIn() ? <Navigate to="/home" /> : <WelcomePage />
+              }
+            />
             <Route
               path="/signup"
               element={
                 Auth.loggedIn() ? <Navigate to="/home" /> : <SignUpPage />
               }
             />
-            <Route path="/login" element={  Auth.loggedIn() ? <Navigate to="/home" /> : <LoginPage />} />
+            <Route
+              path="/login"
+              element={
+                Auth.loggedIn() ? <Navigate to="/home" /> : <LoginPage />
+              }
+            />
+            <Route path="/escaperooms" element={<EscapeRoomsPage />} />
             <Route
               path="/home"
-              element={Auth.loggedIn() ? <UserHomePage /> : <Navigate to="/login" />}
+              element={
+                Auth.loggedIn() ? <UserHomePage /> : <Navigate to="/login" />
+              }
             />
             <Route
               path="/booking"
-              element={Auth.loggedIn() ? <BookingPage /> : <Navigate to="/login" />}
+              element={
+                Auth.loggedIn() ? <BookingPage /> : <Navigate to="/login" />
+              }
             />
             <Route
               path="/mybookings"
-              element={Auth.loggedIn() ? <MyBookingsPage /> : <Navigate to="/login" />}
+              element={
+                Auth.loggedIn() ? <MyBookingsPage /> : <Navigate to="/login" />
+              }
             />
-             <Route
-              path="/aboutus"
-              element={ <AboutUsPage />}
-            />
-              <Route
-              path="/contactus"
-              element={ <ContactUsPage />}
-            />
+            <Route path="/aboutus" element={<AboutUsPage />} />
+            <Route path="/contactus" element={<ContactUsPage />} />
           </Routes>
           <Footer />
         </Router>

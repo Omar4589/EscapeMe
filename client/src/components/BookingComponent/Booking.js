@@ -13,6 +13,7 @@ const Booking = () => {
   const [escapeRooms, setEscapeRooms] = useState([]);
   const [formData, setFormData] = useState({
     escape_room_id: "",
+    escape_room_image: "",
     numberOfPlayers: 1,
     date: "",
     time: "",
@@ -42,6 +43,7 @@ const Booking = () => {
       setFormData({
         ...formData,
         escape_room_id: parseInt(rooms[0].id, 10),
+        escape_room_image: rooms[0].image_url || "",
       });
     }
   }, [allEscapeRoomsData]);
@@ -72,16 +74,28 @@ const Booking = () => {
     }
   }, [timeSlots]);
 
+  useEffect(() => {
+    const selRoom = escapeRooms.find(
+      (room) => room.id === formData.escape_room_id
+    );
+
+    const image = selRoom ? selRoom.image_url : "";
+    // Set the first available time slot as default
+    setFormData({ ...formData, escape_room_image: image });
+  }, [formData.escape_room_id]);
+
   //The function below handles updating the 'formState'
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-  
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: name === "escape_room_id" || name === "numberOfPlayers" ? parseInt(value, 10) : value,
-    }));
+    if (name === "escape_room_id" || name === "numberOfPlayers") {
+      setFormData({
+        ...formData,
+        [name]: parseInt(value, 10),
+      });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
-  
 
   const convertTo12HourFormat = (time) => {
     return dayjs(`2023-01-01T${time}`).format("h:mm A");
@@ -107,13 +121,8 @@ const Booking = () => {
     }
   };
 
-  console.log(formData);
-
-  console.log("ROOMS BELOW");
-  console.log(escapeRooms);
-
   return (
-    <div className="container min-h-screen bg-slate-100 mx-auto px-4 py-12">
+    <div className="container min-h-screen bg-zinc-950 text-slate-100 mx-auto px-5 py-12">
       <div
         id="notification"
         className="fixed hidden top-0 right-0 left-0 bg-blue-500 text-slate-50 mt-4 flex justify-center w-11/12 mx-auto rounded shadow-lg"
@@ -122,20 +131,21 @@ const Booking = () => {
           Something went wrong. Please try again.
         </div>
       </div>
-      <h1 className="text-4xl font-bold mb-8 text-center">
-        Book Your Escape Room
+      <h1 className="text-2xl font-bold mb-10 text-">
+        We're excited to have you! Complete the form below to book your escape
+        room.
       </h1>
-      <div className="bg-white shadow-lg rounded-lg p-8">
+      <div className="px-3">
         <form id="booking-form" onSubmit={bookRoom}>
           <div className="mb-6">
             <label
-              className="block text-gray-700 text-sm font-bold mb-2"
+              className="block text-slate-100 text-lg font-bold mb-2"
               htmlFor="escape-room"
             >
               Select Escape Room:
             </label>
             <select
-              className="block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3"
+              className="block w-full  text-slate-950 border border-orange-500 rounded py-3 px-4 mb-3"
               id="escape-room"
               name="escape_room_id"
               onChange={handleInputChange}
@@ -148,16 +158,23 @@ const Booking = () => {
                 );
               })}
             </select>
+            {formData.escape_room_image ? (
+              <img
+                src={formData.escape_room_image}
+                alt="Selected Escape Room"
+                className="w-full h-auto" // Add your desired classes for styling
+              />
+            ) : null}
           </div>
           <div className="mb-6">
             <label
-              className="block text-gray-700 text-sm font-bold mb-2"
+              className="block text-slate-100 text-lg font-bold mb-2"
               htmlFor="numberOfPlayers"
             >
               Number of Players:
             </label>
             <select
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-950 leading-tight focus:outline-none focus:shadow-outline"
               id="numberOfPlayers"
               name="numberOfPlayers"
               required
@@ -170,51 +187,54 @@ const Booking = () => {
             </select>
           </div>
 
-          <div className="mb-6">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="date"
-            >
-              Select Date:
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="date"
-              type="date"
-              name="date"
-              required
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="mb-6">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="time"
-            >
-              Select Time:
-            </label>
-            <select
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="booking-time"
-              name="time"
-              required
-              onChange={handleInputChange}
-            >
-              {timeSlots.map((slot, index) => {
-                const s = convertTo12HourFormat(slot);
-                return (
-                  <option key={index} value={slot}>
-                    {s}
-                  </option>
-                );
-              })}
-            </select>
+          <div className="flex justify-between">
+            {" "}
+            <div className="mb-6">
+              <label
+                className="block text-slate-100 text-lg font-bold mb-2"
+                htmlFor="date"
+              >
+                Select Date:
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-950 leading-tight focus:outline-none focus:shadow-outline"
+                id="date"
+                type="date"
+                name="date"
+                required
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="mb-6">
+              <label
+                className="block text-slate-100 text-lg font-bold mb-2"
+                htmlFor="time"
+              >
+                Select Time:
+              </label>
+              <select
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-950 leading-tight focus:outline-none focus:shadow-outline"
+                id="booking-time"
+                name="time"
+                required
+                onChange={handleInputChange}
+              >
+                {timeSlots.map((slot, index) => {
+                  const s = convertTo12HourFormat(slot);
+                  return (
+                    <option key={index} value={slot}>
+                      {s}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
           </div>
 
           <button
             id="submit-button"
             type="submit"
-            className="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="w-full bg-orange-600 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             Book Now
           </button>

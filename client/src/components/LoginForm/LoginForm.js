@@ -68,24 +68,20 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="bg-gray-100 h-screen flex items-center justify-center font-roboto text-slate-950">
-      <div className="mx-5 bg-white w-full max-w-md p-8 rounded-md shadow-lg">
-        <div>
-          <h1 className="font-bold text-4xl mb-6 text-center">Escape Me</h1>
-        </div>
-
-        <h1 className="font-semibold text-2xl mb-6">Login</h1>
+    <div className="bg-zinc-950 min-h-screen flex justify-center font-roboto text-slate-100">
+      <div className="mx-3 w-full max-w-md p-8 mt-16 rounded-md shadow-lg">
+        <h1 className="font-semibold text-5xl mb-10 underline decoration-orange-600">Login</h1>
 
         <form id="signup-form" onSubmit={handleFormSubmit}>
           <div className="mb-8">
             <label
-              className="block text-sm font-semibold mb-2"
+              className="block text-lg font-semibold mb-2"
               htmlFor="email-login"
             >
               Email
             </label>
             <input
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-600"
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-orange-600"
               autoComplete="email"
               type="email"
               id="email-login"
@@ -96,13 +92,13 @@ const LoginForm = () => {
           </div>
           <div className="mb-6">
             <label
-              className="block text-sm font-semibold mb-2"
+              className="block text-lg font-semibold mb-2"
               htmlFor="password-login"
             >
               Password
             </label>
             <input
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-600"
+              className="w-full text-slate-950 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-orange-600"
               type="password"
               id="password-login"
               name="password"
@@ -112,15 +108,15 @@ const LoginForm = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-700 text-white font-semibold py-2 mt-5 rounded hover:bg-blue-800"
+            className="w-full bg-orange-600 text-xl text-slate-100 font-semibold py-2 mt-5 rounded hover:bg-orange-700"
           >
             Login
           </button>
         </form>
         <div className="mt-4 text-center">
-          <h2 className="text-sm">
+          <h2 className="text-lg">
             Don't have an account yet?{" "}
-            <Link to="/signup" className="text-blue-600 hover:text-blue-700">
+            <Link to="/signup" className="text-orange-600 hover:text-orange-700">
               Sign Up
             </Link>
           </h2>

@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Omar4589/EscapeMe#readme",
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "react-slick": "^0.29.0"
   }
 }

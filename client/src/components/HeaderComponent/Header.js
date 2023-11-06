@@ -1,14 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LoginIcon from "@mui/icons-material/Login";
 import DownloadIcon from "@mui/icons-material/Download";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import DoorSlidingIcon from '@mui/icons-material/DoorSliding';
+import DoorSlidingIcon from "@mui/icons-material/DoorSliding";
 import { useDarkMode } from "../../utils/DarkModeContext";
+import logo from "../../assets/logo.png";
 import Auth from "../../utils/auth";
 
 const Header = () => {
@@ -44,7 +45,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="bg-blue-700 dark:bg-violet-950 text-slate-950 flex justify-between items-center p-4">
+    <header className="bg-zinc-950 text-slate-950 flex justify-between items-center p-4 border-b-2 border-orange-600">
       <Link
         to={
           Auth.loggedIn()
@@ -53,13 +54,13 @@ const Header = () => {
             ? "/admin"
             : "/"
         }
-        className="text-slate-100  dark:text-slate-200 text-3xl font-bold"
+        className="w-7/12 py-1"
       >
-        Escape Me
+        <img src={logo} alt="logo"></img>
       </Link>
       <button
         id="menu-button"
-        className="text-slate-100"
+        className="text-orange-600"
         onClick={toggleSidebar}
       >
         <MenuIcon fontSize="large" />
@@ -69,13 +70,13 @@ const Header = () => {
       <nav
         ref={navRef}
         id="nav bar"
-        className={`fixed top-0 bottom-0 right-0 w-64 bg-slate-100 dark:bg-indigo-950 dark:text-slate-200 shadow-2xl overflow-y-auto transform ease-in-out duration-300 ${
+        className={`fixed top-0 bottom-0 right-0 w-64 bg-slate-950 text-slate-100 shadow-2xl overflow-y-auto transform ease-in-out duration-300 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="px-3 py-5">
           <ul>
-          {Auth.loggedIn() ? (
+            {Auth.loggedIn() ? (
               <>
                 <li className=" p-2 text-lg py-3">
                   <CalendarMonthIcon className="mr-6" />
@@ -92,25 +93,25 @@ const Header = () => {
                 </li>
               </>
             ) : null}
-          <li className=" p-2 text-lg py-3">
-                  <DoorSlidingIcon className="mr-6" />
-                  <Link to="/escaperooms" onClick={toggleSidebar}>
-                   Escape Rooms
-                  </Link>
-                </li>
-                <li className=" p-2 text-lg py-3">
-                  <DoorSlidingIcon className="mr-6" />
-                  <Link to="/escaperooms" onClick={toggleSidebar}>
-                   Rules
-                  </Link>
-                </li>
-                <li className=" p-2 text-lg py-3">
-                  <DoorSlidingIcon className="mr-6" />
-                  <Link to="/escaperooms" onClick={toggleSidebar}>
-                   How to book
-                  </Link>
-                </li>
-         
+            <li className=" p-2 text-lg py-3">
+              <DoorSlidingIcon className="mr-6" />
+              <Link to="/escaperooms" onClick={toggleSidebar}>
+                Escape Rooms
+              </Link>
+            </li>
+            <li className=" p-2 text-lg py-3">
+              <DoorSlidingIcon className="mr-6" />
+              <Link to="/escaperooms" onClick={toggleSidebar}>
+                Rules
+              </Link>
+            </li>
+            <li className=" p-2 text-lg py-3">
+              <DoorSlidingIcon className="mr-6" />
+              <Link to="/escaperooms" onClick={toggleSidebar}>
+                How to book
+              </Link>
+            </li>
+
             <li className=" p-2 text-lg  py-3">
               {Auth.loggedIn() ? (
                 <>
