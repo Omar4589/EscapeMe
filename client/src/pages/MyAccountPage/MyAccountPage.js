@@ -34,12 +34,12 @@ const MyAccountPage = () => {
       const { data } = await updateEmail({
         variables: { email: formData.email },
       });
-      console.log(data);
-      //   if (data.user) {
-      //   setUser(data.updateEmail);
-      setEmailChanged(false);
-      setUpdateSuccess(true);
-      //   }
+
+      if (data.updateEmail) {
+        setUser(data.updateEmail);
+        setEmailChanged(false);
+        setUpdateSuccess(true);
+      }
     } catch (err) {
       console.error(err);
     }
