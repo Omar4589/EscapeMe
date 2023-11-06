@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import img1 from "../../assets/welcomePageImages/themes.jpg";
 import img2 from "../../assets/welcomePageImages/booking.jpg";
 import Auth from "../../utils/auth";
+import GoogleMapComponent from "../../components/GoogleMapComponent/GoogleMap";
 
 const WelcomePage = () => {
   const [loading, setLoading] = useState(true);
@@ -113,10 +114,11 @@ const WelcomePage = () => {
         </div>
 
         <div id="location-card" className="p-6">
-          <h1 className="text-5xl font-bold underline decoration-orange-600">
+          <h1 className="text-5xl mb-10 font-bold underline decoration-orange-600">
             Location
           </h1>
-          <p className="pb-3 text-lg">555-555-1234</p>
+          <GoogleMapComponent />
+          <p className="pb-3 pt-6 text-lg">555-555-1234</p>
           <p className="pb-3 text-lg">escapemesupport@escapeme.com</p>
           <p className="pb-3 font-bold text-xl">Located: Far Far Away Plaza</p>
           <p className="text-lg">42 Wallaby Way, Sydney</p>
