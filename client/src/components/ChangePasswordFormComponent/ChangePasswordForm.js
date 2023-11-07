@@ -83,7 +83,7 @@ const ChangePassword = () => {
     }
   };
 
-  console.log(formData);
+
   return (
     <div className="min-h-screen bg-zinc-950 text-slate-100 px-5 py-10">
       <h1 className="font-semibold text-3xl mb-10 underline decoration-orange-600 mt-8">

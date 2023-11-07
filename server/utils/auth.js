@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-const secret = process.env.REACT_APP_SECRET_KEY
+const secret = process.env.REACT_APP_SECRET_KEY;
 const expiration = "5h";
 
 module.exports = {
@@ -22,9 +22,8 @@ module.exports = {
     try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.user = data;
-    } catch {
+    } catch (err) {
       console.log("Invalid token");
-      // console.error(error)
     }
 
     // return the request object so it can be passed to the resolver as `context`

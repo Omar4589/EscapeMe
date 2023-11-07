@@ -35,7 +35,7 @@ const MyBookings = () => {
   const deleteBooking = async (bookingId) => {
     try {
       const response = await deleteABooking(bookingId);
-      console.log(response.data);
+     
       if (response.data.deleteBooking) {
         showSnack("Booking cancelled successfully!");
       } else {
@@ -54,7 +54,7 @@ const MyBookings = () => {
     }, 3000);
   };
 
-  console.log(currentBookingId);
+
 
   // Guard clause for safe access
   if (loading) return <p>Loading...</p>;

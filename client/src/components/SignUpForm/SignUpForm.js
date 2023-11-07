@@ -65,13 +65,10 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
   // This function handles the sign up form submission
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log("handleFormSubmit called");
-    console.log(formData.lastName.length);
 
     try {
       //check if the username is greater than 23 characters
       if (formData.firstName.length > 23 || formData.lastName.length > 23) {
-        console.log("names too long");
         showSnackbar(
           "You've entered too long a first or last name. Try again."
         );
@@ -80,18 +77,14 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
       }
 
       if (formData.password.length < 8 || formData.confirmpassword.length < 8) {
-        console.log("password isnt long enough");
         showSnackbar("Please enter a password at least 8 characters long.");
         return;
       }
       //check if new passwords match
       if (formData.confirmpassword !== formData.password) {
-        console.log("password dont match");
         showSnackbar("Passwords don't match. Please try again.");
         return;
       }
-
-      console.log("right before the create user mutation");
 
       // Use the createUser mutation to create the user
       const { data } = await createUser({
@@ -125,7 +118,6 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
     });
   };
 
-  console.log(formData);
   return (
     <div className="bg-zinc-950 min-h-screen flex justify-center font-roboto text-slate-100">
       <div className="mx-3 w-full max-w-md p-8 mt-6">
