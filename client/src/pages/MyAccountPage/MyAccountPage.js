@@ -3,6 +3,7 @@ import { useQuery, useMutation, useLazyQuery } from "@apollo/client";
 import { ME_QUERY } from "../../utils/queries";
 import { UPDATE_EMAIL } from "../../utils/mutations";
 import { Link } from "react-router-dom";
+import SnackBar from "../../components/SnackBarComponent/SnackBar";
 
 const MyAccountPage = () => {
   const [user, setUser] = useState({});
@@ -13,6 +14,19 @@ const MyAccountPage = () => {
   });
   const { data: userInfo } = useQuery(ME_QUERY);
   const [updateEmail] = useMutation(UPDATE_EMAIL);
+
+  // Snackbar state that includes both visibility and message
+  const [snackbar, setSnackbar] = useState({ show: false, message: "" });
+
+  // Function to show snackbar with a message
+  const showSnackbar = (message) => {
+    setSnackbar({ show: true, message });
+
+    // Set a timeout to hide the snackbar after 3000ms
+    setTimeout(() => {
+      setSnackbar({ show: false, message: "" });
+    }, 3000);
+  };
 
   useEffect(() => {
     const u = userInfo?.me || {};
@@ -42,6 +56,13 @@ const MyAccountPage = () => {
       }
     } catch (err) {
       console.error(err);
+      setFormData({ email: user.email });
+      if (err.message === "Email is already in use.") {
+        showSnackbar("This email is already in use. Please try another one.");
+      } else {
+        showSnackbar("Something went wrong. Please try again.");
+      }
+      return;
     }
   };
   const handleInputChange = (event) => {
@@ -106,6 +127,7 @@ const MyAccountPage = () => {
           </button>
         </form>
       </div>
+      {snackbar.show && <SnackBar message={snackbar.message} />}
     </div>
   );
 };

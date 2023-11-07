@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { CREATE_USER } from "../../utils/mutations";
 import { useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
+import SnackBar from "../SnackBarComponent/SnackBar";
 
 //-----------------------START OF COMPONENT-----------------------//
 const SignUpForm = ({ handleComponentChange, LoginForm }) => {
@@ -19,25 +20,31 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
 
   //used to confirm the new password, shows snackbar is password dont match
   const [passwordMatch, setPasswordMatch] = useState(false);
-  //used to confirm email is valid
-  const [validEmail, setValidEmail] = useState(true);
+
   //used to check the length of the name
   const [nameLengthCheck, setNameLengthCheck] = useState(true);
 
   //used to check the length of the new password
   const [passwordLengthCheck, setPasswordLengthCheck] = useState(true);
 
+  // Snackbar state that includes both visibility and message
+  const [snackbar, setSnackbar] = useState({ show: false, message: "" });
+
+  // Function to show snackbar with a message
+  const showSnackbar = (message) => {
+    setSnackbar({ show: true, message });
+
+    // Set a timeout to hide the snackbar after 3000ms
+    setTimeout(() => {
+      setSnackbar({ show: false, message: "" });
+    }, 3000);
+  };
+
   //-----------------MUTATIONS------------//
   // Use the CREATE_USER mutation for user registration
   const [createUser, { error, data }] = useMutation(CREATE_USER);
 
   //----------SIGNUP FORM HANDLERS ---------\\
-  //Closes snackbar
-  // const handleCloseSnackbar = () => {
-  //   setPasswordMatch(false);
-  //   setValidEmail(true);
-  //   setUsernameLengthCheck(true);
-  // };
 
   // Handler for input field changes in the signup form
   const handleInputChange = (event) => {
@@ -55,12 +62,6 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
     });
   };
 
-  //function with regex to check if email is in valid format
-  const isValidEmail = (email) => {
-    const re = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-    return re.test(String(email));
-  };
-
   // This function handles the sign up form submission
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -71,19 +72,22 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
       //check if the username is greater than 23 characters
       if (formData.firstName.length > 23 || formData.lastName.length > 23) {
         console.log("names too long");
-        setNameLengthCheck(false);
+        showSnackbar(
+          "You've entered too long a first or last name. Try again."
+        );
+
+        return;
+      }
+
+      if (formData.password.length < 8 || formData.confirmpassword.length < 8) {
+        console.log("password isnt long enough");
+        showSnackbar("Please enter a password at least 8 characters long.");
         return;
       }
       //check if new passwords match
       if (formData.confirmpassword !== formData.password) {
         console.log("password dont match");
-        setPasswordMatch(true);
-        return;
-      }
-      //check if email is in a valid format
-      if (!isValidEmail(formData.email)) {
-        console.log("email  not valid");
-        setValidEmail(false);
+        showSnackbar("Passwords don't match. Please try again.");
         return;
       }
 
@@ -103,6 +107,13 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
       Auth.login(data.createUser.token);
     } catch (err) {
       console.error(err);
+      if (err.message === "Email is already in use.") {
+        showSnackbar("This email is already in use. Please try another one.");
+      } else {
+        // For any other errors, you can display a generic error message
+        showSnackbar("Something went wrong. Please try again.");
+      }
+      return;
     }
 
     // Clear the form data after submission
@@ -114,6 +125,7 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
     });
   };
 
+  console.log(formData);
   return (
     <div className="bg-zinc-950 min-h-screen flex justify-center font-roboto text-slate-100">
       <div className="mx-3 w-full max-w-md p-8 mt-6">
@@ -123,10 +135,7 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
 
         <form id="signup-form" onSubmit={handleFormSubmit}>
           <div className="mb-6">
-            <label
-              className="block text-lg font-semibold "
-              htmlFor="firstname"
-            >
+            <label className="block text-lg font-semibold " htmlFor="firstname">
               First Name
             </label>
             <input
@@ -140,10 +149,7 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
             />
           </div>
           <div className="mb-6">
-            <label
-              className="block text-lg font-semibold "
-              htmlFor="lastname"
-            >
+            <label className="block text-lg font-semibold " htmlFor="lastname">
               Last Name
             </label>
             <input
@@ -171,10 +177,7 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
             />
           </div>
           <div className="mb-6">
-            <label
-              className="block text-lg font-semibold "
-              htmlFor="password"
-            >
+            <label className="block text-lg font-semibold " htmlFor="password">
               Password
             </label>
             <input
@@ -218,6 +221,8 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
           </h2>
         </div>
       </div>
+
+      {snackbar.show && <SnackBar message={snackbar.message} />}
     </div>
   );
 };

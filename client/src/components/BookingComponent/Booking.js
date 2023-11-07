@@ -3,15 +3,29 @@ import {
   QUERY_AVAILABLESLOTS,
 } from "../../utils/queries";
 import { CREATE_BOOKING } from "../../utils/mutations";
+import { QUERY_USERBOOKINGS } from "../../utils/queries";
 import { useLazyQuery, useQuery, useMutation } from "@apollo/client";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import dayjs from "dayjs";
+import SnackBar from "../SnackBarComponent/SnackBar";
+import { useUserBookingsContext } from "../../utils/UserBookingsContext";
 
 const Booking = () => {
+  const { createABooking, userBookings } = useUserBookingsContext();
+
   const navigate = useNavigate();
   const { roomId } = useParams();
   const roomID = parseInt(roomId, 10);
+
+  const [showSnackBar, setShowSnackBar] = useState(false);
+
+  const openSnackBar = () => {
+    setShowSnackBar(true);
+    setTimeout(() => {
+      setShowSnackBar(false);
+    }, 3000);
+  };
 
   const [escapeRooms, setEscapeRooms] = useState([]);
   const [formData, setFormData] = useState({
@@ -25,7 +39,7 @@ const Booking = () => {
   const [timeSlots, setTimeSlots] = useState([]);
 
   const { data: allEscapeRoomsData } = useQuery(QUERY_AllESCAPEROOMS);
-  console.log(allEscapeRoomsData);
+
   const [getAvailableSlots, { data: slotsData, loading, error }] = useLazyQuery(
     QUERY_AVAILABLESLOTS,
     {
@@ -35,8 +49,6 @@ const Booking = () => {
       },
     }
   );
-
-  const [createABooking] = useMutation(CREATE_BOOKING);
 
   useEffect(() => {
     const rooms = allEscapeRoomsData?.getAllEscapeRooms || [];
@@ -108,31 +120,21 @@ const Booking = () => {
 
     try {
       await createABooking({
-        variables: {
-          escape_room_id: formData.escape_room_id,
-          numberOfPlayers: formData.numberOfPlayers,
-          date: formData.date,
-          time: formData.time,
-        },
+        escape_room_id: formData.escape_room_id,
+        numberOfPlayers: formData.numberOfPlayers,
+        date: formData.date,
+        time: formData.time,
       });
 
       navigate("/mybookings");
     } catch (err) {
-      //add some logic to show a toast message here
       console.error("Booking failed:", err);
+      openSnackBar();
     }
   };
 
   return (
     <div className=" min-h-screen bg-zinc-950 text-slate-100 mx-auto px-5 py-12">
-      <div
-        id="notification"
-        className="fixed hidden top-0 right-0 left-0 bg-blue-500 text-slate-50 mt-4 flex justify-center w-11/12 mx-auto rounded shadow-lg"
-      >
-        <div className="px-5 py-3  text-center">
-          Something went wrong. Please try again.
-        </div>
-      </div>
       <h1 className="text-2xl font-bold mb-10 text-">
         We're excited to have you! Complete the form below to book your escape
         room.
@@ -247,6 +249,9 @@ const Booking = () => {
           </button>
         </form>
       </div>
+      {showSnackBar ? (
+        <SnackBar message="Something went wrong. Please try again later." />
+      ) : null}
     </div>
   );
 };

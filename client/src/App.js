@@ -24,6 +24,7 @@ import ContactUsPage from "./pages/ContactUsPage/ContactUsPage";
 import RulesPage from "./pages/RulesPage/RulesPage";
 import HowToBookPage from "./pages/HowToBookPage/HowToBookPage";
 import MyAccountPage from "./pages/MyAccountPage/MyAccountPage";
+import { UserBookingsProvider } from "./utils/UserBookingsContext";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -50,59 +51,65 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <DarkModeProvider>
-        <Router>
-          <Header />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                Auth.loggedIn() ? <Navigate to="/home" /> : <WelcomePage />
-              }
-            />
-            <Route
-              path="/signup"
-              element={
-                Auth.loggedIn() ? <Navigate to="/home" /> : <SignUpPage />
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                Auth.loggedIn() ? <Navigate to="/home" /> : <LoginPage />
-              }
-            />
-            <Route path="/escaperooms" element={<EscapeRoomsPage />} />
-            <Route
-              path="/home"
-              element={
-                Auth.loggedIn() ? <UserHomePage /> : <Navigate to="/login" />
-              }
-            />
-            <Route
-              path="/booking/:roomId"
-              element={
-                Auth.loggedIn() ? <BookingPage /> : <Navigate to="/login" />
-              }
-            />
-            <Route
-              path="/mybookings"
-              element={
-                Auth.loggedIn() ? <MyBookingsPage /> : <Navigate to="/login" />
-              }
-            />
-            <Route
-              path="/myaccount"
-              element={
-                Auth.loggedIn() ? <MyAccountPage /> : <Navigate to="/login" />
-              }
-            />
-            <Route path="/rules" element={<RulesPage />} />
-            <Route path="/howtobook" element={<HowToBookPage />} />
-            <Route path="/aboutus" element={<AboutUsPage />} />
-            <Route path="/contactus" element={<ContactUsPage />} />
-          </Routes>
-          <Footer />
-        </Router>
+        <UserBookingsProvider>
+          <Router>
+            <Header />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  Auth.loggedIn() ? <Navigate to="/home" /> : <WelcomePage />
+                }
+              />
+              <Route
+                path="/signup"
+                element={
+                  Auth.loggedIn() ? <Navigate to="/home" /> : <SignUpPage />
+                }
+              />
+              <Route
+                path="/login"
+                element={
+                  Auth.loggedIn() ? <Navigate to="/home" /> : <LoginPage />
+                }
+              />
+              <Route path="/escaperooms" element={<EscapeRoomsPage />} />
+              <Route
+                path="/home"
+                element={
+                  Auth.loggedIn() ? <UserHomePage /> : <Navigate to="/login" />
+                }
+              />
+              <Route
+                path="/booking/:roomId"
+                element={
+                  Auth.loggedIn() ? <BookingPage /> : <Navigate to="/login" />
+                }
+              />
+              <Route
+                path="/mybookings"
+                element={
+                  Auth.loggedIn() ? (
+                    <MyBookingsPage />
+                  ) : (
+                    <Navigate to="/login" />
+                  )
+                }
+              />
+              <Route
+                path="/myaccount"
+                element={
+                  Auth.loggedIn() ? <MyAccountPage /> : <Navigate to="/login" />
+                }
+              />
+              <Route path="/rules" element={<RulesPage />} />
+              <Route path="/howtobook" element={<HowToBookPage />} />
+              <Route path="/aboutus" element={<AboutUsPage />} />
+              <Route path="/contactus" element={<ContactUsPage />} />
+            </Routes>
+            <Footer />
+          </Router>
+        </UserBookingsProvider>
       </DarkModeProvider>
     </ApolloProvider>
   );

@@ -73,9 +73,28 @@ const resolvers = {
   Mutation: {
     // create a user, sign a token, and send it back
     createUser: async (parent, { firstName, lastName, email, password }) => {
-      const user = await User.create({ firstName, lastName, email, password });
-      const token = signToken(user);
-      return { token, user };
+      try {
+        const existingUser = await User.findOne({
+          where: {
+            email,
+          },
+        });
+
+        if (existingUser) {
+          return new Error("Email is already in use.");
+        }
+        const user = await User.create({
+          firstName,
+          lastName,
+          email,
+          password,
+        });
+        const token = signToken(user);
+        return { token, user };
+      } catch (err) {
+        console.error("Error creating user:", err);
+        throw new Error("Failed to create user. Please try again.");
+      }
     },
     // login a user, sign a token, and send it back
     login: async (parent, { email, password }) => {
@@ -84,7 +103,6 @@ const resolvers = {
 
         if (!user) {
           throw new AuthenticationError("Incorrect email or password!");
-          
         }
 
         const correctPw = await user.checkPassword(password);
@@ -97,7 +115,7 @@ const resolvers = {
     },
     updateEmail: async (parent, { email }, context) => {
       if (!context.user) {
-        throw new AuthenticationError("You need to be logged in!");
+        return new AuthenticationError("You need to be logged in!");
       }
 
       try {
@@ -106,13 +124,13 @@ const resolvers = {
         });
 
         if (existingUser && existingUser.id !== context.user.id) {
-          throw new Error("Email is already in use.");
+          return new Error("Email is already in use.");
         }
 
         const user = await User.findByPk(context.user.id);
 
         if (!user) {
-          throw new AuthenticationError("User not found");
+          return new AuthenticationError("User not found");
         }
 
         user.email = email;

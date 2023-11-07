@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { LOGIN_USER } from "../../utils/mutations";
 import { useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
+import SnackBar from "../SnackBarComponent/SnackBar";
 
 //-----------------------START OF COMPONENT-----------------------//
 const LoginForm = () => {
@@ -14,8 +15,7 @@ const LoginForm = () => {
     password: "",
   });
 
-  //tracks the snackbar
-  //const [showSnackBar, setShowSnackBar] = useState(false);
+  const [showSnackBar, setShowSnackBar] = useState(false);
 
   //-----------------MUTATIONS------------//
   //A mutation to login the user
@@ -23,11 +23,12 @@ const LoginForm = () => {
 
   //----------SIGNUP FORM HANDLERS ---------\\
   //Closes snackbar
-  // const handleCloseSnackbar = () => {
-  //   setPasswordMatch(false);
-  //   setValidEmail(true);
-  //   setUsernameLengthCheck(true);
-  // };
+  const openSnackBar = () => {
+    setShowSnackBar(true);
+    setTimeout(() => {
+      setShowSnackBar(false);
+    }, 3000);
+  };
 
   // Handler for input field changes in the signup form
   const handleInputChange = (event) => {
@@ -55,14 +56,16 @@ const LoginForm = () => {
       });
 
       if (data.login === null) {
+        openSnackBar();
         return;
       }
       // Log the user in with the generated token
       Auth.login(data.login.token);
     } catch (err) {
       console.error(err);
+      openSnackBar();
     }
-    
+
     setFormData({
       email: "",
       password: "",
@@ -131,6 +134,9 @@ const LoginForm = () => {
           </h2>
         </div>
       </div>
+      {showSnackBar ? (
+        <SnackBar message="Wrong email or password. Please try again." />
+      ) : null}
     </div>
   );
 };
