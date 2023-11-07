@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import img1 from "../../assets/welcomePageImages/themes.jpg";
-import img2 from "../../assets/welcomePageImages/booking.jpg";
 import Auth from "../../utils/auth";
 import GoogleMapComponent from "../../components/GoogleMapComponent/GoogleMap";
 
 const WelcomePage = () => {
+  //we use this state to return a null value if the useEffect hasnt finished running
   const [loading, setLoading] = useState(true);
 
+  //this hook checks if the user is logged in and/or an admin
+  //redirects user to correct location
   useEffect(() => {
     if (Auth.loggedIn()) {
       if (Auth.isAdmin()) {

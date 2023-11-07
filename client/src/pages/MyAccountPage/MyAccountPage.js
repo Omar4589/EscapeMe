@@ -1,22 +1,44 @@
 import { useState, useEffect } from "react";
-import { useQuery, useMutation, useLazyQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { ME_QUERY } from "../../utils/queries";
 import { UPDATE_EMAIL } from "../../utils/mutations";
 import { Link } from "react-router-dom";
 import SnackBar from "../../components/SnackBarComponent/SnackBar";
 
 const MyAccountPage = () => {
+  //STATES
+  //holds logged in user's data
   const [user, setUser] = useState({});
+  //tracks if the email in the input field has changed from it's initial value
   const [emailChanged, setEmailChanged] = useState(false);
-  const [updateSuccess, setUpdateSuccess] = useState(false);
+  //tracks email in email input
   const [formData, setFormData] = useState({
     email: "",
   });
-  const { data: userInfo } = useQuery(ME_QUERY);
-  const [updateEmail] = useMutation(UPDATE_EMAIL);
-
   // Snackbar state that includes both visibility and message
   const [snackbar, setSnackbar] = useState({ show: false, message: "" });
+
+  //queries logged in user's info
+  const { data: userInfo } = useQuery(ME_QUERY);
+  //Mutation to update email
+  const [updateEmail] = useMutation(UPDATE_EMAIL);
+
+  //this hook set's the initial value of user state
+  //uses query data
+  useEffect(() => {
+    const u = userInfo?.me || {};
+
+    if (u) {
+      setUser(u);
+      setFormData({ email: u.email });
+    }
+  }, [userInfo]);
+
+  //hook that listens for a change in email values
+  //sets emailChanged state based on expression
+  useEffect(() => {
+    setEmailChanged(formData.email !== user.email);
+  }, [formData.email, user.email]);
 
   // Function to show snackbar with a message
   const showSnackbar = (message) => {
@@ -28,18 +50,14 @@ const MyAccountPage = () => {
     }, 3000);
   };
 
-  useEffect(() => {
-    const u = userInfo?.me || {};
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
 
-    if (u) {
-      setUser(u);
-      setFormData({ email: u.email });
-    }
-  }, [userInfo]);
-
-  useEffect(() => {
-    setEmailChanged(formData.email !== user.email);
-  }, [formData.email, user.email]);
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: name === "email" ? value.toLowerCase() : value,
+    }));
+  };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -48,15 +66,18 @@ const MyAccountPage = () => {
       const { data } = await updateEmail({
         variables: { email: formData.email },
       });
-
+      //if email updates successfully
       if (data.updateEmail) {
         setUser(data.updateEmail);
         setEmailChanged(false);
-        setUpdateSuccess(true);
+        showSnackbar("Email updated successfully!");
       }
     } catch (err) {
       console.error(err);
+      //if we catch an error, we reset the state to the intial value
       setFormData({ email: user.email });
+      //we check for the error message from graphql, if it matches
+      //we show snackbar with message
       if (err.message === "Email is already in use.") {
         showSnackbar("This email is already in use. Please try another one.");
       } else {
@@ -64,14 +85,6 @@ const MyAccountPage = () => {
       }
       return;
     }
-  };
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: name === "email" ? value.toLowerCase() : value,
-    }));
   };
 
   return (

@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import emailjs, { send } from "@emailjs/browser"; //For more info visit : https://www.emailjs.com/docs/
+import SnackBar from "../../components/SnackBarComponent/SnackBar";
+import { useNavigate } from "react-router-dom";
 
 const ContactUs = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -36,7 +40,7 @@ const ContactUs = () => {
       });
       setTimeout(() => {
         setEmailWasSent(false);
-        window.location.replace("/");
+        navigate("/home");
       }, 3200);
     } catch (err) {
       console.error(err);
@@ -136,14 +140,7 @@ const ContactUs = () => {
         </button>
       </form>
       {emailWasSent ? (
-        <div
-          id="notification"
-          className="fixed top-0 right-0 left-0 bg-orange-600 text-slate-100 mt-4 flex justify-center w-11/12 mx-auto rounded shadow-lg"
-        >
-          <div className="px-5 py-3  text-center">
-            Email sent successfully! We will respond shortly.
-          </div>
-        </div>
+        <SnackBar message=" Email sent successfully! We will respond shortly." />
       ) : null}
     </div>
   );

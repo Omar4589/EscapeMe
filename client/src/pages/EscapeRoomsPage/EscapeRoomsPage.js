@@ -4,10 +4,13 @@ import { useQuery } from "@apollo/client";
 import { QUERY_AllESCAPEROOMS } from "../../utils/queries";
 
 const EscapeRoomsPage = () => {
+  //tracks escape rooms
   const [escapeRooms, setEscapeRooms] = useState([]);
 
+  //queries all escape rooms
   const { loading, data: allEscapeRoomsData } = useQuery(QUERY_AllESCAPEROOMS);
 
+  //sets escapeRooms initial value using query
   useEffect(() => {
     const rooms = allEscapeRoomsData?.getAllEscapeRooms || [];
 

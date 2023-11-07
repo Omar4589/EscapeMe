@@ -4,6 +4,8 @@ import { CREATE_BOOKING, DELETE_BOOKING } from "./mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import dayjs from "dayjs";
 
+//Here we create a global state for a logged in user's bookings
+
 const UserBookingsContext = createContext();
 
 export const useUserBookingsContext = () => {
@@ -11,9 +13,11 @@ export const useUserBookingsContext = () => {
 };
 
 export const UserBookingsProvider = ({ children }) => {
+  //MUTATIONS
   const [createBooking] = useMutation(CREATE_BOOKING);
   const [deleteBooking] = useMutation(DELETE_BOOKING);
 
+  //booking state
   const [userBookings, setUserBookings] = useState([]);
 
   const {
@@ -23,6 +27,7 @@ export const UserBookingsProvider = ({ children }) => {
     refetch,
   } = useQuery(QUERY_USERBOOKINGS);
 
+  //this hook set's the inital value of the userBookings state
   useEffect(() => {
     if (bookingsData) {
       const bookings = bookingsData?.getAllUserBookings || [];
@@ -36,6 +41,8 @@ export const UserBookingsProvider = ({ children }) => {
     }
   }, [bookingsData]);
 
+
+//Mutation to create a booking
   const createABooking = async (newBookingData) => {
     try {
       // Perform the GraphQL mutation
@@ -48,6 +55,8 @@ export const UserBookingsProvider = ({ children }) => {
         },
       });
 
+      //here we use the refetch method from the user bookings query to refetch the data 
+      //we set the state to the fetch data
       refetch();
       const bookings = bookingsData?.getAllUserBookings || [];
       const formattedBookings = bookings.map((booking) => ({
@@ -62,11 +71,13 @@ export const UserBookingsProvider = ({ children }) => {
     }
   };
 
+  //Mutation to delete a booking
   const deleteABooking = async (bookingId) => {
     try {
       const response = await deleteBooking({
         variables: { booking_id: bookingId },
       });
+      //we simply filter out for the booking that was deleted
       setUserBookings((prevBookings) =>
         prevBookings.filter((booking) => booking.id !== bookingId)
       );
