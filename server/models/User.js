@@ -64,6 +64,16 @@ User.init(
         newUserData.password = await bcrypt.hash(newUserData.password, 10); //You can edit the salt rounds to as many as you want, consider speed if you increase the number of salt rounds
         return newUserData;
       },
+      // Hook to hash password on update
+      beforeUpdate: async (updatedUserData) => {
+        if (updatedUserData.changed("password")) {
+          updatedUserData.password = await bcrypt.hash(
+            updatedUserData.password,
+            10
+          );
+        }
+        return updatedUserData;
+      },
     },
     sequelize,
     underscored: true,
