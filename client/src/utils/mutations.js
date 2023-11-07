@@ -46,18 +46,15 @@ export const UPDATE_EMAIL = gql`
   }
 `;
 export const UPDATE_PASSWORD = gql`
-  mutation updatePassword(
-    $email: String!
-    $currentPassword: String!
-    $newPassword: String!
-  ) {
+  mutation updatePassword($currentPassword: String!, $newPassword: String!) {
     updatePassword(
-      email: $email
       currentPassword: $currentPassword
       newPassword: $newPassword
     ) {
-      _id
-      username
+      id
+      firstName
+      lastName
+      email
     }
   }
 `;

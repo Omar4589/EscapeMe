@@ -51,6 +51,7 @@ const typeDefs = gql`
       password: String!
     ): Auth
     updateEmail(email: String!): User
+    updatePassword(currentPassword: String!, newPassword: String!): User
     createBooking(
       escape_room_id: Int!
       numberOfPlayers: Int!

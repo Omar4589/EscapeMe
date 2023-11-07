@@ -142,6 +142,35 @@ const resolvers = {
         throw new Error("Failed to update email. Please try again.");
       }
     },
+    updatePassword: async (
+      parent,
+      { currentPassword, newPassword },
+      context
+    ) => {
+      if (!context.user) {
+        return new AuthenticationError("You need to be logged in!");
+      }
+
+      try {
+        const user = await User.findByPk(context.user.id);
+
+        if (!user) {
+          return new AuthenticationError("User not found");
+        }
+
+        const correctPw = await user.checkPassword(currentPassword);
+        if (!correctPw) {
+          return new AuthenticationError("Incorrect password!");
+        }
+
+        user.password = newPassword;
+        await user.save();
+        return user;
+      } catch (error) {
+        console.error("Error updating password:", error);
+        throw new Error("Failed to update password. Please try again.");
+      }
+    },
     createBooking: async (
       parent,
       { escape_room_id, numberOfPlayers, date, time },

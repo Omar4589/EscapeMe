@@ -64,12 +64,13 @@ export const UserBookingsProvider = ({ children }) => {
 
   const deleteABooking = async (bookingId) => {
     try {
-      await deleteBooking({
+      const response = await deleteBooking({
         variables: { booking_id: bookingId },
       });
       setUserBookings((prevBookings) =>
         prevBookings.filter((booking) => booking.id !== bookingId)
       );
+      return response;
     } catch (err) {
       console.error("Error deleting booking:", err);
     }

@@ -25,6 +25,7 @@ import RulesPage from "./pages/RulesPage/RulesPage";
 import HowToBookPage from "./pages/HowToBookPage/HowToBookPage";
 import MyAccountPage from "./pages/MyAccountPage/MyAccountPage";
 import { UserBookingsProvider } from "./utils/UserBookingsContext";
+import ChangePasswordPage from "./pages/ChangePasswordPage.js/ChangePasswordPage";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -100,6 +101,16 @@ function App() {
                 path="/myaccount"
                 element={
                   Auth.loggedIn() ? <MyAccountPage /> : <Navigate to="/login" />
+                }
+              />{" "}
+              <Route
+                path="/changepassword"
+                element={
+                  Auth.loggedIn() ? (
+                    <ChangePasswordPage />
+                  ) : (
+                    <Navigate to="/login" />
+                  )
                 }
               />
               <Route path="/rules" element={<RulesPage />} />

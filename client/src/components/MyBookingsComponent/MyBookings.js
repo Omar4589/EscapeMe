@@ -2,17 +2,22 @@ import React, { useState, useEffect } from "react";
 import { useUserBookingsContext } from "../../utils/UserBookingsContext";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
+import SnackBar from "../../components/SnackBarComponent/SnackBar";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+
 dayjs.extend(customParseFormat);
 
 const MyBookings = () => {
-  const { userBookings, deleteABooking, loading, error, } =
+  const { userBookings, deleteABooking, loading, error } =
     useUserBookingsContext();
 
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [showSnackBar, setShowSnackBar] = useState({
+    show: false,
+    message: "",
+  });
   const [currentBookingId, setCurrentBookingId] = useState(null);
 
- 
   useEffect(() => {
     // Add 'overflow-hidden' to the body when the modal is open
     if (dialogOpen) {
@@ -29,18 +34,27 @@ const MyBookings = () => {
 
   const deleteBooking = async (bookingId) => {
     try {
-      const response = await deleteABooking({
-        variables: {
-          booking_id: bookingId,
-        },
-      });
-      if (response) {
-        setDialogOpen(false);
+      const response = await deleteABooking(bookingId);
+      console.log(response.data);
+      if (response.data.deleteBooking) {
+        showSnack("Booking cancelled successfully!");
+      } else {
+        showSnack("Could not cancel the booking. Please try again.");
       }
-    } catch (err) {}
+    } catch (err) {
+      console.error(err);
+      showSnack("Something went wrong. Please try again later.");
+    }
   };
 
-  console.log(userBookings);
+  const showSnack = (message) => {
+    setShowSnackBar({ show: true, message });
+    setTimeout(() => {
+      setShowSnackBar({ show: false, message: "" });
+    }, 3000);
+  };
+
+  console.log(currentBookingId);
 
   // Guard clause for safe access
   if (loading) return <p>Loading...</p>;
@@ -97,8 +111,8 @@ const MyBookings = () => {
               <button
                 className="py-2 px-4 bg-orange-600 text-slate-100 hover:bg-orange-700 rounded-lg"
                 onClick={() => {
-                  setCurrentBookingId(booking.id);
                   setDialogOpen(true);
+                  setCurrentBookingId(booking.id);
                 }}
               >
                 Cancel Booking
@@ -144,6 +158,7 @@ const MyBookings = () => {
                 className="px-10 text-slate-100 py-2 bg-orange-600 hover:bg-orange-700 rounded-full mx-6"
                 onClick={() => {
                   deleteBooking(currentBookingId);
+                  setDialogOpen(false);
                 }}
               >
                 Yes
@@ -152,6 +167,8 @@ const MyBookings = () => {
           </div>
         </div>
       ) : null}
+
+      {showSnackBar.show ? <SnackBar message={showSnackBar.message} /> : null}
     </div>
   );
 };
