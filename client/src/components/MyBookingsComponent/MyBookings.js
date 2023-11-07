@@ -1,35 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { useQuery, useMutation } from "@apollo/client";
-import { QUERY_USERBOOKINGS } from "../../utils/queries";
-import { DELETE_BOOKING } from "../../utils/mutations";
+import { useUserBookingsContext } from "../../utils/UserBookingsContext";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 dayjs.extend(customParseFormat);
 
 const MyBookings = () => {
-  const [userBookings, setUserBookings] = useState([]);
+  const { userBookings, deleteABooking, loading, error, } =
+    useUserBookingsContext();
+
   const [dialogOpen, setDialogOpen] = useState(false);
   const [currentBookingId, setCurrentBookingId] = useState(null);
 
-  const { loading, error, data: bookingsData } = useQuery(QUERY_USERBOOKINGS);
-
-  const [deleteABooking] = useMutation(DELETE_BOOKING);
-
-  useEffect(() => {
-    if (bookingsData) {
-      const formattedBookings = bookingsData.getAllUserBookings.map(
-        (booking) => ({
-          ...booking,
-          date: dayjs(booking.date).format("MMMM D, YYYY"),
-          time: dayjs(booking.time, "HH:mm:ss").format("h:mm A"),
-        })
-      );
-
-      setUserBookings(formattedBookings);
-    }
-  }, [bookingsData]);
-
+ 
   useEffect(() => {
     // Add 'overflow-hidden' to the body when the modal is open
     if (dialogOpen) {
@@ -52,10 +35,6 @@ const MyBookings = () => {
         },
       });
       if (response) {
-        const updatedBookings = userBookings.filter(
-          (booking) => booking.id !== bookingId
-        );
-        setUserBookings(updatedBookings);
         setDialogOpen(false);
       }
     } catch (err) {}
@@ -74,7 +53,7 @@ const MyBookings = () => {
       </h1>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {userBookings.map((booking) => (
+        {userBookings?.map((booking) => (
           <div key={booking.id} className="py-6 px-2">
             <h2 className="text-xl font-semibold mb-2">
               {booking.escaperoom.theme}

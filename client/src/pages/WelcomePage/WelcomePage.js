@@ -28,18 +28,6 @@ const WelcomePage = () => {
         <h1 className="text-4xl font-bold py-2">
           Experience Thrilling Escape Rooms with Friends!
         </h1>
-        {/* <h2 className="text-xl mt-4">
-          Browse and book from a wide range of escape room themes, invite your
-          friends, and discover your next adventure today!
-        </h2>
-
-        <Link
-          id="signup-button"
-          to="/signup"
-          className="bg-orange-600 text-slate-100 text-lg font-bold py-3 px-6 mt-6 inline-block rounded hover:bg-orange-700"
-        >
-          Sign Up Now and Unlock Your Adventure!
-        </Link> */}
       </div>
 
       <div
