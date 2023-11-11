@@ -18,17 +18,14 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
     confirmpassword: "",
   });
 
-  //used to confirm the new password, shows snackbar is password dont match
-  const [passwordMatch, setPasswordMatch] = useState(false);
-
-  //used to check the length of the name
-  const [nameLengthCheck, setNameLengthCheck] = useState(true);
-
-  //used to check the length of the new password
-  const [passwordLengthCheck, setPasswordLengthCheck] = useState(true);
-
   // Snackbar state that includes both visibility and message
   const [snackbar, setSnackbar] = useState({ show: false, message: "" });
+
+  //-----------------MUTATIONS------------//
+  // Use the CREATE_USER mutation for user registration
+  const [createUser, { error, data }] = useMutation(CREATE_USER);
+
+  //----------HANDLERS ---------\\
 
   // Function to show snackbar with a message
   const showSnackbar = (message) => {
@@ -39,12 +36,6 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
       setSnackbar({ show: false, message: "" });
     }, 3000);
   };
-
-  //-----------------MUTATIONS------------//
-  // Use the CREATE_USER mutation for user registration
-  const [createUser, { error, data }] = useMutation(CREATE_USER);
-
-  //----------SIGNUP FORM HANDLERS ---------\\
 
   // Handler for input field changes in the signup form
   const handleInputChange = (event) => {

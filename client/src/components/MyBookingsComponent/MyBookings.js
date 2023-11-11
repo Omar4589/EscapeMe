@@ -1,23 +1,29 @@
+//-----------------IMPORTS-----------------------//
 import React, { useState, useEffect } from "react";
 import { useUserBookingsContext } from "../../utils/UserBookingsContext";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import SnackBar from "../../components/SnackBarComponent/SnackBar";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-
 dayjs.extend(customParseFormat);
 
+//-----------------------START OF COMPONENT-----------------------//
 const MyBookings = () => {
+  //-----------------CONTEXT---------------//
   const { userBookings, deleteABooking, loading, error } =
     useUserBookingsContext();
 
+  //-----------------STATE---------------//
   const [dialogOpen, setDialogOpen] = useState(false);
+
   const [showSnackBar, setShowSnackBar] = useState({
     show: false,
     message: "",
   });
+
   const [currentBookingId, setCurrentBookingId] = useState(null);
 
+  //-----------------HOOKS---------------//
   useEffect(() => {
     // Add 'overflow-hidden' to the body when the modal is open
     if (dialogOpen) {
@@ -32,10 +38,18 @@ const MyBookings = () => {
     };
   }, [dialogOpen]);
 
+  //-----------------HANDLERS---------------//
+  const showSnack = (message) => {
+    setShowSnackBar({ show: true, message });
+    setTimeout(() => {
+      setShowSnackBar({ show: false, message: "" });
+    }, 3000);
+  };
+
   const deleteBooking = async (bookingId) => {
     try {
       const response = await deleteABooking(bookingId);
-     
+
       if (response.data.deleteBooking) {
         showSnack("Booking cancelled successfully!");
       } else {
@@ -46,15 +60,6 @@ const MyBookings = () => {
       showSnack("Something went wrong. Please try again later.");
     }
   };
-
-  const showSnack = (message) => {
-    setShowSnackBar({ show: true, message });
-    setTimeout(() => {
-      setShowSnackBar({ show: false, message: "" });
-    }, 3000);
-  };
-
-
 
   // Guard clause for safe access
   if (loading) return <p>Loading...</p>;

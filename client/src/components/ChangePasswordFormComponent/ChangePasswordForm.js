@@ -1,24 +1,25 @@
-import Auth from "../../utils/auth";
+//-----------------IMPORTS-----------------------//
 import SnackBar from "../SnackBarComponent/SnackBar";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { UPDATE_PASSWORD } from "../../utils/mutations";
 
+//-----------------------START OF COMPONENT-----------------------//
 const ChangePassword = () => {
-  const [updatePassword] = useMutation(UPDATE_PASSWORD);
+  //-----------------STATE---------------//
   const [formData, setFormData] = useState({
     currentPassword: "",
     newPassword: "",
     confirmPassword: "",
   });
 
-  //used to confirm the new password, shows snackbar is password dont match
-  const [passwordMatch, setPasswordMatch] = useState(false);
-
   // Snackbar state that includes both visibility and message
   const [snackbar, setSnackbar] = useState({ show: false, message: "" });
 
+  //-----------------MUTATIONS---------------//
+  const [updatePassword] = useMutation(UPDATE_PASSWORD);
+
+  //-----------------HANDLERS---------------//
   const showSnackbar = (message) => {
     setSnackbar({ show: true, message });
 
@@ -82,7 +83,6 @@ const ChangePassword = () => {
       });
     }
   };
-
 
   return (
     <div className="min-h-screen bg-zinc-950 text-slate-100 px-5 py-10">

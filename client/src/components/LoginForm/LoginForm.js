@@ -21,7 +21,7 @@ const LoginForm = () => {
   //A mutation to login the user
   const [login, { error }] = useMutation(LOGIN_USER);
 
-  //----------SIGNUP FORM HANDLERS ---------\\
+  //----------HANDLERS ---------\\
   //Closes snackbar
   const openSnackBar = () => {
     setShowSnackBar(true);

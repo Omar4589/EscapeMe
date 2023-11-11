@@ -1,3 +1,4 @@
+//-----------------IMPORTS-----------------------//
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -14,11 +15,27 @@ import { useDarkMode } from "../../utils/DarkModeContext";
 import logo from "../../assets/logo.png";
 import Auth from "../../utils/auth";
 
+//-----------------------START OF COMPONENT-----------------------//
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const navRef = useRef(null);
+  //-----------------CONTEXT---------------//
   const { isDarkMode, setIsDarkMode } = useDarkMode();
 
+  //-----------------STATE---------------//
+  const [isOpen, setIsOpen] = useState(false);
+
+  //-----------------HOOKS---------------//
+  useEffect(() => {
+    // Attach the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Cleanup
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  //-----------------HANDLERS---------------//
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
@@ -35,17 +52,6 @@ const Header = () => {
       setIsOpen(false);
     }
   };
-
-  useEffect(() => {
-    // Attach the event listener
-    document.addEventListener("mousedown", handleClickOutside);
-
-    // Cleanup
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
   return (
     <header className="bg-zinc-950 text-slate-950 flex justify-between items-center p-4 border-b-2 border-orange-600">
       <Link

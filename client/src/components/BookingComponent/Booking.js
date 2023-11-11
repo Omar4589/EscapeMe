@@ -1,33 +1,32 @@
+//-----------------IMPORTS-----------------------//
 import {
   QUERY_AllESCAPEROOMS,
   QUERY_AVAILABLESLOTS,
 } from "../../utils/queries";
-import { CREATE_BOOKING } from "../../utils/mutations";
-import { QUERY_USERBOOKINGS } from "../../utils/queries";
-import { useLazyQuery, useQuery, useMutation } from "@apollo/client";
+import { useLazyQuery, useQuery } from "@apollo/client";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import SnackBar from "../SnackBarComponent/SnackBar";
 import { useUserBookingsContext } from "../../utils/UserBookingsContext";
 
+//-----------------------START OF COMPONENT-----------------------//
 const Booking = () => {
-  const { createABooking, userBookings } = useUserBookingsContext();
+  //-----------------CONTEXT---------------//
+  const { createABooking } = useUserBookingsContext();
 
+  //react router dom's way of navigating through pages
   const navigate = useNavigate();
+  //destructuring roomId parameters
   const { roomId } = useParams();
+  //turning value into integer
   const roomID = parseInt(roomId, 10);
 
+  //-----------------STATE---------------//
   const [showSnackBar, setShowSnackBar] = useState(false);
 
-  const openSnackBar = () => {
-    setShowSnackBar(true);
-    setTimeout(() => {
-      setShowSnackBar(false);
-    }, 3000);
-  };
-
   const [escapeRooms, setEscapeRooms] = useState([]);
+
   const [formData, setFormData] = useState({
     escape_room_id: roomID,
     escape_room_image: "",
@@ -38,6 +37,7 @@ const Booking = () => {
 
   const [timeSlots, setTimeSlots] = useState([]);
 
+  //-----------------QUERIES---------------//
   const { data: allEscapeRoomsData } = useQuery(QUERY_AllESCAPEROOMS);
 
   const [getAvailableSlots, { data: slotsData, loading, error }] = useLazyQuery(
@@ -50,6 +50,7 @@ const Booking = () => {
     }
   );
 
+  //-----------------HOOKS---------------//
   useEffect(() => {
     const rooms = allEscapeRoomsData?.getAllEscapeRooms || [];
 
@@ -97,6 +98,14 @@ const Booking = () => {
       }
     }
   }, [escapeRooms, formData.escape_room_id]);
+
+  //-----------------HANDLERS---------------//
+  const openSnackBar = () => {
+    setShowSnackBar(true);
+    setTimeout(() => {
+      setShowSnackBar(false);
+    }, 3000);
+  };
 
   //The function below handles updating the 'formState'
   const handleInputChange = (event) => {
