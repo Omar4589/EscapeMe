@@ -96,12 +96,9 @@ const MyAccountPage = () => {
       <div id="myaccount-details">
         <form id="myaccount-form" className="mt-8" onSubmit={handleFormSubmit}>
           <div className="mb-10">
-            <label
-              className="block text-2xl font-semibold "
-              htmlFor="firstname"
-            >
+            <h2 className="block text-2xl font-semibold ">
               Name
-            </label>
+            </h2>
             <p id="name" name="name" className="text-xl my-3">
               {user.firstName} {user.lastName}
             </p>
