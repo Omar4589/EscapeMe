@@ -1,4 +1,6 @@
 import ChangePasswordForm from "../../components/ChangePasswordFormComponent/ChangePasswordForm";
+import ScrollToTop from "../../components/ScrollToTopWrapper/ScrollToTopWrapper";
+
 
 const ChangePasswordPage = () => {
   return (
@@ -8,4 +10,4 @@ const ChangePasswordPage = () => {
   );
 };
 
-export default ChangePasswordPage;
+export default ScrollToTop(ChangePasswordPage);

@@ -1,4 +1,6 @@
 import SignUpForm from "../../components/SignUpForm/SignUpForm";
+import ScrollToTop from "../../components/ScrollToTopWrapper/ScrollToTopWrapper";
+
 
 const SignUpPage = () => {
   return (
@@ -8,4 +10,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default ScrollToTop(SignUpPage);

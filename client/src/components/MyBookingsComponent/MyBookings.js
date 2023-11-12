@@ -1,11 +1,8 @@
 //-----------------IMPORTS-----------------------//
 import React, { useState, useEffect } from "react";
 import { useUserBookingsContext } from "../../utils/UserBookingsContext";
-import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import SnackBar from "../../components/SnackBarComponent/SnackBar";
-import customParseFormat from "dayjs/plugin/customParseFormat";
-dayjs.extend(customParseFormat);
 
 //-----------------------START OF COMPONENT-----------------------//
 const MyBookings = () => {
@@ -24,6 +21,10 @@ const MyBookings = () => {
   const [currentBookingId, setCurrentBookingId] = useState(null);
 
   //-----------------HOOKS---------------//
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     // Add 'overflow-hidden' to the body when the modal is open
     if (dialogOpen) {

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import emailjs, { send } from "@emailjs/browser"; //For more info visit : https://www.emailjs.com/docs/
 import SnackBar from "../../components/SnackBarComponent/SnackBar";
 import { useNavigate } from "react-router-dom";
+import ScrollToTop from "../../components/ScrollToTopWrapper/ScrollToTopWrapper";
 
 const ContactUs = () => {
   const navigate = useNavigate();
@@ -146,4 +147,4 @@ const ContactUs = () => {
   );
 };
 
-export default ContactUs;
+export default ScrollToTop(ContactUs);

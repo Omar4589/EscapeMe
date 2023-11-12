@@ -1,4 +1,6 @@
 import MyBookings from "../../components/MyBookingsComponent/MyBookings";
+import ScrollToTop from "../../components/ScrollToTopWrapper/ScrollToTopWrapper";
+
 
 const MyBookingsPage = () => {
   return (
@@ -8,4 +10,4 @@ const MyBookingsPage = () => {
   );
 };
 
-export default MyBookingsPage;
+export default ScrollToTop(MyBookingsPage);

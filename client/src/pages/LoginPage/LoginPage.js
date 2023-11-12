@@ -1,4 +1,6 @@
 import LoginForm from "../../components/LoginForm/LoginForm";
+import ScrollToTop from "../../components/ScrollToTopWrapper/ScrollToTopWrapper";
+
 
 const LoginPage = () => {
   return (
@@ -8,4 +10,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default ScrollToTop(LoginPage);

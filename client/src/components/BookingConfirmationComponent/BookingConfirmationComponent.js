@@ -1,11 +1,10 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import dayjs from "dayjs";
 
 const BookingConfirmationComponent = ({
   bookingDetails,
   setConfirmationPage,
 }) => {
-  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-zinc-950 text-slate-100 mx-auto px-3">
       <h1 className="text-2xl font-bold mb-10">
@@ -31,11 +30,13 @@ const BookingConfirmationComponent = ({
           </li>
           <li className="my-3">
             <strong className="leading-10">Date:</strong>
-            {bookingDetails.date}
+            <br></br>
+            {dayjs(bookingDetails.date).format("MMMM D, YYYY")}
           </li>
           <li className="my-3">
             <strong className="leading-10">Time:</strong>
-            {bookingDetails.time}
+            <br></br>
+            {dayjs(bookingDetails.time, "HH:mm:ss").format("h:mm A")}
           </li>
         </ul>
         <p className="text-lg mt-12 font-bold">

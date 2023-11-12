@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import img1 from "../../assets/welcomePageImages/themes.jpg";
 import Auth from "../../utils/auth";
 import GoogleMapComponent from "../../components/GoogleMapComponent/GoogleMap";
+import ScrollToTop from "../../components/ScrollToTopWrapper/ScrollToTopWrapper";
 
 const WelcomePage = () => {
   //we use this state to return a null value if the useEffect hasnt finished running
@@ -120,4 +121,4 @@ const WelcomePage = () => {
   );
 };
 
-export default WelcomePage;
+export default ScrollToTop(WelcomePage);

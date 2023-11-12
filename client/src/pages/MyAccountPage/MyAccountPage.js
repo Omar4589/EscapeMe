@@ -4,6 +4,7 @@ import { ME_QUERY } from "../../utils/queries";
 import { UPDATE_EMAIL } from "../../utils/mutations";
 import { Link } from "react-router-dom";
 import SnackBar from "../../components/SnackBarComponent/SnackBar";
+import ScrollToTop from "../../components/ScrollToTopWrapper/ScrollToTopWrapper";
 
 const MyAccountPage = () => {
   //STATES
@@ -145,4 +146,4 @@ const MyAccountPage = () => {
   );
 };
 
-export default MyAccountPage;
+export default ScrollToTop(MyAccountPage);

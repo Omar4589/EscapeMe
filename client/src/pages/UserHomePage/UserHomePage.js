@@ -1,4 +1,6 @@
 import UserHomeComponent from "../../components/UserHomeComponent/UserHome";
+import ScrollToTop from "../../components/ScrollToTopWrapper/ScrollToTopWrapper";
+
 
 const UserHomePage = () => {
   return (
@@ -8,4 +10,4 @@ const UserHomePage = () => {
   );
 };
 
-export default UserHomePage;
+export default ScrollToTop(UserHomePage);
