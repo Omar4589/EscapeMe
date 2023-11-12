@@ -1,3 +1,5 @@
+import ScrollToTop from "../../components/ScrollToTopWrapper/ScrollToTopWrapper";
+
 const RulesPage = () => {
   return (
     <div className="min-h-screen bg-zinc-950 text-slate-100 px-5 py-10">
@@ -14,7 +16,9 @@ const RulesPage = () => {
         </li>
         <li className="text-xl text-left pb-6">
           3. The{" "}
-          <span className="underline decoration-orange-600 font-bold">maximum</span>{" "}
+          <span className="underline decoration-orange-600 font-bold">
+            maximum
+          </span>{" "}
           number of players per escape room is 4.
         </li>
         <li className="text-xl text-left pb-6">
@@ -30,7 +34,9 @@ const RulesPage = () => {
         </li>
         <li className="text-xl text-left pb-6">
           7. Photography and video recording inside the escape rooms are{" "}
-          <span className="underline decoration-orange-600 font-bold">NOT allowed</span>{" "}
+          <span className="underline decoration-orange-600 font-bold">
+            NOT allowed
+          </span>{" "}
           to maintain the mystery and integrity of the experience.
         </li>
         <li className="text-xl text-left pb-5">
@@ -49,4 +55,4 @@ const RulesPage = () => {
   );
 };
 
-export default RulesPage;
+export default ScrollToTop(RulesPage);

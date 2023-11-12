@@ -1,6 +1,7 @@
 import React from "react";
 import BookingStep from "../../components/BookingStepComponent/BookingStep";
 import { Link } from "react-router-dom";
+import ScrollToTop from "../../components/ScrollToTopWrapper/ScrollToTopWrapper";
 
 const HowToBookPage = () => {
   return (
@@ -58,4 +59,4 @@ const HowToBookPage = () => {
   );
 };
 
-export default HowToBookPage;
+export default ScrollToTop(HowToBookPage);

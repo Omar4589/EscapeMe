@@ -1,14 +1,14 @@
-import Auth from "../../utils/auth";
+//-----------------IMPORTS-----------------------//
 import { useEffect, useState } from "react";
-import { useMutation, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { QUERY_AllESCAPEROOMS, ME_QUERY } from "../../utils/queries";
-import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import GoogleMapComponent from "../GoogleMapComponent/GoogleMap";
 
+//-----------------------START OF COMPONENT-----------------------//
 const UserHomeComponent = () => {
   // settings for react-slick's Slider component
   const settings = {
@@ -19,13 +19,15 @@ const UserHomeComponent = () => {
     slidesToScroll: 1,
     arrows: true,
   };
-
+  //-----------------STATE---------------//
   const [escapeRooms, setEscapeRooms] = useState([]);
   const [user, setUser] = useState({});
 
+  //-----------------QUERIES---------------//
   const { loading, data: allEscapeRoomsData } = useQuery(QUERY_AllESCAPEROOMS);
   const { data: userData } = useQuery(ME_QUERY);
 
+  //-----------------HOOKS---------------//
   useEffect(() => {
     const rooms = allEscapeRoomsData?.getAllEscapeRooms || [];
 

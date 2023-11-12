@@ -21,7 +21,7 @@ const LoginForm = () => {
   //A mutation to login the user
   const [login, { error }] = useMutation(LOGIN_USER);
 
-  //----------SIGNUP FORM HANDLERS ---------\\
+  //----------HANDLERS ---------\\
   //Closes snackbar
   const openSnackBar = () => {
     setShowSnackBar(true);
@@ -72,7 +72,7 @@ const LoginForm = () => {
     });
   };
 
-  console.log(formData);
+
 
   return (
     <div className="bg-zinc-950 min-h-screen flex justify-center font-roboto text-slate-100">

@@ -1,19 +1,17 @@
-import {
-  GoogleMap,
-  useLoadScript,
-  MarkerF,
-  InfoWindow,
-} from "@react-google-maps/api";
+//-----------------IMPORTS-----------------------//
+import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 import "./google.css";
 
 const libraries = ["places"];
 
+//-----------------------START OF COMPONENT-----------------------//
 const GoogleMapComponent = () => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
 
+  //used as starting point of map
   const center = { lat: 29.5831, lng: -98.6199 };
 
   if (loadError) {
