@@ -1,36 +1,36 @@
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
+// const jwt = require("jsonwebtoken");
+// require("dotenv").config();
 
-const secret = process.env.REACT_APP_SECRET_KEY;
-const expiration = "5h";
+// const secret = process.env.REACT_APP_SECRET_KEY;
+// const expiration = "5h";
 
-module.exports = {
-  authMiddleware: function ({ req }) {
-    // allows token to be sent via req.body, req.query, or headers
-    let token = req.body.token || req.query.token || req.headers.authorization;
+// module.exports = {
+//   authMiddleware: function ({ req }) {
+//     // allows token to be sent via req.body, req.query, or headers
+//     let token = req.body.token || req.query.token || req.headers.authorization;
 
-    // We split the token string into an array and return actual token
-    if (req.headers.authorization) {
-      token = token.split(" ").pop().trim();
-    }
+//     // We split the token string into an array and return actual token
+//     if (req.headers.authorization) {
+//       token = token.split(" ").pop().trim();
+//     }
 
-    if (!token) {
-      return req;
-    }
+//     if (!token) {
+//       return req;
+//     }
 
-    // if token can be verified, add the decoded user's data to the request so it can be accessed in the resolver
-    try {
-      const { data } = jwt.verify(token, secret, { maxAge: expiration });
-      req.user = data;
-    } catch (err) {
-      console.log("Invalid token");
-    }
+//     // if token can be verified, add the decoded user's data to the request so it can be accessed in the resolver
+//     try {
+//       const { data } = jwt.verify(token, secret, { maxAge: expiration });
+//       req.user = data;
+//     } catch (err) {
+//       console.log("Invalid token");
+//     }
 
-    // return the request object so it can be passed to the resolver as `context`
-    return req;
-  },
-  signToken: function ({ email, firstName, lastName, id, isAdmin }) {
-    const payload = { email, firstName, lastName, id, isAdmin };
-    return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
-  },
-};
+//     // return the request object so it can be passed to the resolver as `context`
+//     return req;
+//   },
+//   signToken: function ({ email, firstName, lastName, id, isAdmin }) {
+//     const payload = { email, firstName, lastName, id, isAdmin };
+//     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
+//   },
+// };
