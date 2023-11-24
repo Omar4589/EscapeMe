@@ -1,8 +1,5 @@
 // Import the decode function from the "jwt-decode" library
 import { jwtDecode as decode } from "jwt-decode";
-import { useNavigate } from "react-router-dom";
-
-const navigate = useNavigate();
 
 // Define a class named AuthService to manage authentication-related functionality
 class AuthService {
@@ -35,7 +32,7 @@ class AuthService {
   }
 
   // Method to log in the user
-  login(idToken) {
+  login(idToken, navigate) {
     localStorage.setItem("id_token", idToken); // Store the token in local storage
     const profile = this.getProfile();
 

@@ -5,9 +5,14 @@ import { LOGIN_USER } from "../../utils/mutations";
 import { useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
 import SnackBar from "../SnackBarComponent/SnackBar";
+import { useNavigate } from "react-router-dom";
+
 
 //-----------------------START OF COMPONENT-----------------------//
 const LoginForm = () => {
+
+  const navigate = useNavigate();
+
   //-----------------STATE---------------//
   // State to store user input data for registration
   const [formData, setFormData] = useState({
@@ -60,7 +65,7 @@ const LoginForm = () => {
         return;
       }
       // Log the user in with the generated token
-      Auth.login(data.login.token);
+      Auth.login(data.login.token, navigate);
     } catch (err) {
       console.error(err);
       openSnackBar();
@@ -71,8 +76,6 @@ const LoginForm = () => {
       password: "",
     });
   };
-
-
 
   return (
     <div className="bg-zinc-950 min-h-screen flex justify-center font-roboto text-slate-100">
