@@ -1,5 +1,8 @@
 // Import the decode function from the "jwt-decode" library
 import { jwtDecode as decode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
+
+const navigate = useNavigate();
 
 // Define a class named AuthService to manage authentication-related functionality
 class AuthService {
@@ -37,9 +40,9 @@ class AuthService {
     const profile = this.getProfile();
 
     if (profile.data && profile.data.isAdmin) {
-      window.location.assign("/admin"); // Redirect to admin dashboard
+      navigate("/admin"); // Redirect to admin dashboard
     } else {
-      window.location.assign("/home"); // Redirect to user dashboard
+      navigate("/home"); // Redirect to user dashboard
     }
   }
 
