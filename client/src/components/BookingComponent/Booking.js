@@ -162,7 +162,7 @@ const Booking = () => {
     }
   };
 
-  console.log(formData.time);
+
 
   return (
     <div className=" min-h-screen bg-zinc-950 text-slate-100 mx-auto px-5 py-12">
