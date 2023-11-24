@@ -36,7 +36,7 @@ const BookingConfirmationComponent = ({
           <li className="my-3">
             <strong className="leading-10">Time:</strong>
             <br></br>
-            {dayjs(bookingDetails.time, "HH:mm:ss").format("h:mm A")}
+            {dayjs(`2023-01-01T${bookingDetails.time}`).format("h:mm A")}
           </li>
         </ul>
         <p className="text-lg mt-12 font-bold">

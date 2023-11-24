@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useUserBookingsContext } from "../../utils/UserBookingsContext";
 import { Link } from "react-router-dom";
 import SnackBar from "../../components/SnackBarComponent/SnackBar";
+import dayjs from "dayjs";
 
 //-----------------------START OF COMPONENT-----------------------//
 const MyBookings = () => {
@@ -11,6 +12,7 @@ const MyBookings = () => {
     useUserBookingsContext();
 
   //-----------------STATE---------------//
+
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const [showSnackBar, setShowSnackBar] = useState({
@@ -99,7 +101,7 @@ const MyBookings = () => {
             <div className="flex text-center items-start justify-between mb-2 mx-2">
               <p className="font-semibold text-lg">Time:</p>
               <p id="time" className="text-right ml-2">
-                {booking.time}
+                {dayjs(`2023-01-01T${booking.time}`).format("h:mm A")}
               </p>
             </div>
             <div className="flex text-center items-start justify-between mb-3 mx-2">

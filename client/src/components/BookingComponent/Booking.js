@@ -15,6 +15,8 @@ import BookingConfirmationComponent from "../BookingConfirmationComponent/Bookin
 const Booking = () => {
   //-----------------CONTEXT---------------//
   const { createABooking } = useUserBookingsContext();
+  const currTime = dayjs().format("HH:mm:ss");
+  const currDate = dayjs().format("YYYY-MM-DD");
 
   //react router dom's way of navigating through pages
   const navigate = useNavigate();
@@ -38,6 +40,7 @@ const Booking = () => {
 
   const [timeSlots, setTimeSlots] = useState([]);
 
+  //Used to show/hide confirmation page after booking is succesful
   const [confirmationPage, setConfirmationPage] = useState(false);
 
   //-----------------QUERIES---------------//
@@ -54,20 +57,33 @@ const Booking = () => {
   );
 
   //-----------------HOOKS---------------//
+  //sets escape rooms state
   useEffect(() => {
     const rooms = allEscapeRoomsData?.getAllEscapeRooms || [];
 
     setEscapeRooms(rooms);
   }, [allEscapeRoomsData]);
-
+  //sets time slots based on the slots data we receive
   useEffect(() => {
     // Check if the slotsData has changed
     if (slotsData && slotsData.availableSlots) {
-      // Assume getAvailableSlots returns an array of time slots in string format
-      setTimeSlots(slotsData.availableSlots);
+      let filteredTimeSlots;
+
+      // Check if the selected date is today
+      if (currDate === formData.date) {
+        // If it's today, filter out time slots past the current time
+        filteredTimeSlots = slotsData.availableSlots.filter(
+          (slot) => slot > currTime
+        );
+      } else {
+        // If it's a future date, no need to filter the time slots
+        filteredTimeSlots = slotsData.availableSlots;
+      }
+
+      setTimeSlots(filteredTimeSlots);
     }
   }, [slotsData]);
-
+  //
   useEffect(() => {
     if (formData.escape_room_id && formData.date) {
       getAvailableSlots({
@@ -78,7 +94,7 @@ const Booking = () => {
       });
     }
   }, [formData]);
-
+  //
   useEffect(() => {
     if (timeSlots.length > 0) {
       // Set the first available time slot as default
@@ -145,6 +161,8 @@ const Booking = () => {
       openSnackBar();
     }
   };
+
+  console.log(formData.time);
 
   return (
     <div className=" min-h-screen bg-zinc-950 text-slate-100 mx-auto px-5 py-12">
@@ -222,6 +240,7 @@ const Booking = () => {
                     type="date"
                     name="date"
                     required
+                    min={dayjs().format("YYYY-MM-DD")}
                     onChange={handleInputChange}
                   />
                 </div>
