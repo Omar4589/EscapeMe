@@ -101,7 +101,7 @@ const MyBookings = () => {
             <div className="flex text-center items-start justify-between mb-2 mx-2">
               <p className="font-semibold text-lg">Time:</p>
               <p id="time" className="text-right ml-2">
-                {dayjs(`2023-01-01T${booking.time}`).format("h:mm A")}
+                {booking.time}
               </p>
             </div>
             <div className="flex text-center items-start justify-between mb-3 mx-2">
