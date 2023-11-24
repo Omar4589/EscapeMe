@@ -34,15 +34,16 @@ export const UserBookingsProvider = ({ children }) => {
       const formattedBookings = bookings.map((booking) => ({
         ...booking,
         date: dayjs(booking.date).format("MMMM D, YYYY"),
-        time: dayjs(booking.time, "HH:mm:ss").format("h:mm A"),
+        time: dayjs(`2023-01-01T${booking.time}`).format("h:mm A"),
       }));
 
       setUserBookings(formattedBookings);
     }
   }, [bookingsData]);
 
+  console.log(userBookings);
 
-//Mutation to create a booking
+  //Mutation to create a booking
   const createABooking = async (newBookingData) => {
     try {
       // Perform the GraphQL mutation
@@ -55,7 +56,7 @@ export const UserBookingsProvider = ({ children }) => {
         },
       });
 
-      //here we use the refetch method from the user bookings query to refetch the data 
+      //here we use the refetch method from the user bookings query to refetch the data
       //we set the state to the fetch data
       refetch();
       const bookings = bookingsData?.getAllUserBookings || [];
