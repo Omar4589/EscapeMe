@@ -6,24 +6,24 @@ const libraries = ["places"];
 
 //-----------------------START OF COMPONENT-----------------------//
 const GoogleMapComponent = () => {
-  const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    libraries,
-  });
+  // const { isLoaded, loadError } = useLoadScript({
+  //   googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+  //   libraries,
+  // });
 
   //used as starting point of map
-  const center = { lat: 29.5831, lng: -98.6199 };
+  // const center = { lat: 29.5831, lng: -98.6199 };
 
-  if (loadError) {
-    return <div>Error loading maps: {loadError.message}</div>;
-  }
+  // if (loadError) {
+  //   return <div>Error loading maps: {loadError.message}</div>;
+  // }
 
-  if (!isLoaded) {
-    return <div>Loading Maps...</div>;
-  }
+  // if (!isLoaded) {
+  //   return <div>Loading Maps...</div>;
+  // }
   return (
     <div>
-      <GoogleMap
+      {/* <GoogleMap
         zoom={16} //how far you want the map to be zoomed in
         center={center} // displays location
         mapContainerClassName="map-container" // styling
@@ -45,7 +45,7 @@ const GoogleMapComponent = () => {
         }}
       >
         <MarkerF position={center} />
-      </GoogleMap>
+      </GoogleMap> */}
     </div>
   );
 };

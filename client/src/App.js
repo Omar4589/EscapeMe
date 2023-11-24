@@ -74,20 +74,20 @@ function App() {
                   Auth.loggedIn() ? <Navigate to="/home" /> : <LoginPage />
                 }
               />
-              <Route path="/escaperooms" element={<EscapeRoomsPage />} />
+              {/* <Route path="/escaperooms" element={<EscapeRoomsPage />} /> */}
               <Route
                 path="/home"
                 element={
                   Auth.loggedIn() ? <UserHomePage /> : <Navigate to="/login" />
                 }
               />
-              <Route
+              {/* <Route
                 path="/booking/:roomId"
                 element={
                   Auth.loggedIn() ? <BookingPage /> : <Navigate to="/login" />
                 }
-              />
-              <Route
+              /> */}
+              {/* <Route
                 path="/mybookings"
                 element={
                   Auth.loggedIn() ? (
@@ -116,7 +116,7 @@ function App() {
               <Route path="/rules" element={<RulesPage />} />
               <Route path="/howtobook" element={<HowToBookPage />} />
               <Route path="/aboutus" element={<AboutUsPage />} />
-              <Route path="/contactus" element={<ContactUsPage />} />
+              <Route path="/contactus" element={<ContactUsPage />} /> */}
             </Routes>
             <Footer />
           </Router>
