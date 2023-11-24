@@ -41,8 +41,6 @@ export const UserBookingsProvider = ({ children }) => {
     }
   }, [bookingsData]);
 
-  console.log(userBookings);
-
   //Mutation to create a booking
   const createABooking = async (newBookingData) => {
     try {
