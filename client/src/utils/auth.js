@@ -37,9 +37,9 @@ class AuthService {
     const profile = this.getProfile();
 
     if (profile.data && profile.data.isAdmin) {
-      window.location.reload("/"); // Redirect to admin dashboard
+      window.location.assign("/"); // Redirect to admin dashboard
     } else {
-      window.location.reload("/"); // Redirect to user dashboard
+      window.location.assign("/"); // Redirect to user dashboard
     }
   }
 
