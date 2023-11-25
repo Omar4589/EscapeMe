@@ -59,7 +59,15 @@ function App() {
               <Route
                 path="/"
                 element={
-                  Auth.loggedIn() ? <Navigate to="/home" /> : <WelcomePage />
+                  Auth.loggedIn() ? (
+                    Auth.isAdmin() ? (
+                      <Navigate to="/admin" />
+                    ) : (
+                      <Navigate to="/home" />
+                    )
+                  ) : (
+                    <WelcomePage />
+                  )
                 }
               />
               <Route
