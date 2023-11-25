@@ -5,11 +5,10 @@ import { CREATE_USER } from "../../utils/mutations";
 import { useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
 import SnackBar from "../SnackBarComponent/SnackBar";
-import { useNavigate } from "react-router-dom";
 
 //-----------------------START OF COMPONENT-----------------------//
 const SignUpForm = ({ handleComponentChange, LoginForm }) => {
-  const navigate = useNavigate();
+
   //-----------------STATE---------------//
   // State to store user input data for registration
   const [formData, setFormData] = useState({
@@ -90,7 +89,7 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
       });
 
       // Log the user in with the generated token
-      Auth.login(data.createUser.token, navigate);
+      Auth.login(data.createUser.token);
     } catch (err) {
       console.error(err);
       if (err.message === "Email is already in use.") {

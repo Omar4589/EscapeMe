@@ -32,14 +32,14 @@ class AuthService {
   }
 
   // Method to log in the user
-  login(idToken, navigate) {
+  login(idToken) {
     localStorage.setItem("id_token", idToken); // Store the token in local storage
     const profile = this.getProfile();
 
     if (profile.data && profile.data.isAdmin) {
-      window.reload("/"); // Redirect to admin dashboard
+      window.location.reload("/"); // Redirect to admin dashboard
     } else {
-      window.reload("/"); // Redirect to user dashboard
+      window.location.reload("/"); // Redirect to user dashboard
     }
   }
 
