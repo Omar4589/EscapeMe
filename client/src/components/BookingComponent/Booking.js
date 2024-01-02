@@ -53,6 +53,7 @@ const Booking = () => {
         escape_room_id: formData.escape_room_id,
         date: formData.date,
       },
+      fetchPolicy: "network-only",
     }
   );
 
@@ -84,6 +85,7 @@ const Booking = () => {
     }
   }, [slotsData]);
   //
+  // Fetch available slots when escape_room_id changes
   useEffect(() => {
     if (formData.escape_room_id && formData.date) {
       getAvailableSlots({
@@ -94,7 +96,7 @@ const Booking = () => {
       });
     }
   }, [formData]);
-  //
+
   useEffect(() => {
     if (timeSlots.length > 0) {
       // Set the first available time slot as default
@@ -161,8 +163,6 @@ const Booking = () => {
       openSnackBar();
     }
   };
-
-
 
   return (
     <div className=" min-h-screen bg-zinc-950 text-slate-100 mx-auto px-5 py-12">
