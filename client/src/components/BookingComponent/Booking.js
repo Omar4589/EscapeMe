@@ -87,7 +87,6 @@ const Booking = () => {
   //
   // Fetch available slots when escape_room_id changes
   useEffect(() => {
-    console.log("1ST useeffect triggered");
     if (formData.escape_room_id && formData.date) {
       getAvailableSlots({
         variables: {
