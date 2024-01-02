@@ -51,12 +51,12 @@ const UserHomeComponent = () => {
           Experience the thrill of our escape rooms and book your next
           adventure!
         </p>
-        <a
-          href="/booking/1"
+        <Link
+          to="/booking/1"
           className="bg-orange-600 text-slate-100 text-lg font-bold px-8 py-3 rounded"
         >
           Book Now
-        </a>
+        </Link>
       </div>
 
       {/* Escape Rooms Section  */}
