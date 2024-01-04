@@ -48,8 +48,8 @@ const WelcomePage = () => {
             Choose Your Adventure
           </h3>
           <p className="text-xl px-4">
-            Discover a wide range of immersive and challenging escape room
-            themes, catering to all interests and skill levels.
+            Discover a wide range of immersive and challenging escape rooms,
+            catering to all interests and skill levels.
           </p>
           <Link
             id="escaperooms-button"

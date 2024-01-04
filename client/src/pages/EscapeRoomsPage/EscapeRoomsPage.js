@@ -19,7 +19,7 @@ const EscapeRoomsPage = () => {
   }, [allEscapeRoomsData]);
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-slate-100 py-10 px-6">
+    <div className="min-h-screen bg-zinc-950 text-slate-100 py-10 px-6 ">
       <h1 className="underline decoration-orange-600 text-3xl font-bold">
         Escape Rooms
       </h1>
@@ -37,14 +37,14 @@ const EscapeRoomsPage = () => {
               className="h-52 object-cover mb-5 rounded mx-auto"
             />
 
-            <h3 id="escape-room-theme" className="text-2xl font-bold mb-1">
+            <h3 id="escape-room-theme" className="text-2xl font-bold mb-1 underline decoration-orange-600">
               {room.theme}
             </h3>
-            <p className="mb-1 text-xl font-bold">
+            <p className="mb-1 text-lg">
               Difficulty: {room.difficulty}
             </p>
-            <p className="font-bold">Duration: {room.duration}min</p>
-            <p className="font-bold my-2 text-center text-lg">
+            <p className="">Duration: {room.duration}min</p>
+            <p className=" my-2 text-center text-lg">
               {room.description}
             </p>
             <div className="flex justify-center">
