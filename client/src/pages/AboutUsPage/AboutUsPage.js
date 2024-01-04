@@ -6,7 +6,7 @@ const AboutUsPage = () => {
   return (
     <div className="bg-zinc-950 text-slate-100 text-center min-h-screen p-4">
       <div className="container mx-auto pt-5 pb-10">
-        <h1 className="text-5xl font-bold text-center mb-4">About Us</h1>
+        <h1 className="text-4xl font-bold text-center mb-5">About Us</h1>
         <p className="text-xl">
           Welcome to <span className="font-bold">Escape Me</span>, your premier
           escape room adventure! Our mission is to provide unique and immersive
