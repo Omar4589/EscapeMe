@@ -29,7 +29,7 @@ const EscapeRoomsPage = () => {
           <div
             id={room.theme}
             key={room.id}
-            className="rounded-xl mt-10 mb-16 "
+            className="rounded-xl mt-10 mb-16"
           >
             <img
               src={room.image_url}
@@ -44,13 +44,13 @@ const EscapeRoomsPage = () => {
               Difficulty: {room.difficulty}
             </p>
             <p className="">Duration: {room.duration}min</p>
-            <p className=" my-2 text-center text-lg">
+            <p className=" my-2 text-center text-lg ">
               {room.description}
             </p>
             <div className="flex justify-center">
               <Link
                 to={`/booking/${room.id}`}
-                className="bg-orange-600 py-2 px-10 rounded-lg mt-5 text-xl"
+                className="bg-orange-600 py-2 px-10 rounded-lg mt-5 text-xl font-roboto"
               >
                 Book Now
               </Link>

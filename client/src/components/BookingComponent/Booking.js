@@ -165,7 +165,7 @@ const Booking = () => {
   };
 
   return (
-    <div className=" min-h-screen bg-zinc-950 text-slate-100 mx-auto px-5 py-12">
+    <div className=" min-h-screen bg-zinc-950 text-slate-100 mx-auto px-3 py-12">
       {confirmationPage ? null : (
         <>
           <h1 className="text-2xl font-bold mb-10 text-">

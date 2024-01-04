@@ -6,7 +6,7 @@ import ScrollToTop from "../../components/ScrollToTopWrapper/ScrollToTopWrapper"
 const HowToBookPage = () => {
   return (
     <div className="px-5 py-10 bg-zinc-950 min-h-screen text-slate-100">
-      <h1 className="text-4xl font-bold text-center mb-6 underline decoration-orange-600">
+      <h1 className="text-4xl font-bold text-center mb-10 underline decoration-orange-600">
         How to Book
       </h1>
       <div className="space-y-4 text-xl">
