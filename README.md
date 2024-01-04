@@ -76,7 +76,7 @@ https://escapeme-62de0a91bfcf.herokuapp.com/
 
 ## Screenshots <a id="Screenshots"></a>
 
-<img src="https://res.cloudinary.com/yardgems/image/upload/v1697412859/yardgemsScreenshots/ffqeafkljh3knqqm7czm.png" alt="Launch Screen" width="150" hspace="50" /> <img src="https://res.cloudinary.com/yardgems/image/upload/v1697412863/yardgemsScreenshots/ghfj1limrbyyvvz2da2r.png" alt="Home - Map View" width="150" hspace="50"/>
+<img src="" alt="Welcome Screen" width="150" hspace="50" /> <img src="" alt="User Home Page" width="150" hspace="50"/>
 
 ## Questions <a id="questions"></a>
 
