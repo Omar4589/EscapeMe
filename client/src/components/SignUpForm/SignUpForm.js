@@ -112,7 +112,7 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
 
   return (
     <div className="bg-zinc-950 min-h-screen flex justify-center font-roboto text-slate-100">
-      <div className="mx-3 w-full max-w-md p-8 mt-6">
+      <div className=" w-full max-w-md p-8 mt-6">
         <h1 className="font-semibold text-4xl mb-10 underline decoration-orange-600">
           Sign Up
         </h1>
@@ -191,7 +191,7 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
           </div>
           <button
             type="submit"
-            className="w-full text-lg bg-orange-700 text-slate-100 font-semibold py-2 mt-5 rounded hover:bg-orange-800"
+            className="w-full text-lg bg-orange-600 text-slate-100 font-semibold py-2 mt-5 rounded hover:bg-orange-700"
           >
             Sign Up
           </button>

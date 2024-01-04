@@ -55,7 +55,7 @@ const UserHomeComponent = () => {
         </p>
         <Link
           to="/booking/1"
-          className="bg-orange-600 text-slate-100 text-lg font-bold px-8 py-3 rounded"
+          className="bg-orange-600 text-slate-100 text-lg font-bold px-8 py-3 rounded font-roboto"
         >
           Book Now
         </Link>

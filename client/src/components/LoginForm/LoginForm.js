@@ -76,7 +76,7 @@ const LoginForm = () => {
 
   return (
     <div className="bg-zinc-950 min-h-screen flex justify-center font-roboto text-slate-100">
-      <div className="mx-3 w-full max-w-md p-8 mt-16">
+      <div className=" w-full max-w-md p-8 mt-16">
         <h1 className="font-semibold text-5xl mb-10 underline decoration-orange-600">
           Login
         </h1>
