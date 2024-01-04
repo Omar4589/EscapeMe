@@ -69,7 +69,7 @@ const MyBookings = () => {
   if (error) return <p>Error: {"something went wrong"}</p>;
 
   return (
-    <div className=" text-slate-100 min-h-screen mx-auto px-5 py-10 bg-zinc-950">
+    <div className=" text-slate-100 min-h-screen  px-5 py-10 bg-zinc-950">
       <h1 className="text-3xl font-bold mb-5 underline decoration-orange-600">
         My Bookings
       </h1>
