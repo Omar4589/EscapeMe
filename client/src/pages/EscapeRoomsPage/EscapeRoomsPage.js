@@ -19,8 +19,8 @@ const EscapeRoomsPage = () => {
   }, [allEscapeRoomsData]);
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-slate-100 py-10 px-5">
-      <h1 className="underline decoration-orange-600 text-4xl font-bold">
+    <div className="min-h-screen bg-zinc-950 text-slate-100 py-10 px-6">
+      <h1 className="underline decoration-orange-600 text-3xl font-bold">
         Escape Rooms
       </h1>
 

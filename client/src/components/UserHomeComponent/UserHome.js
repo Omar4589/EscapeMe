@@ -7,6 +7,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import GoogleMapComponent from "../GoogleMapComponent/GoogleMap";
+import RulesComponent from "../RulesComponent/RulesComponent";
+import LocationComponent from "../LocationComponent/LocationComponent";
 
 //-----------------------START OF COMPONENT-----------------------//
 const UserHomeComponent = () => {
@@ -43,7 +45,7 @@ const UserHomeComponent = () => {
 
   return (
     <div className="min-h-screen bg-zinc-950 ">
-      <div className=" text-slate-100 pt-8 mx-5 text-center">
+      <div className=" text-slate-100 pt-8 mx-6 text-center">
         <h1 className="text-4xl font-bold mb-3">
           Welcome to Escape Me, {user.firstName}!
         </h1>
@@ -60,7 +62,7 @@ const UserHomeComponent = () => {
       </div>
 
       {/* Escape Rooms Section  */}
-      <div className=" mx-auto text-slate-100 mt-16">
+      <div className=" mx-auto text-slate-100 mt-16 ">
         <h2 className="text-4xl font-bold mb-6 text-center underline decoration-orange-600">
           Escape Rooms
         </h2>
@@ -98,72 +100,13 @@ const UserHomeComponent = () => {
           </Slider>
         </div>
 
-        <div id="rules" className="mx-5 mt-16">
-          <h1 className="font-semibold text-5xl text-left mb-10 underline decoration-orange-600 text-center">
-            Rules
-          </h1>
-          <ul>
-            <li className="text-xl text-left pb-3">
-              1. Please arrive at least 15 minutes before your scheduled time.
-            </li>
-            <li className="text-xl text-left pb-3">
-              2. Your game guide will explain the rules of your escape room and
-              provide information about your escape room.
-            </li>
-            <li className="text-xl text-left pb-3">
-              3. The{" "}
-              <span className="underline decoration-orange-600">maximum</span>{" "}
-              number of players per escape room is 4.
-            </li>
-            <li className="text-xl text-left pb-3">
-              4. You will have 60 minutes to complete your escape room
-              challenge.
-            </li>
-            <li className="text-xl text-left pb-3">
-              5. You can request hints from your game guide at any time; there's
-              no limit to the number of hints you can receive.
-            </li>
-            <li className="text-xl text-left pb-3">
-              6. Please respect the props and equipment in the escape rooms to
-              ensure the safety and enjoyment of all participants.
-            </li>
-            <li className="text-xl text-left pb-3">
-              7. Photography and video recording inside the escape rooms are{" "}
-              <span className="underline decoration-orange-600">
-                NOT allowed
-              </span>{" "}
-              to maintain the mystery and integrity of the experience.
-            </li>
-            <li className="text-xl text-left pb-5">
-              8. If you need to cancel or reschedule your booking, please
-              contact us at least{" "}
-              <span className="underline decoration-orange-600">
-                24 hours in advance
-              </span>{" "}
-              to avoid any cancellation fees.
-            </li>
-            <li className="text-2xl text-left pb-3">
-              9. Have fun and enjoy your adventure!
-            </li>
-          </ul>
+        <div id="rules" className="mx-6 mt-16">
+          <RulesComponent />
         </div>
 
-        <div id="location-card" className="p-6">
-          <h1 className="text-5xl mb-10 font-bold underline decoration-orange-600">
-            Location
-          </h1>
-          <GoogleMapComponent />
-          <ul>
-            <li className="pb-3 pt-6  text-lg">555-555-1234</li>
-            <li className="pb-3 text-lg">escapemesupport@escapeme.com</li>
-            <li className="pb-3 font-bold text-xl">
-              Located: Far Far Away Plaza
-            </li>
-            <li className="text-lg">42 Wallaby Way, Sydney</li>
-            <li className="text-lg">Suite 101</li>
-            <li className="text-lg">Laredo, TX 78041</li>
-          </ul>
-        </div>
+    
+        <LocationComponent />
+     
       </div>
     </div>
   );
