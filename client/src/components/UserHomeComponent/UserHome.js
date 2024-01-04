@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import GoogleMapComponent from "../GoogleMapComponent/GoogleMap";
 import RulesComponent from "../RulesComponent/RulesComponent";
+import LocationComponent from "../LocationComponent/LocationComponent";
 
 //-----------------------START OF COMPONENT-----------------------//
 const UserHomeComponent = () => {
@@ -103,22 +104,9 @@ const UserHomeComponent = () => {
           <RulesComponent />
         </div>
 
-        <div id="location-card" className="p-6">
-          <h1 className="text-5xl mb-10 font-bold underline decoration-orange-600">
-            Location
-          </h1>
-          <GoogleMapComponent />
-          <ul>
-            <li className="pb-3 pt-6  text-lg">555-555-1234</li>
-            <li className="pb-3 text-lg">escapemesupport@escapeme.com</li>
-            <li className="pb-3 font-bold text-xl">
-              Located: Far Far Away Plaza
-            </li>
-            <li className="text-lg">42 Wallaby Way, Sydney</li>
-            <li className="text-lg">Suite 101</li>
-            <li className="text-lg">Laredo, TX 78041</li>
-          </ul>
-        </div>
+    
+        <LocationComponent />
+     
       </div>
     </div>
   );
