@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import ScrollToTop from "../ScrollToTopWrapper/ScrollToTopWrapper";
 import dayjs from "dayjs";
 
 const BookingConfirmationComponent = ({
@@ -57,4 +58,4 @@ const BookingConfirmationComponent = ({
   );
 };
 
-export default BookingConfirmationComponent;
+export default ScrollToTop(BookingConfirmationComponent);
