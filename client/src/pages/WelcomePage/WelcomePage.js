@@ -28,7 +28,7 @@ const WelcomePage = () => {
   return (
     <div id="main" className="min-h-screen bg-zinc-950 text-slate-100">
       <div id="heading" className="text-center pt-10 mx-5 ">
-        <h1 className="text-4xl font-bold py-2">
+        <h1 className="text-3xl font-bold py-2">
           Experience Thrilling Escape Rooms with Friends!
         </h1>
       </div>
@@ -39,7 +39,7 @@ const WelcomePage = () => {
       >
         <div
           id="view-escaperooms-card"
-          className="bg-zinc-950 text-slate-100 pb-6 mx-3 text-center"
+          className="bg-zinc-950 text-slate-100 pb-6 mx-6 text-center"
         >
           <img src={img1} alt="escape room" className="rounded-md mb-4" />
           <h3 className="font-semibold text-3xl mb-2 ">
@@ -114,7 +114,7 @@ const WelcomePage = () => {
           <p className="pb-3 font-bold text-xl">Located: Far Far Away Plaza</p>
           <p className="text-lg">42 Wallaby Way, Sydney</p>
           <p className="text-lg">Suite 101</p>
-          <p className="text-lg">Laredo, TX 78041</p>
+          <p className="text-lg">Namek, TX 78041</p>
         </div>
       </div>
     </div>
