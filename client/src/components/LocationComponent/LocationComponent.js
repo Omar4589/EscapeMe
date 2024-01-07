@@ -3,7 +3,7 @@ import GoogleMapComponent from "../../components/GoogleMapComponent/GoogleMap";
 const LocationComponent = () => {
   return (
     <div id="location-card" className="p-6 mt-24 pb-16 font-roboto">
-      <h1 className="text-5xl mb-14 font-bold underline decoration-orange-600">
+      <h1 className="text-4xl mb-8 font-bold underline decoration-orange-600">
         Location
       </h1>
       <GoogleMapComponent />

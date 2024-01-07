@@ -61,7 +61,7 @@ const WelcomePage = () => {
         </div>
 
         <div id="thingstoknow-card" className="p-6">
-          <h3 className="font-semibold text-5xl text-left mb-4 underline decoration-orange-600 ">
+          <h3 className="font-semibold text-4xl text-left mb-14 underline decoration-orange-600 ">
             Things to Know:
           </h3>{" "}
           <p className="text-xl text-left pb-3">
