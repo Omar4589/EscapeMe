@@ -81,9 +81,9 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-12 bg-zinc-950 text-slate-100 min-h-screen">
+    <div className=" mx-auto px-4 py-12 bg-zinc-950 text-slate-100 min-h-screen md:px-12">
       <h2 className="font-semibold text-4xl mb-4">Contact Us</h2>
-      <p className=" mb-4 text-xl">
+      <p className="mx-1 mb-4 text-xl md:mb-10">
         We'd love to hear from you! If you have any questions, suggestions, or
         concerns, feel free to reach out to our team using the contact form
         below:
@@ -91,9 +91,11 @@ const ContactUs = () => {
 
       <form
         id="contact-form"
-        className="w-full max-w-lg"
+        className="w-full  mx-auto lg:w-1/2"
         onSubmit={handleFormSubmit}
       >
+
+        
         <div className="mb-4">
           <label htmlFor="name" className="block text-lg font-semibold mb-2">
             Full Name
@@ -102,7 +104,7 @@ const ContactUs = () => {
             type="text"
             id="name"
             name="name"
-            className="text-slate-950 w-full px-3 py-2 border border-orange-300 rounded focus:outline-none focus:border-orange-600"
+            className="text-slate-950 w-full px-3 py-2 border border-orange-300 rounded focus:outline-none focus:border-orange-600 "
             required
             onChange={handleInputChange}
           />
@@ -115,7 +117,7 @@ const ContactUs = () => {
             type="email"
             id="email"
             name="email"
-            className="text-slate-950 w-full px-3 py-2 border border-orange-300 rounded focus:outline-none focus:border-orange-600"
+            className="text-slate-950 w-full px-3 py-2 border border-orange-300 rounded focus:outline-none focus:border-orange-600 "
             required
             onChange={handleInputChange}
           />
@@ -135,7 +137,7 @@ const ContactUs = () => {
         </div>
         <button
           type="submit"
-          className="w-full bg-orange-600 text-white font-semibold py-3 rounded hover:bg-orange-700 text-xl"
+          className="w-full bg-orange-600 text-white font-semibold py-3 rounded hover:bg-orange-700 text-xl lg:w-1/2 block mx-auto"
         >
           Send
         </button>

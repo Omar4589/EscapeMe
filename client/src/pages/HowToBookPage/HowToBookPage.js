@@ -2,14 +2,15 @@ import React from "react";
 import BookingStep from "../../components/BookingStepComponent/BookingStep";
 import { Link } from "react-router-dom";
 import ScrollToTop from "../../components/ScrollToTopWrapper/ScrollToTopWrapper";
+import NavButtonComponent from "../../components/NavButtonComponent/NavButtonComponent";
 
 const HowToBookPage = () => {
   return (
     <div className="px-5 py-10 bg-zinc-950 min-h-screen text-slate-100">
-      <h1 className="text-4xl font-bold text-center mb-10 underline decoration-orange-600">
+      <h1 className="text-4xl font-semibold text-center mb-10 underline decoration-orange-600">
         How to Book
       </h1>
-      <div className="space-y-4 text-xl">
+      <div className="space-y-4 text-xl lg:px-12">
         <BookingStep
           stepNumber="1"
           stepInstruction="Create an account to start the booking process."
@@ -34,26 +35,10 @@ const HowToBookPage = () => {
           stepInstruction="Look out for an email confirmation in your inbox."
         />
       </div>
-      <div className="text-center my-10">
-        {" "}
-        <Link
-          to="/rules"
-          className="w-3/4 mx-auto bg-orange-600 hover:bg-orange-700 text-slate-100 font-bold py-4 px-4 rounded-lg block my-6 text-xl"
-        >
-          Rules
-        </Link>
-        <Link
-          to={"/signup"}
-          className="w-3/4 mx-auto  bg-orange-600 hover:bg-orange-700 text-slate-100 font-bold py-4 px-4 rounded-lg block my-6 text-xl"
-        >
-          Sign Up/ Log In
-        </Link>
-        <Link
-          to={"/booking/1"}
-          className="w-3/4 mx-auto  bg-orange-600 hover:bg-orange-700 text-slate-100 font-bold py-4 px-4 rounded-lg block my-6 text-xl"
-        >
-          Book Now
-        </Link>
+      <div className="text-center my-10 lg:mt-16">
+        <NavButtonComponent route="/rules" text="Rules" />
+        <NavButtonComponent route="/signup" text="Sign Up / Login" />
+        <NavButtonComponent route="/booking/1" text="Book Now" />
       </div>
     </div>
   );
