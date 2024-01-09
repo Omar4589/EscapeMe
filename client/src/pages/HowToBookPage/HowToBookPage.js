@@ -2,6 +2,7 @@ import React from "react";
 import BookingStep from "../../components/BookingStepComponent/BookingStep";
 import { Link } from "react-router-dom";
 import ScrollToTop from "../../components/ScrollToTopWrapper/ScrollToTopWrapper";
+import NavButtonComponent from "../../components/NavButtonComponent/NavButtonComponent";
 
 const HowToBookPage = () => {
   return (
@@ -35,25 +36,9 @@ const HowToBookPage = () => {
         />
       </div>
       <div className="text-center my-10 lg:mt-16">
-        {" "}
-        <Link
-          to="/rules"
-          className="w-3/4 mx-auto bg-orange-600 hover:bg-orange-700 text-slate-100 font-bold py-4 px-4 rounded-lg block my-6 text-xl lg:w-1/4"
-        >
-          Rules
-        </Link>
-        <Link
-          to={"/signup"}
-          className="w-3/4 mx-auto  bg-orange-600 hover:bg-orange-700 text-slate-100 font-bold py-4 px-4 rounded-lg block my-6 text-xl lg:w-1/4"
-        >
-          Sign Up/ Log In
-        </Link>
-        <Link
-          to={"/booking/1"}
-          className="w-3/4 mx-auto  bg-orange-600 hover:bg-orange-700 text-slate-100 font-bold py-4 px-4 rounded-lg block my-6 text-xl lg:w-1/4"
-        >
-          Book Now
-        </Link>
+        <NavButtonComponent route="/rules" text="Rules" />
+        <NavButtonComponent route="/signup" text="Sign Up / Login" />
+        <NavButtonComponent route="/booking/1" text="Book Now" />
       </div>
     </div>
   );
