@@ -14,12 +14,12 @@ const Footer = () => {
               ? "/admin"
               : "/"
           }
-          className="w-7/12 block lg:w-7/12 lg:block mx-auto"
+          className="w-6/12 block md:w-1/3 lg:w-7/12 lg:block mx-auto"
         >
           <img src={logo} alt="logo"></img>
         </Link>
-        <p className="text-lg lg:text-base">
-          &copy; 2023 Escape Me Virtual Escape Rooms. All Rights Reserved.
+        <p className="text-xs lg:text-base">
+          &copy; 2023 Escape Me Virtual Escape Rooms. <br></br>All Rights Reserved.
         </p>
       </div>
 

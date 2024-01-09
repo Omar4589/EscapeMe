@@ -55,9 +55,7 @@ const Header = () => {
   };
   return (
     <header
-      className={`bg-zinc-950 text-slate-950 flex justify-between items-center p-4 border-b-2 border-orange-600  ${
-        Auth.loggedIn() ? "lg:px-12" : "lg:px-24"
-      } lg:py-2 `}
+      className={`bg-zinc-950 text-slate-950 flex justify-between items-center p-4 lg:p-0  ${ Auth.loggedIn() ? "lg:px-12" : "lg:px-24"} `}
     >
       <Link
         to={
@@ -67,7 +65,7 @@ const Header = () => {
             ? "/admin"
             : "/"
         }
-        className="w-6/12 py-1 lg:w-1/5 "
+        className="w-6/12 py-1 md:w-2/5 lg:w-1/5 "
       >
         <img src={logo} alt="logo"></img>
       </Link>
