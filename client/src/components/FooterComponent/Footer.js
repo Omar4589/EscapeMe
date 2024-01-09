@@ -4,7 +4,7 @@ import Auth from "../../utils/auth";
 
 const Footer = () => {
   return (
-    <footer className="bg-zinc-950 text-slate-100 font-roboto border-t-2 border-orange-600 pt-7 pb-4 px-4 text-center lg:justify-around">
+    <footer className="bg-zinc-950 text-slate-100 font-roboto border-t-2 border-orange-600 pt-7 pb-5 px-4 text-center lg:justify-around">
       <div className="lg:w-1/4 lg:mx-auto">
         <Link
           to={
@@ -25,13 +25,13 @@ const Footer = () => {
 
       <div className="mt-6 lg:flex lg:items-center lg:justify-center lg:text-lg">
         <div>
-          <Link to="/escaperooms" className="mx-6 lg:mr-8">
+          <Link to="/escaperooms" className="mx-4 lg:mr-8">
             Escape Rooms
           </Link>
-          <Link to="/rules" className="mx-6 lg:mr-8">
+          <Link to="/rules" className="mx-4 lg:mr-8">
             Rules
           </Link>
-          <Link to="/howtobook" className="mx-6 lg:mr-8">
+          <Link to="/howtobook" className="mx-4 lg:mr-8">
             How To Book
           </Link>
         </div>
