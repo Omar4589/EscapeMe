@@ -6,17 +6,17 @@ const LocationComponent = () => {
       <h1 className="text-4xl mb-8 font-bold underline decoration-orange-600 lg:block">
         Location
       </h1>
-      <div className="md:flex md:justify-around">
+      <div className="md:flex md:justify-around lg:w-3/4">
         <GoogleMapComponent />
-        <div className="">
+        <div className="md:h-full md:my-auto lg:my-0">
           {" "}
         
-          <p className="pb-1 text-xl">Located: Far Far Away Plaza</p>
-          <p className="text-lg">42 Wallaby Way, Sydney</p>
-          <p className="text-lg">Suite 101</p>
-          <p className="text-lg">Namek, TX 78041</p>
-          <p className="pb-1 pt-6 text-lg">555-555-1234</p>
-          <p className="pb-1 text-lg">escapemesupport@escapeme.com</p>
+          <p className="pb-1 text-xl lg:text-2xl lg:pt-10">Located: Far Far Away Plaza</p>
+          <p className="text-lg lg:text-xl">42 Wallaby Way, Sydney</p>
+          <p className="text-lg lg:text-xl">Suite 101</p>
+          <p className="text-lg lg:text-xl">Namek, TX 78041</p>
+          <p className="pb-1 pt-12 text-lg lg:text-xl lg:pt-24">555-555-1234</p>
+          <p className="pb-1 text-lg lg:text-xl">escapemesupport@escapeme.com</p>
         </div>
       </div>
     </div>
