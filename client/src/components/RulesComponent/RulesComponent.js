@@ -1,9 +1,6 @@
 const RulesComponent = () => {
   return (
     <div>
-      <h1 className="font-semibold text-4xl  mb-9 underline decoration-orange-600 text-center">
-        Rules
-      </h1>
       <ul className="text-xl">
         <li className="pb-6">
           1. Please arrive at least 15 minutes before your scheduled time.

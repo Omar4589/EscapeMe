@@ -6,6 +6,7 @@ import Auth from "../../utils/auth";
 import GoogleMapComponent from "../../components/GoogleMapComponent/GoogleMap";
 import ScrollToTop from "../../components/ScrollToTopWrapper/ScrollToTopWrapper";
 import LocationComponent from "../../components/LocationComponent/LocationComponent";
+import RulesComponent from "../../components/RulesComponent/RulesComponent";
 
 const WelcomePage = () => {
   //we use this state to return a null value if the useEffect hasnt finished running
@@ -64,51 +65,16 @@ const WelcomePage = () => {
           </div>
         </div>
 
-        <div id="thingstoknow-card" className="px-6 pt-20 lg:pt-0 lg:pb-24 lg:px-12">
+        <div
+          id="thingstoknow-card"
+          className="px-6 pt-20 lg:pt-0 lg:pb-24 lg:px-12"
+        >
           <h3 className="font-semibold text-4xl text-left mb-14 underline decoration-orange-600 ">
             Things to Know:
           </h3>{" "}
-          <div className="lg:px-6">   
-            <p className="text-xl text-left pb-3">
-            1. Please arrive at least 15 minutes before your scheduled time.
-          </p>
-          <p className="text-xl text-left pb-3">
-            2. Your game guide will explain the rules of the game and provide
-            information about your escape room.
-          </p>
-          <p className="text-xl text-left pb-3">
-            3. The{" "}
-            <span className="underline decoration-orange-600">maximum</span>{" "}
-            number of players per escape room is 4.
-          </p>
-          <p className="text-xl text-left pb-3">
-            4. You will have 60 minutes to complete your escape room challenge.
-          </p>
-          <p className="text-xl text-left pb-3">
-            5. You can request hints from your game guide at any time; there's
-            no limit to the number of hints you can receive.
-          </p>
-          <p className="text-xl text-left pb-3">
-            6. Please respect the props and equipment in the escape rooms to
-            ensure the safety and enjoyment of all participants.
-          </p>
-          <p className="text-xl text-left pb-3">
-            7. Photography and video recording inside the escape rooms are{" "}
-            <span className="underline decoration-orange-600">NOT allowed</span>{" "}
-            to maintain the mystery and integrity of the experience.
-          </p>
-          <p className="text-xl text-left pb-5">
-            8. If you need to cancel or reschedule your booking, please contact
-            us at least{" "}
-            <span className="underline decoration-orange-600">
-              24 hours in advance
-            </span>{" "}
-            to avoid any cancellation fees.
-          </p>
-          <p className="text-2xl text-left pb-3">
-            9. Have fun and enjoy your adventure!
-          </p></div>
-       
+          <div className="lg:px-6">
+            <RulesComponent />
+          </div>
         </div>
 
         <LocationComponent />
