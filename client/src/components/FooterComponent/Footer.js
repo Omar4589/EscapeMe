@@ -4,7 +4,7 @@ import Auth from "../../utils/auth";
 
 const Footer = () => {
   return (
-    <footer className="bg-zinc-950 text-slate-100 font-roboto border-t-2 border-orange-600 py-8 px-4 text-center lg: lg:justify-around lg:pt-8">
+    <footer className="bg-zinc-950 text-slate-100 font-roboto border-t-2 border-orange-600 pt-7 pb-4 px-4 text-center lg:justify-around">
       <div className="lg:w-1/4 lg:mx-auto">
         <Link
           to={
@@ -14,7 +14,7 @@ const Footer = () => {
               ? "/admin"
               : "/"
           }
-          className="w-7/12 block lg:w-11/12 lg:block mx-auto"
+          className="w-7/12 block lg:w-7/12 lg:block mx-auto"
         >
           <img src={logo} alt="logo"></img>
         </Link>
@@ -23,7 +23,7 @@ const Footer = () => {
         </p>
       </div>
 
-      <div className="mt-6 lg:flex lg:items-center lg:justify-center lg:text-lg lg:mt-8">
+      <div className="mt-6 lg:flex lg:items-center lg:justify-center lg:text-lg">
         <div>
           <Link to="/escaperooms" className="mx-6 lg:mr-8">
             Escape Rooms
