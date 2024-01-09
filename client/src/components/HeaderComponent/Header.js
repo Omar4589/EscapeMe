@@ -65,7 +65,7 @@ const Header = () => {
             ? "/admin"
             : "/"
         }
-        className="w-6/12 py-1 lg:w-1/5 "
+        className="w-6/12 py-1 md:w-2/5 lg:w-1/5 "
       >
         <img src={logo} alt="logo"></img>
       </Link>
