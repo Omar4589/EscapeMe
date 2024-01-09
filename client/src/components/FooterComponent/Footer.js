@@ -14,7 +14,7 @@ const Footer = () => {
               ? "/admin"
               : "/"
           }
-          className="w-6/12 block lg:w-7/12 lg:block mx-auto"
+          className="w-6/12 block md:w-1/3 lg:w-7/12 lg:block mx-auto"
         >
           <img src={logo} alt="logo"></img>
         </Link>

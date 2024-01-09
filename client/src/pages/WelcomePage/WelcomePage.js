@@ -64,11 +64,12 @@ const WelcomePage = () => {
           </div>
         </div>
 
-        <div id="thingstoknow-card" className="px-6 pt-20 lg:pt-0 lg:pb-24">
+        <div id="thingstoknow-card" className="px-6 pt-20 lg:pt-0 lg:pb-24 lg:px-12">
           <h3 className="font-semibold text-4xl text-left mb-14 underline decoration-orange-600 ">
             Things to Know:
           </h3>{" "}
-          <p className="text-xl text-left pb-3">
+          <div className="lg:px-6">   
+            <p className="text-xl text-left pb-3">
             1. Please arrive at least 15 minutes before your scheduled time.
           </p>
           <p className="text-xl text-left pb-3">
@@ -106,7 +107,8 @@ const WelcomePage = () => {
           </p>
           <p className="text-2xl text-left pb-3">
             9. Have fun and enjoy your adventure!
-          </p>
+          </p></div>
+       
         </div>
 
         <LocationComponent />
