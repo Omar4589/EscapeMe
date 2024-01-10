@@ -136,6 +136,14 @@ const Booking = () => {
         ...formData,
         [name]: parseInt(value, 10),
       });
+    } else if (name === "date") {
+      const selectedDate = dayjs(value);
+      const currentDate = dayjs();
+
+      if (selectedDate.isBefore(currentDate, "day")) {
+        event.target.value = currentDate.format("YYYY-MM-DD");
+
+      }
     } else {
       setFormData({ ...formData, [name]: value });
     }
