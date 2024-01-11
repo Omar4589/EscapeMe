@@ -127,11 +127,11 @@ const Booking = () => {
       setShowSnackBar(false);
     }, 3000);
   };
-
+  
   //The function below handles updating the 'formState'
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    console.log(value);
+
     if (name === "escape_room_id" || name === "numberOfPlayers") {
       setFormData({
         ...formData,
@@ -143,11 +143,18 @@ const Booking = () => {
 
       if (selectedDate.isBefore(currentDate, "day")) {
         event.target.value = currentDate.format("YYYY-MM-DD");
+
+        setFormData({
+          ...formData,
+          [name]: event.target.value,
+        });
+      } else {
+        setFormData({
+          ...formData,
+          [name]: value,
+        });
+        console.log(timeSlots);
       }
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
     } else {
       setFormData({ ...formData, [name]: value });
     }
