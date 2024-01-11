@@ -12,24 +12,48 @@ import LocationComponent from "../LocationComponent/LocationComponent";
 
 //-----------------------START OF COMPONENT-----------------------//
 const UserHomeComponent = () => {
+  //-----------------STATE---------------//
+  const [escapeRooms, setEscapeRooms] = useState([]);
+  const [user, setUser] = useState({});
+  const [largeScreen, setLargeScreen] = useState(null);
   // settings for react-slick's Slider component
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 1,
+    slidesToShow: largeScreen ? 3 : 1,
     slidesToScroll: 1,
     arrows: true,
   };
-  //-----------------STATE---------------//
-  const [escapeRooms, setEscapeRooms] = useState([]);
-  const [user, setUser] = useState({});
 
   //-----------------QUERIES---------------//
   const { loading, data: allEscapeRoomsData } = useQuery(QUERY_AllESCAPEROOMS);
   const { data: userData } = useQuery(ME_QUERY);
 
   //-----------------HOOKS---------------//
+
+  useEffect(() => {
+    //This function updates the state value of setLargeScreen based on the window width.
+    const handleResize = () => {
+      //Here we are setting setLargeScreen by passing in the value of the expression
+      setLargeScreen(window.innerWidth > 768);
+    };
+
+    //Here we create an event listener for the window's resize event, and pass `handleResize` as the event handler.
+    window.addEventListener("resize", handleResize);
+
+    //Here we call `handleResize` on the initial mount to set the initial value of `showFooter`.
+    handleResize();
+    console.log(largeScreen);
+    //Here we define a 'cleanup' function that removes the resize event listener
+    const cleanup = () => {
+      window.removeEventListener("resize", handleResize);
+    };
+
+    // Clean up the event listener by removing it when the component is unmounted.
+    return cleanup;
+  }, []);
+
   useEffect(() => {
     const rooms = allEscapeRoomsData?.getAllEscapeRooms || [];
 
@@ -67,26 +91,31 @@ const UserHomeComponent = () => {
           Escape Rooms
         </h2>
         <div id="escape-rooms" className="">
-          <Slider {...settings} className="mx-10">
+          <Slider {...settings} className="mx-10 md:mx-20 ">
             {escapeRooms.map((room) => {
               return (
-                <div id={room.theme} key={room.id} className=" px-2">
-                  <img
-                    src={room.image_url}
-                    alt={room.theme}
-                    className=" h-52 object-cover mb-6 rounded-lg mx-auto"
-                  />
-                  <h3 id="escape-room-theme" className="text-xl font-bold mb-1">
-                    {room.theme}
-                  </h3>
-                  <p className="mb-1 font-bold">
-                    Difficulty: {room.difficulty}
-                  </p>
-                  <p className="font-bold">Duration: {room.duration}min</p>
-                  <p className=" my-2 text-center text-lg">
-                    {room.description}
-                  </p>
-                  <div className="flex justify-center">
+                <div id={room.theme} key={room.id} className=" px-2 ">
+                  <div className="flex flex-col justify-between max-h-[400px]">
+                    <img
+                      src={room.image_url}
+                      alt={room.theme}
+                      className=" h-52 object-cover mb-6 rounded-lg mx-auto"
+                    />
+                    <h3
+                      id="escape-room-theme"
+                      className="text-xl font-bold mb-1"
+                    >
+                      {room.theme}
+                    </h3>
+                    <p className="mb-1 font-bold">
+                      Difficulty: {room.difficulty}
+                    </p>
+                    <p className="font-bold">Duration: {room.duration}min</p>
+                    <p className=" my-2 text-center text-lg">
+                      {room.description}
+                    </p>
+                  </div>
+                  <div className="flex justify-center pt-44">
                     <Link
                       to={`/booking/${room.id}`}
                       className="bg-orange-600 py-2 px-10 rounded-lg mt-5 text-xl"
@@ -100,13 +129,17 @@ const UserHomeComponent = () => {
           </Slider>
         </div>
 
-        <div id="rules" className="mx-6 mt-16">
-          <RulesComponent />
+        <div id="rules" className="px-6 mt-20 lg:pt-0 lg:pb-24 lg:px-12">
+          <h3 className="font-semibold text-4xl text-left mb-14 mx-3 underline decoration-orange-600 ">
+            Things to Know:
+          </h3>{" "}
+          <div className="px-6">
+            {" "}
+            <RulesComponent />
+          </div>
         </div>
 
-    
         <LocationComponent />
-     
       </div>
     </div>
   );
