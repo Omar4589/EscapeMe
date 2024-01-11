@@ -74,16 +74,16 @@ const MyBookings = () => {
         My Bookings
       </h1>
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1  md:grid-cols-2 md:gap-x-14 lg:grid-cols-3 lg:px-3">
         {userBookings?.map((booking) => (
-          <div key={booking.id} className="py-6 px-2">
-            <h2 className="text-xl font-semibold mb-2">
+          <div key={booking.id} className="p-4 flex flex-col justify-between">
+            <h2 className="text-2xl font-bold mb-2 underline decoration-orange-600 drop-shadow-lg">
               {booking.escaperoom.theme}
             </h2>
             <img
               src={booking.escaperoom.image_url}
               alt="escape room"
-              className="rounded-md mb-3"
+              className="h-52 w-11/12 object-cover mb-5 rounded mx-auto drop-shadow-xl"
             />
             <div className="flex text-center items-start justify-between mb-2 mx-2">
               <p className="font-semibold text-lg">Number of Players:</p>

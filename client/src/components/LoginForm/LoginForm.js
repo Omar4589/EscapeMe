@@ -77,14 +77,14 @@ const LoginForm = () => {
   return (
     <div className="bg-zinc-950 min-h-screen flex justify-center font-roboto text-slate-100">
       <div className=" w-full max-w-md p-8 mt-16">
-        <h1 className="font-semibold text-5xl mb-10 underline decoration-orange-600">
+        <h1 className="font-semibold text-4xl mb-10 underline decoration-orange-600">
           Login
         </h1>
 
         <form id="signup-form" onSubmit={handleFormSubmit}>
           <div className="mb-8">
             <label
-              className="block text-lg font-semibold mb-2"
+              className="block text-lg font-semibold mb-2 lg:text-base"
               htmlFor="email-login"
             >
               Email
@@ -101,7 +101,7 @@ const LoginForm = () => {
           </div>
           <div className="mb-6">
             <label
-              className="block text-lg font-semibold mb-2"
+              className="block text-lg font-semibold mb-2 lg:text-base"
               htmlFor="password-login"
             >
               Password
@@ -117,13 +117,13 @@ const LoginForm = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-orange-600 text-xl text-slate-100 font-semibold py-2 mt-5 rounded hover:bg-orange-700"
+            className="w-full bg-orange-600 text-xl text-slate-100 font-semibold py-2 mt-5 rounded hover:bg-orange-700 lg:text-lg"
           >
             Login
           </button>
         </form>
         <div className="mt-4 text-center">
-          <h2 className="text-lg">
+          <h2 className="text-lg lg:text-base">
             Don't have an account yet?{" "}
             <Link
               to="/signup"

@@ -81,7 +81,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div className=" mx-auto px-4 py-12 bg-zinc-950 text-slate-100 min-h-screen md:px-12">
+    <div className=" mx-auto px-6 py-12 bg-zinc-950 text-slate-100 min-h-screen md:px-36">
       <h2 className="font-semibold text-4xl mb-4">Contact Us</h2>
       <p className="mx-1 mb-4 text-xl md:mb-10">
         We'd love to hear from you! If you have any questions, suggestions, or
@@ -91,7 +91,7 @@ const ContactUs = () => {
 
       <form
         id="contact-form"
-        className="w-full  mx-auto lg:w-1/2"
+        className="w-full  mx-auto lg:w-3/4 xl:w-1/2"
         onSubmit={handleFormSubmit}
       >
 

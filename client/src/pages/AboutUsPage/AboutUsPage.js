@@ -5,7 +5,7 @@ import NavButtonComponent from "../../components/NavButtonComponent/NavButtonCom
 
 const AboutUsPage = () => {
   return (
-    <div className="bg-zinc-950 text-slate-100 text-center min-h-screen p-4 lg:text-justify">
+    <div className="bg-zinc-950 text-slate-100 text-center min-h-screen p-6 md:px-12 lg:px-36 lg:text-justify">
       <div className="container mx-auto pt-5 pb-10">
         <h1 className="text-4xl font-bold text-center mb-5 underline decoration-orange-600">About Us</h1>
         <p className="text-xl">
@@ -27,7 +27,7 @@ const AboutUsPage = () => {
           that will last a lifetime.  So, gather your friends, family, or colleagues, and come see if you
           have what it takes to escape!
         </p>
-        <div className="text-center mt-10">
+        <div className="text-center mt-16">
         <NavButtonComponent route="/escaperooms" text="View Escape Rooms" />
           <NavButtonComponent route="/rules" text="Rules" />
           <NavButtonComponent route="/howtobook" text="How To Book" />
