@@ -26,10 +26,11 @@ const EscapeRoomsPage = () => {
       <div className="grid grid-cols-1  md:grid-cols-2 md:gap-x-14 lg:grid-cols-3 lg:px-3">
         {escapeRooms.map((room) => {
           return (
+            <div className="">
             <div
               id={room.theme}
               key={room.id}
-              className="rounded-xl mt-10 mb-16 flex flex-col justify-between bg-cover bg-center relative overflow-hidden"
+              className="rounded-xl mt-10 mb-10 flex flex-col justify-between bg-cover bg-center relative overflow-hidden"
               style={{ backgroundImage: `url(${room.image_url})` }}
             >
               <div
@@ -69,8 +70,10 @@ const EscapeRoomsPage = () => {
                     Book Now
                   </Link>
                 </div>
-                <div className="border-2 border-orange-600 mt-14 w-4/5 mx-auto"></div>
               </div>
+           
+            </div>
+            <div className="border-2 border-orange-600 w-4/5 mx-auto"></div>
             </div>
           );
         })}
