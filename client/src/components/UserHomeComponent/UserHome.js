@@ -44,7 +44,6 @@ const UserHomeComponent = () => {
 
     //Here we call `handleResize` on the initial mount to set the initial value of `showFooter`.
     handleResize();
-    console.log(largeScreen);
     //Here we define a 'cleanup' function that removes the resize event listener
     const cleanup = () => {
       window.removeEventListener("resize", handleResize);
@@ -73,21 +72,17 @@ const UserHomeComponent = () => {
         <h1 className="text-4xl font-bold mb-3">
           Welcome to Escape Me, {user.firstName}!
         </h1>
-        <p className="text-xl mb-10">
-          Experience the thrill of our escape rooms and book your next
-          adventure!
+        <p className="text-xl mb-6">
+          Experience the thrill of our escape rooms!
         </p>
-        <Link
-          to="/booking/1"
-          className="bg-orange-600 text-slate-100 text-lg font-bold px-8 py-3 rounded font-roboto"
-        >
-          Book Now
-        </Link>
+        <h2 className="text-slate-100 text-4xl font-extrabold px-8 py-3 rounded font-roboto">
+          Choose Your Adventure Below!
+        </h2>
       </div>
 
       {/* Escape Rooms Section  */}
-      <div className=" mx-auto text-slate-100 mt-16 ">
-        <h2 className="text-4xl font-bold mb-6 text-center underline decoration-orange-600">
+      <div className=" mx-auto text-slate-100 mt-6 ">
+        <h2 className="text-3xl font-bold mb-6 text-center underline decoration-orange-600">
           Escape Rooms
         </h2>
         <div id="escape-rooms" className="">
@@ -129,7 +124,10 @@ const UserHomeComponent = () => {
           </Slider>
         </div>
 
-        <div id="rules" className="px-6 mt-20 lg:pt-0 lg:pb-24 lg:px-12">
+        <div
+          id="rules"
+          className="px-6 mt-20 lg:pt-0 lg:pb-24 lg:px-12 lg:mt-44"
+        >
           <h3 className="font-semibold text-4xl text-left mb-14 mx-3 underline decoration-orange-600 ">
             Things to Know:
           </h3>{" "}

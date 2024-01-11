@@ -26,9 +26,9 @@ const EscapeRoomsPage = () => {
       <div className="grid grid-cols-1  md:grid-cols-2 md:gap-x-14 lg:grid-cols-3 lg:px-3">
         {escapeRooms.map((room) => {
           return (
-            <div id={room.theme} key={room.id}>
+            <div id={room.theme} key={room.id} className="flex flex-col">
               <div
-                className="rounded-xl mt-10 mb-10 flex flex-col justify-between bg-cover bg-center relative overflow-hidden"
+                className="rounded-xl mt-10 mb-10 flex flex-col justify-between bg-cover bg-center relative overflow-hidden h-full"
                 style={{ backgroundImage: `url(${room.image_url})` }}
               >
                 <div
