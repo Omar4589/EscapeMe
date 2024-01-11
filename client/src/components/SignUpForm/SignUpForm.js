@@ -119,7 +119,7 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
 
         <form id="signup-form" onSubmit={handleFormSubmit}>
           <div className="mb-6">
-            <label className="block text-lg font-semibold " htmlFor="firstname">
+            <label className="block text-lg font-semibold lg:text-base" htmlFor="firstname">
               First Name
             </label>
             <input
@@ -133,7 +133,7 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
             />
           </div>
           <div className="mb-6">
-            <label className="block text-lg font-semibold " htmlFor="lastname">
+            <label className="block text-lg font-semibold lg:text-base" htmlFor="lastname">
               Last Name
             </label>
             <input
@@ -147,7 +147,7 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
             />
           </div>
           <div className="mb-6">
-            <label className="block text-lg font-semibold " htmlFor="email">
+            <label className="block text-lg font-semibold lg:text-base" htmlFor="email">
               Email
             </label>
             <input
@@ -161,7 +161,7 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
             />
           </div>
           <div className="mb-6">
-            <label className="block text-lg font-semibold " htmlFor="password">
+            <label className="block text-lg font-semibold lg:text-base" htmlFor="password">
               Password
             </label>
             <input
@@ -175,7 +175,7 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
           </div>
           <div className="mb-6">
             <label
-              className="block text-lg font-semibold mb-0"
+              className="block text-lg font-semibold mb-0 lg:text-base"
               htmlFor="confirmpassword"
             >
               Confirm Password
@@ -191,13 +191,13 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
           </div>
           <button
             type="submit"
-            className="w-full text-lg bg-orange-600 text-slate-100 font-semibold py-2 mt-5 rounded hover:bg-orange-700"
+            className="w-full text-lg bg-orange-600 text-slate-100 font-semibold py-2 mt-5 rounded hover:bg-orange-700 "
           >
             Sign Up
           </button>
         </form>
         <div className="mt-4 text-center">
-          <h2 className="text-lg">
+          <h2 className="text-lg lg:text-base">
             Already have an account?{" "}
             <Link to="/login" className="text-orange-600 hover:text-orange-700">
               Login
