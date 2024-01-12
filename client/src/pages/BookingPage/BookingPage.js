@@ -23,7 +23,7 @@ const BookingPage = () => {
   });
 
   return (
-    <div className=" min-h-screen bg-zinc-950 text-slate-100 mx-auto px-3 py-12 md:px-12 lg:px-12">
+    <div id="main" className=" min-h-screen bg-zinc-950 text-slate-100 mx-auto px-6 py-12 md:px-12 lg:px-12">
       <BookingFormComponent
         confirmationPage={confirmationPage}
         setConfirmationPage={setConfirmationPage}
@@ -41,6 +41,7 @@ const BookingPage = () => {
             escapeRoomImage: escapeRooms.find(
               (room) => room.id === formData.escape_room_id
             )?.image_url,
+            description: formData.escape_room_description,
             numberOfPlayers: formData.numberOfPlayers,
             date: formData.date,
             time: formData.time,
