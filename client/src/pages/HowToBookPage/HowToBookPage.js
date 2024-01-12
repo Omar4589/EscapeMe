@@ -1,6 +1,4 @@
-import React from "react";
 import BookingStep from "../../components/BookingStepComponent/BookingStep";
-import { Link } from "react-router-dom";
 import ScrollToTop from "../../components/ScrollToTopWrapper/ScrollToTopWrapper";
 import NavButtonComponent from "../../components/NavButtonComponent/NavButtonComponent";
 
@@ -10,7 +8,7 @@ const HowToBookPage = () => {
       <h1 className="text-4xl font-semibold text-center mb-10 underline decoration-orange-600">
         How to Book
       </h1>
-      <div className="space-y-4 text-xl lg:px-12">
+      <div className="space-y-4 text-xl md:px-6 lg:px-12">
         <BookingStep
           stepNumber="1"
           stepInstruction="Create an account to start the booking process."

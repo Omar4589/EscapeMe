@@ -8,7 +8,6 @@ import SnackBar from "../SnackBarComponent/SnackBar";
 
 //-----------------------START OF COMPONENT-----------------------//
 const SignUpForm = ({ handleComponentChange, LoginForm }) => {
-
   //-----------------STATE---------------//
   // State to store user input data for registration
   const [formData, setFormData] = useState({
@@ -111,99 +110,109 @@ const SignUpForm = ({ handleComponentChange, LoginForm }) => {
   };
 
   return (
-    <div className="bg-zinc-950 min-h-screen flex justify-center font-roboto text-slate-100">
-      <div className=" w-full max-w-md p-8 mt-6">
-        <h1 className="font-semibold text-4xl mb-10 underline decoration-orange-600">
-          Sign Up
-        </h1>
+    <div className=" w-full max-w-md p-8 mt-6">
+      <h1 className="font-semibold text-4xl mb-10 underline decoration-orange-600">
+        Sign Up
+      </h1>
 
-        <form id="signup-form" onSubmit={handleFormSubmit}>
-          <div className="mb-6">
-            <label className="block text-lg font-semibold lg:text-base" htmlFor="firstname">
-              First Name
-            </label>
-            <input
-              autoComplete="given-name"
-              className="w-full bg-zinc-950  border-b-2 text-slate-100 px-3 py-2  rounded focus:outline-none focus:border-orange-600"
-              type="text"
-              id="firstname"
-              name="firstName"
-              required
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="mb-6">
-            <label className="block text-lg font-semibold lg:text-base" htmlFor="lastname">
-              Last Name
-            </label>
-            <input
-              autoComplete="family-name"
-              className="w-full bg-zinc-950  border-b-2 text-slate-100 px-3 py-2  rounded focus:outline-none focus:border-orange-600"
-              type="text"
-              id="lastname"
-              name="lastName"
-              required
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="mb-6">
-            <label className="block text-lg font-semibold lg:text-base" htmlFor="email">
-              Email
-            </label>
-            <input
-              autoComplete="email"
-              className="w-full bg-zinc-950  border-b-2 text-slate-100 px-3 py-2  rounded focus:outline-none focus:border-orange-600"
-              type="email"
-              id="email"
-              name="email"
-              required
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="mb-6">
-            <label className="block text-lg font-semibold lg:text-base" htmlFor="password">
-              Password
-            </label>
-            <input
-              className="w-full bg-zinc-950  border-b-2 text-slate-100 px-3 py-2  rounded focus:outline-none focus:border-orange-600"
-              type="password"
-              id="password"
-              name="password"
-              required
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="mb-6">
-            <label
-              className="block text-lg font-semibold mb-0 lg:text-base"
-              htmlFor="confirmpassword"
-            >
-              Confirm Password
-            </label>
-            <input
-              className="w-full bg-zinc-950  border-b-2 text-slate-100 px-3 py-2  rounded focus:outline-none focus:border-orange-600"
-              type="password"
-              id="confirmpassword"
-              name="confirmpassword"
-              required
-              onChange={handleInputChange}
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full text-lg bg-orange-600 text-slate-100 font-semibold py-2 mt-5 rounded hover:bg-orange-700 "
+      <form id="signup-form" onSubmit={handleFormSubmit}>
+        <div className="mb-6">
+          <label
+            className="block text-lg font-semibold lg:text-base"
+            htmlFor="firstname"
           >
-            Sign Up
-          </button>
-        </form>
-        <div className="mt-4 text-center">
-          <h2 className="text-lg lg:text-base">
-            Already have an account?{" "}
-            <Link to="/login" className="text-orange-600 hover:text-orange-700">
-              Login
-            </Link>
-          </h2>
+            First Name
+          </label>
+          <input
+            autoComplete="given-name"
+            className="w-full bg-zinc-950  border-b-2 text-slate-100 px-3 py-2  rounded focus:outline-none focus:border-orange-600"
+            type="text"
+            id="firstname"
+            name="firstName"
+            required
+            onChange={handleInputChange}
+          />
         </div>
+        <div className="mb-6">
+          <label
+            className="block text-lg font-semibold lg:text-base"
+            htmlFor="lastname"
+          >
+            Last Name
+          </label>
+          <input
+            autoComplete="family-name"
+            className="w-full bg-zinc-950  border-b-2 text-slate-100 px-3 py-2  rounded focus:outline-none focus:border-orange-600"
+            type="text"
+            id="lastname"
+            name="lastName"
+            required
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="mb-6">
+          <label
+            className="block text-lg font-semibold lg:text-base"
+            htmlFor="email"
+          >
+            Email
+          </label>
+          <input
+            autoComplete="email"
+            className="w-full bg-zinc-950  border-b-2 text-slate-100 px-3 py-2  rounded focus:outline-none focus:border-orange-600"
+            type="email"
+            id="email"
+            name="email"
+            required
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="mb-6">
+          <label
+            className="block text-lg font-semibold lg:text-base"
+            htmlFor="password"
+          >
+            Password
+          </label>
+          <input
+            className="w-full bg-zinc-950  border-b-2 text-slate-100 px-3 py-2  rounded focus:outline-none focus:border-orange-600"
+            type="password"
+            id="password"
+            name="password"
+            required
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="mb-6">
+          <label
+            className="block text-lg font-semibold mb-0 lg:text-base"
+            htmlFor="confirmpassword"
+          >
+            Confirm Password
+          </label>
+          <input
+            className="w-full bg-zinc-950  border-b-2 text-slate-100 px-3 py-2  rounded focus:outline-none focus:border-orange-600"
+            type="password"
+            id="confirmpassword"
+            name="confirmpassword"
+            required
+            onChange={handleInputChange}
+          />
+        </div>
+        <button
+          type="submit"
+          className="w-full text-lg bg-orange-600 text-slate-100 font-semibold py-2 mt-5 rounded hover:bg-orange-700 "
+        >
+          Sign Up
+        </button>
+      </form>
+      <div className="mt-4 text-center">
+        <h2 className="text-lg lg:text-base">
+          Already have an account?{" "}
+          <Link to="/login" className="text-orange-600 hover:text-orange-700">
+            Login
+          </Link>
+        </h2>
       </div>
 
       {snackbar.show && <SnackBar message={snackbar.message} />}

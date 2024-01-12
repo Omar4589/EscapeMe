@@ -12,7 +12,7 @@ import { useUserBookingsContext } from "../../utils/UserBookingsContext";
 import BookingConfirmationComponent from "../BookingConfirmationComponent/BookingConfirmationComponent";
 
 //-----------------------START OF COMPONENT-----------------------//
-const Booking = () => {
+const Booking = ({confirmationPage, setConfirmationPage, escapeRooms, setEscapeRooms, formData, setFormData}) => {
   //-----------------CONTEXT---------------//
   const { createABooking } = useUserBookingsContext();
   const currTime = dayjs().format("HH:mm:ss");
@@ -20,28 +20,14 @@ const Booking = () => {
 
   //react router dom's way of navigating through pages
   const navigate = useNavigate();
-  //destructuring roomId parameters
-  const { roomId } = useParams();
-  //turning value into integer
-  const roomID = parseInt(roomId, 10);
 
   //-----------------STATE---------------//
   const [showSnackBar, setShowSnackBar] = useState(false);
 
-  const [escapeRooms, setEscapeRooms] = useState([]);
-
-  const [formData, setFormData] = useState({
-    escape_room_id: roomID,
-    escape_room_image: "",
-    numberOfPlayers: 1,
-    date: "",
-    time: "",
-  });
+ 
 
   const [timeSlots, setTimeSlots] = useState([]);
 
-  //Used to show/hide confirmation page after booking is succesful
-  const [confirmationPage, setConfirmationPage] = useState(false);
 
   //-----------------QUERIES---------------//
   const { data: allEscapeRoomsData } = useQuery(QUERY_AllESCAPEROOMS);
@@ -127,7 +113,7 @@ const Booking = () => {
       setShowSnackBar(false);
     }, 3000);
   };
-  
+
   //The function below handles updating the 'formState'
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -184,10 +170,10 @@ const Booking = () => {
   };
 
   return (
-    <div className=" min-h-screen bg-zinc-950 text-slate-100 mx-auto px-3 py-12">
+    <div>
       {confirmationPage ? null : (
         <>
-          <h1 className="text-2xl font-bold mb-10 text-">
+          <h1 className="text-2xl font-bold mb-10 px-3">
             We're excited to have you! Complete the form below to book your
             escape room.
           </h1>
@@ -309,22 +295,7 @@ const Booking = () => {
         <SnackBar message="Something went wrong. Please try again later." />
       ) : null}
 
-      {confirmationPage ? (
-        <BookingConfirmationComponent
-          bookingDetails={{
-            escapeRoomTheme: escapeRooms.find(
-              (room) => room.id === formData.escape_room_id
-            )?.theme,
-            escapeRoomImage: escapeRooms.find(
-              (room) => room.id === formData.escape_room_id
-            )?.image_url,
-            numberOfPlayers: formData.numberOfPlayers,
-            date: formData.date,
-            time: formData.time,
-          }}
-          setConfirmationPage={setConfirmationPage}
-        />
-      ) : null}
+    
     </div>
   );
 };
