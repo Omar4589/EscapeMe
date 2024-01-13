@@ -216,7 +216,7 @@ const Booking = ({
 
               <div className="lg:w-1/3 lg:flex lg:flex-col lg:justify-around ">
                 <div>
-                  <div className="mb-6 lg:w-1/2">
+                  <div className="mb-6 lg:w-1/2 ">
                     <label
                       className="block text-slate-100 text-lg font-bold mb-2"
                       htmlFor="numberOfPlayers"
@@ -224,7 +224,7 @@ const Booking = ({
                       Number of Players:
                     </label>
                     <select
-                      className="rounded w-full py-2 px-3 text-slate-100 bg-zinc-950 border border-orange-500 focus:outline-none focus:shadow-outline"
+                      className="rounded w-full py-2 px-3 text-slate-100 bg-zinc-950 border border-orange-500 focus:outline-none focus:shadow-outline "
                       id="numberOfPlayers"
                       name="numberOfPlayers"
                       required
@@ -237,7 +237,7 @@ const Booking = ({
                     </select>
                   </div>
 
-                  <div className="flex justify-between lg:w-3/4">
+                  <div className="flex justify-between  xl:w-3/4">
                     {" "}
                     <div className="mb-6">
                       <label
