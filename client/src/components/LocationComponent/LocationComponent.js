@@ -2,7 +2,7 @@ import GoogleMapComponent from "../../components/GoogleMapComponent/GoogleMap";
 
 const LocationComponent = () => {
   return (
-    <div id="location-card" className="p-6 mt-24 pb-16 font-roboto md:px-12 lg:px-16">
+    <div id="location-card" className="py-6 px-8 mt-24 pb-16 font-roboto md:px-12 lg:px-16">
       <h1 className="text-4xl mb-8 font-bold underline decoration-orange-600 lg:block">
         Location
       </h1>
