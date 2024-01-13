@@ -16,6 +16,14 @@
   @media screen and (min-width: 1024px) {
   
     .map-container {
+      height: 30vh;
+      width: 40vw;
+  }
+  }
+
+  @media screen and (min-width: 1440px) {
+  
+    .map-container {
       height: 50vh;
       width: 40vw;
   }

@@ -24,7 +24,7 @@ const EscapeRoomsPage = () => {
       <h1 className="underline decoration-orange-600 text-3xl font-bold">
         Escape Rooms
       </h1>
-      <div className="grid grid-cols-1  md:grid-cols-2 md:gap-x-14 lg:grid-cols-3 lg:px-3">
+      <div className="grid grid-cols-1  md:grid-cols-2 md:gap-x-14 lg:grid-cols-2 lg:px-3 xl:grid-cols-3">
         {escapeRooms.map((room) => {
           return (
             <div id={room.theme} key={room.id} className="flex flex-col">
