@@ -4,7 +4,7 @@ import NavButtonComponent from "../../components/NavButtonComponent/NavButtonCom
 
 const HowToBookPage = () => {
   return (
-    <div className="px-5 py-10 bg-zinc-950 min-h-screen text-slate-100">
+    <div className="px-6 py-10 bg-zinc-950 min-h-screen text-slate-100 md:px-10 xl:px-16">
       <h1 className="text-4xl font-semibold text-center mb-10 underline decoration-orange-600">
         How to Book
       </h1>

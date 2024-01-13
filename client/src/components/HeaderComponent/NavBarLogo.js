@@ -12,7 +12,7 @@ const NavBarLogo = ({ toggleSidebar, logo }) => {
           ? "/admin"
           : "/"
       }
-      className="block w-7/12 ml-8 pt-6 lg:hidden "
+      className="block w-7/12 ml-8 pt-6 md:w-2/5 md:ml-16 lg:hidden "
     >
       <img src={logo} alt="logo"></img>
     </Link>

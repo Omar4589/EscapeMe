@@ -30,7 +30,7 @@ const WelcomePage = () => {
       <div className=" pb-8  ">
         <ChooseYourAdventureComponent />
 
-        <div className="px-6 pt-20 lg:pt-0 lg:pb-24 lg:px-12">
+        <div className="px-6 pt-20 lg:pt-0 lg:pb-14 lg:px-12">
           <h3 className="font-semibold text-4xl text-left mb-14 underline decoration-orange-600 ">
             Things to Know:
           </h3>

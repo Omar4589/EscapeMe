@@ -5,29 +5,27 @@ import {
 } from "../../utils/queries";
 import { useLazyQuery, useQuery } from "@apollo/client";
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import SnackBar from "../SnackBarComponent/SnackBar";
 import { useUserBookingsContext } from "../../utils/UserBookingsContext";
-import BookingConfirmationComponent from "../BookingConfirmationComponent/BookingConfirmationComponent";
 
 //-----------------------START OF COMPONENT-----------------------//
-const Booking = ({confirmationPage, setConfirmationPage, escapeRooms, setEscapeRooms, formData, setFormData}) => {
+const Booking = ({
+  confirmationPage,
+  setConfirmationPage,
+  escapeRooms,
+  setEscapeRooms,
+  formData,
+  setFormData,
+}) => {
   //-----------------CONTEXT---------------//
   const { createABooking } = useUserBookingsContext();
   const currTime = dayjs().format("HH:mm:ss");
   const currDate = dayjs().format("YYYY-MM-DD");
 
-  //react router dom's way of navigating through pages
-  const navigate = useNavigate();
-
   //-----------------STATE---------------//
   const [showSnackBar, setShowSnackBar] = useState(false);
-
- 
-
   const [timeSlots, setTimeSlots] = useState([]);
-
 
   //-----------------QUERIES---------------//
   const { data: allEscapeRoomsData } = useQuery(QUERY_AllESCAPEROOMS);
@@ -101,6 +99,7 @@ const Booking = ({confirmationPage, setConfirmationPage, escapeRooms, setEscapeR
         setFormData((prevState) => ({
           ...prevState,
           escape_room_image: image,
+          escape_room_description: selRoom.description,
         }));
       }
     }
@@ -170,16 +169,20 @@ const Booking = ({confirmationPage, setConfirmationPage, escapeRooms, setEscapeR
   };
 
   return (
-    <div>
+    <div className="">
       {confirmationPage ? null : (
         <>
-          <h1 className="text-2xl font-bold mb-10 px-3">
+          <h1 className="text-2xl font-bold mb-10 px-3 text-center">
             We're excited to have you! Complete the form below to book your
             escape room.
           </h1>
-          <div className="px-3">
-            <form id="booking-form" onSubmit={bookRoom}>
-              <div className="mb-6">
+          <div className="px-3  ">
+            <form
+              id="booking-form"
+              onSubmit={bookRoom}
+              className="lg:flex lg:justify-center "
+            >
+              <div className="mb-6 lg:mb-0 lg:w-2/5 lg:mx-12 lg:flex lg:flex-col lg:justify-between">
                 <label
                   className="block text-slate-100 text-lg font-bold mb-2"
                   htmlFor="escape-room"
@@ -208,84 +211,93 @@ const Booking = ({confirmationPage, setConfirmationPage, escapeRooms, setEscapeR
                     className="w-full h-auto" // Add your desired classes for styling
                   />
                 ) : null}
-              </div>
-              <div className="mb-6">
-                <label
-                  className="block text-slate-100 text-lg font-bold mb-2"
-                  htmlFor="numberOfPlayers"
-                >
-                  Number of Players:
-                </label>
-                <select
-                  className="rounded w-full py-2 px-3 text-slate-100 bg-zinc-950 border border-orange-500 focus:outline-none focus:shadow-outline"
-                  id="numberOfPlayers"
-                  name="numberOfPlayers"
-                  required
-                  onChange={handleInputChange}
-                >
-                  <option value={1}>1 Player</option>
-                  <option value={2}>2 Players</option>
-                  <option value={3}>3 Players</option>
-                  <option value={4}>4 Players</option>
-                </select>
+                <p className="pt-3">{formData.escape_room_description}</p>
               </div>
 
-              <div className="flex justify-between">
-                {" "}
-                <div className="mb-6">
-                  <label
-                    className="block text-slate-100 text-lg font-bold mb-2"
-                    htmlFor="date"
-                  >
-                    Select Date:
-                  </label>
-                  <input
-                    className="bg-zinc-950 rounded w-full py-2 px-3 text-slate-100 border border-orange-600 focus:outline-none focus:shadow-outline"
-                    id="date"
-                    type="date"
-                    name="date"
-                    required
-                    min={dayjs().format("YYYY-MM-DD")}
-                    onChange={handleInputChange}
-                  />
+              <div className="lg:w-1/3 lg:flex lg:flex-col lg:justify-around ">
+                <div>
+                  <div className="mb-6 lg:w-1/2 ">
+                    <label
+                      className="block text-slate-100 text-lg font-bold mb-2"
+                      htmlFor="numberOfPlayers"
+                    >
+                      Number of Players:
+                    </label>
+                    <select
+                      className="rounded w-full py-2 px-3 text-slate-100 bg-zinc-950 border border-orange-500 focus:outline-none focus:shadow-outline "
+                      id="numberOfPlayers"
+                      name="numberOfPlayers"
+                      required
+                      onChange={handleInputChange}
+                    >
+                      <option value={1}>1 Player</option>
+                      <option value={2}>2 Players</option>
+                      <option value={3}>3 Players</option>
+                      <option value={4}>4 Players</option>
+                    </select>
+                  </div>
+
+                  <div className="flex justify-between  xl:w-3/4">
+                    {" "}
+                    <div className="mb-6">
+                      <label
+                        className="block text-slate-100 text-lg font-bold mb-2"
+                        htmlFor="date"
+                      >
+                        Select Date:
+                      </label>
+                      <input
+                        className="bg-zinc-950 rounded w-full py-2 px-3 text-slate-100 border border-orange-600 focus:outline-none focus:shadow-outline"
+                        id="date"
+                        type="date"
+                        name="date"
+                        required
+                        min={dayjs().format("YYYY-MM-DD")}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                    <div className="mb-6">
+                      <label
+                        className="block text-slate-100 text-lg font-bold mb-2"
+                        htmlFor="time"
+                      >
+                        Select Time:
+                      </label>
+                      <select
+                        className="bg-zinc-950 rounded w-full py-2.5 px-3 text-slate-100 border border-orange-600 focus:outline-none focus:shadow-outline"
+                        id="time"
+                        name="time"
+                        required
+                        onChange={handleInputChange}
+                      >
+                        {timeSlots.map((slot, index) => {
+                          const s = convertTo12HourFormat(slot);
+                          return (
+                            <option key={index} value={slot}>
+                              {s}
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </div>
+                  </div>
                 </div>
-                <div className="mb-6">
-                  <label
-                    className="block text-slate-100 text-lg font-bold mb-2"
-                    htmlFor="time"
+
+                <div>
+                  <p className="text-sm text-slate-200 mb-5">
+                    *To cancel your booking, please, do so online or by calling
+                    us 24 hours prior to your scheduled time. Failure to do so
+                    will result in a cancellation fee.
+                  </p>
+                  <button
+                    id="submit-button"
+                    type="submit"
+                    className="w-full bg-orange-600 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
                   >
-                    Select Time:
-                  </label>
-                  <select
-                    className="bg-zinc-950 rounded w-full py-2.5 px-3 text-slate-100 border border-orange-600 focus:outline-none focus:shadow-outline"
-                    id="time"
-                    name="time"
-                    required
-                    onChange={handleInputChange}
-                  >
-                    {timeSlots.map((slot, index) => {
-                      const s = convertTo12HourFormat(slot);
-                      return (
-                        <option key={index} value={slot}>
-                          {s}
-                        </option>
-                      );
-                    })}
-                  </select>
+                    Book Now
+                  </button>
                 </div>
               </div>
-              <p className="text-sm text-slate-200 mb-5">
-                *To cancel your booking, please, do so online or by calling us
-                24 hours prior to your scheduled time. Failure to do so will
-                result in a cancellation fee.
-              </p>
-              <button
-                id="submit-button"
-                type="submit"
-                className="w-full bg-orange-600 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
-              >
-                Book Now
-              </button>
             </form>
           </div>
         </>
@@ -294,8 +306,6 @@ const Booking = ({confirmationPage, setConfirmationPage, escapeRooms, setEscapeR
       {showSnackBar ? (
         <SnackBar message="Something went wrong. Please try again later." />
       ) : null}
-
-    
     </div>
   );
 };
