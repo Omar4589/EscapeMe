@@ -2,7 +2,7 @@
 
 ## Description
 
-A customizable booking system initially designed for escape room businesses. Features an admin portal for management of bookings, users, and escape room details. Scalable for other business types.
+A customizable booking system initially designed for escape room businesses. Scalable for other business types.
 
 ## Table Of Contents
 
@@ -20,7 +20,7 @@ Follow the steps below to install this project:
 
 1.  `Clone` this repo to your local machine
 2.  Open a terminal and navigate to the `root` of the project's directory
-3.  Type `npm run install` and press enter/return on your keyboard to run the command.
+3.  Type `npm run install` and press enter/return on your keyboard to run the command. This will install all needed dependencies.
 4.  Once the installation finishes, type and run `npm run develop`. This starts the server and runs the react app. Refer to package.json file in the root for more scripts.
 
 ## Usage <a id="usage"></a>
@@ -32,7 +32,7 @@ Email: `vintagevicky@email.com`<br>
 Password: `test12345`
 <br><br>
 Users must choose the escape room, number of players, date, and time to successfully create a booking.
-As users create bookings, the booked time slots will be unavailable as expected. If a user cancels a booking, the time slots will be available again.
+As users create bookings, the booked time slots will become unavailable as expected. If a user cancels a booking, the time slots will be available again.
 For this project example, I've chosen the business hours to be between 12pm and 8pm. Users can book an escape room every hour between the hours of 12pm and 8pm.
 
 ## Technologies <a id="technologies"></a>
@@ -59,13 +59,16 @@ The following technologies were used to develop EscapeMe:
 - MySQL
 - Sequelize ORM
 
-<strong>Tools</strong>
+<strong>Other Tools</strong>
 
 - Node.js
 - bcrypt
 - JWT
 - dotenv
+- [react-google-maps/api](https://www.npmjs.com/package/@react-google-maps/api)
 - Day.js
+- EmailJS
+- React Slick
 
 <br>
 

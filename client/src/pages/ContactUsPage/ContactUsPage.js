@@ -56,13 +56,15 @@ const ContactUs = () => {
   //This function uses emailjs's sendForm method to send the actual email
   const sendEmail = (event) => {
     try {
+       //Get a handle on the HTML form element
+       const form = document.getElementById("contact-form");
       //sendForm() takes in 3 parameters,
       //1: the service ID of your email service; this is provided when you 'create a service' in the EMAILJS dashboard;
       //I.E. if youre using a gmail email, you 'create a service' for GMAIL and enter your gmail details. EMAILJS will the provide you with an ID
       //2. the Template ID of the email template you want to use. You can create email templates, visit https://www.emailjs.com/docs/tutorial/creating-email-template/
       //3. The HTML form element; above we get a handle on it using getElementById method
       emailjs
-        .sendForm(process.env.REACT_APP_EMAILJS_SERVICE, "escape_me", formData)
+        .sendForm(process.env.REACT_APP_EMAILJS_SERVICE, "escape_me", form)
         .then((response) => {
           console.log("Email successfully sent!", response);
         })
